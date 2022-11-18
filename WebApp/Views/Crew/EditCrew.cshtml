@@ -1,0 +1,106 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Edit Crew";
+    ViewBag.MainMenu = "mCrew";
+    ViewBag.SubMenu = "mCrew";
+}
+@section controller {
+    <script src="~/Angular/controllers/crew/crew-edit.js"></script>
+}
+
+<input type="hidden" name="id" id="id" value="@Model" />
+<form ng-controller="crew_edit" autocomplete="off" name="frm">
+    <h4>Profile Information</h4> <hr />
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">First Name</label>
+            <input type="text" class="form-control m-input" name="firstName" ng-model="crew.FirstName" required />
+            <span class="text-danger" ng-show="(frm.firstName.$touched || frm.firstName.$dirty && frm.firstName.$invalid)">
+                <span ng-show="frm.firstName.$error.required">Enter first name</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Last Name</label>
+            <input type="text" class="form-control m-input" name="lastName" ng-model="crew.LastName" required />
+            <span class="text-danger" ng-show="(frm.lastName.$touched || frm.lastName.$dirty && frm.lastName.$invalid)">
+                <span ng-show="frm.lastName.$error.required">Enter last name</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Email</label>
+            <input id="EmailFocusOut" type="email" class="form-control m-input" name="emailAddress" ng-model="crew.EmailAddress" ng-blur="EmailCheck()" required />
+            <span class="text-danger" ng-show="(frm.emailAddress.$touched || frm.emailAddress.$dirty && frm.emailAddress.$invalid)">
+                <span ng-show="frm.emailAddress.$error.required">Enter email</span>
+                <span ng-show="frm.email.$error.email">Enter valid email</span>
+                <span ng-show="crew.EmailAddress != '' && crew.EmailAddress != null  && UniqueEmail != null && UniqueEmail == false">Email already in use</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">Phone No.</label>
+            <input class="form-control m-input" name="phone" ng-model="crew.PhoneNo" ng-Phone required />
+            <span class="text-danger" ng-show="(frm.phone.$touched || frm.phone.$dirty && frm.phone.$invalid)">
+                <span ng-show="frm.phone.$error.required">Enter phone</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Address</label>
+            <input type="text" class="form-control m-input" name="addr" ng-model="crew.Address" required />
+            <span class="text-danger" ng-show="(frm.addr.$touched || frm.addr.$dirty && frm.addr.$invalid)">
+                <span ng-show="frm.addr.$error.required">Enter address</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Country</label>
+            <select id="drpCountry" class="form-control" onchange="getStates('profile')" tabindex="-98"></select>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">State</label>
+            <select onchange="getCities('profile')" id="drpState" tabindex="-98">
+                <option value="0">--Select Country First--</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">City</label>
+            <select id="drpCity" name="drpCity" tabindex="-98">
+                <option value="0">--Select State First--</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>Zip Code</label>
+            <input class="form-control m-input" name="pzip" ng-model="crew.ZipCode" ng-Zip />
+            @*<span class="text-danger" ng-show="(frm.pzip.$touched || frm.pzip.$dirty && frm.pzip.$invalid)">
+                    <span ng-show="frm.pzip.$error.maxlength">max lenght exceed by 5</span>
+                </span>*@
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        @*<div class="col-lg-4">
+            <label class="mandatory">Select Installer</label>
+            <select id="drpInstaller" class="form-control" tabindex="-98">
+                <option value="0">--Select Installer--</option>
+            </select>
+        </div>*@
+        <div class="col-lg-4">
+            <label>Profile Picture</label>
+            <div></div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" accept="image/*" ng-image ng-model="crew.Picture">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group">
+        @*<button ng-disabled="frm.$invalid ||  UniqueEmail != true" ng-click="update()" class="btn m-btn--square btn-success">Submit</button>*@
+
+        <button ng-disabled="frm.$invalid" ng-mousedown="update()" class="btn m-btn--square btn-success">Submit</button>
+        <a @*href="/Crew/CrewList"*@ ng-mousedown="Cancel()" class="btn m-btn--square btn-danger">Cancel</a>
+        <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+    </div>
+</form>
+
+

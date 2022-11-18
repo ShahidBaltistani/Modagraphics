@@ -1,0 +1,50 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Add Site Vehicle Job";
+    ViewBag.MainMenu = "mProject";
+    ViewBag.SubMenu = "sAddSiteVehicleJob";
+}
+@section controller {
+<script src="~/Angular/controllers/Job/add-job.js"></script>
+}
+
+<div ng-controller="add_job">
+    <h4 class="link-heading"><a href="/Site/SiteList"> @ViewBag.SiteName</a> | <a href="/SiteVehicleType/Types/@ViewBag.SiteId$@ViewBag.SiteName">@ViewBag.VehicleName</a> | Add Job(Vehicle)</h4>
+
+
+    <input type="hidden" name="siteVechcleId" id="siteVechcleId" value="@Model" />
+    <input type="hidden" name="siteId" id="siteId" value="$@ViewBag.SiteName$@ViewBag.SiteId$@ViewBag.VehicleName" />
+    <form autocomplete="off" name="frm">
+        <input type="text" autofocus="autofocus" style="display:none" />
+        <div class="form-group m-form__group row">
+            <div class="col-lg-4">
+                <label class="mandatory">VIN</label>
+                <input ng-blur="Check()" type="text" class="form-control m-input" name="VIN" ng-model="job.VIN" required />
+                <span class="text-danger" ng-show="(frm.VIN.$touched || frm.VIN.$dirty && frm.VIN.$invalid)">
+                    <span ng-show="frm.VIN.$error.required">Enter VIN</span><br />
+                    <span ng-show="VINError != null && VINError == false">VIN with this name already exist.</span>
+                </span>
+            </div>
+            <div class="col-lg-4">
+                <label class="mandatory">LPN</label>
+                <input type="text" class="form-control m-input" name="LPN" ng-model="job.LPN" required />
+                <span class="text-danger" ng-show="(frm.LPN.$touched || frm.LPN.$dirty && frm.LPN.$invalid)">
+                    <span ng-show="frm.LPN.$error.required">Enter LPN</span>
+                </span>
+            </div>
+            <div class="col-lg-4">
+                <label class="mandatory">Unit #</label>
+                <input ng-num="10" class="form-control m-input" name="unit" ng-model="job.UnitNo" required />
+                <span class="text-danger" ng-show="(frm.unit.$touched || frm.unit.$dirty && frm.unit.$invalid)">
+                    <span ng-show="frm.unit.$error.required">Enter unit number</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group m-form__group">
+            <input type="submit" ng-disabled="frm.$invalid" ng-click="save()" value="Submit" class="btn m-btn--square btn-success" />
+            <a href="/Job/Jobs/@Model$@ViewBag.SiteName$@ViewBag.SiteId$@ViewBag.VehicleName$false" class="btn m-btn--square btn-danger">Cancel</a>
+            <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+        </div>
+    </form>
+</div>

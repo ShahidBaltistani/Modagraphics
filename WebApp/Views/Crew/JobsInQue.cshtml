@@ -1,0 +1,292 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Jobs In Que";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sJobs";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/crew/crew-quejobs.js"></script>
+}
+<input type="hidden" name="id" id="id" value="@Model" />
+
+<div ng-controller="crew_quejobs">
+    <h4 class="link-heading"><a href="/Crew/AssignedSites"># of Jobs(Vehicles)</a></h4>
+
+    <form autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="VehicleType" ng-model="searchModel.VehicleTypeName" name="VehicleTypeName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="VIN" ng-model="searchModel.VIN" name="VIN" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="LPN" ng-model="searchModel.LPN" name="LPN" />
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group m-form__group">
+                    <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                        Search
+                    </button>
+                    <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Vehicle Type" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Vehicle Type</span></th>
+                    <th data-field="VIN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Awarded VIN</span></th>
+                    <th data-field="LPN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">LPN</span></th>
+                    <th data-field="Unit #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Unit #</span></th>
+                    <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Status</span></th>
+                    <th data-field="# of Images" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;"># of Images</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="totalCount <= 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="crew in crews">
+                    <td data-field="Vehicle Type" class="m-datatable__cell"><span style="width: 110px;">{{crew.VehicleTypeName}}</span></td>
+                    <td data-field="VIN" class="m-datatable__cell"><span style="width: 110px;">{{crew.VIN}}</span></td>
+                    <td data-field="LPN" class="m-datatable__cell"><span style="width: 110px;">{{crew.LPN}}</span></td>
+                    <td data-field="Unit #" class="m-datatable__cell"><span style="width: 110px;">{{crew.UnitNo}}</span></td>
+                    <td class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="crew.Status == 0 || crew.Status == 1">
+                                In Queue
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="crew.Status == 2">
+                                In Process
+                            </span>
+                            <span class="m-badge pl-3 m-badge--bordered pr-3" ng-if="crew.Status == 3">
+                                Under Review Supervisor
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="crew.Status == 4">
+                                Under Review Approval Manager
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="crew.Status == 5">
+                                Incident Reported
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="crew.Status == 6">
+                                Sent For Repair
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == 7">
+                                Completed
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="# of Images" class="m-datatable__cell"><span style="width: 110px;">{{crew.StartImgCount}}_Start/{{crew.EndImgCount}}_End</span></td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <a ng-click="uploadImageModal(crew)" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Upload Images">
+                                <i class="la la-plus"></i>
+                            </a>
+                            <a ng-click="incidentRemarksModal(crew)" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Generate Incident Report">
+                                <i class="la la-print"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="upload-image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Upload Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group m-form__group">
+                            <select id="drpImageType" onchange="drpImageType()" class="form-control" style="width:100%;">
+                                <option value="0" selected>Select Image Type</option>
+                                <option value="{{x.Id}}" ng-repeat="x in imageTypes">{{x.name}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-12">
+                                <label class="mandatory"><b>Upload Image</b></label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile" accept="image/*" ng-image ng-model="jobimages.Picture">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chkboxStarting" class="form-group m-form__group row">
+                            <div class="col-lg-12">
+                                <div class="m-checkbox-list">
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input id="chkDeleteImages" type="checkbox">
+                                        Delete existing images of vehicle
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="chkboxEnding" class="form-group m-form__group row">
+                            <div class="col-lg-12">
+                                <div class="m-checkbox-list">
+                                    <label class="m-checkbox m-checkbox--state-brand">
+                                        <input id="chkJobCompleted" type="checkbox">
+                                        Mark job as completed
+                                        <span></span>
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modal_container">
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button"  class="btn btn-success" ng-click="save()">
+                        Submit
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="cancelmodal()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="incident-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Upload Image</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12">
+                        <div class="form-group m-form__group">
+                            <label class="mandatory"><b>Enter Incident Remarks</b></label>
+                            <input type="text" id="incidentRemarks" name="remarks" placeholder="Incident Remarks" ng-model="jobimages.Remarks"/>
+                        </div>
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-12">
+                                <label class="mandatory"><b>Upload Image</b></label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="customFile2" accept="image/*" ng-image ng-model="jobimages.Picture">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="modal_container">
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button" class="btn btn-success" ng-click="saveModel2()">
+                        Submit
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(() => {
+
+        });
+
+        var drpImageType = function () {
+            //document.getElementById("chkbox").checked = false;
+            $(":checkbox").prop('checked', false);
+            var drpImageValue = $("#drpImageType").val();
+            if (drpImageValue === "0") {
+                $("#chkboxEnding").hide();
+                $("#chkboxStarting").hide();
+            }
+            else if (drpImageValue === "1") {
+                $("#chkboxEnding").hide();
+                $("#chkboxStarting").show();
+            }
+            else if (drpImageValue === "2") {
+                $("#chkboxStarting").hide();
+                $("#chkboxEnding").show();
+            }
+        };
+    </script>
+</div>

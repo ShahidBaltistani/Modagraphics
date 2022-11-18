@@ -1,0 +1,136 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Edit Site Vehicle Type";
+    ViewBag.MainMenu = "mProject";
+    ViewBag.SubMenu = "sEditSiteVehicleType";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/siteVehicleType/edit-site-vehicle-type.js"></script>
+}
+
+<input type="hidden" name="id" id="id" value="@Model" />
+
+<div ng-controller="edit_site_vehicle_type">
+    <h4 class="link-heading"><a href="/Site/SiteList">{{siteVehicle.SiteName}}</a> | Edit Vehicle Details</h4>
+
+    <form autocomplete="off" name="frm">
+        <h4>Vehicle Detail Information</h4> <hr />
+        @*<div class="form-group m-form__group row">
+                <div class="col-lg-4">
+                    <label class="form-control-label">
+                        Is Active?
+                    </label>
+                    <div class="m-radio-inline">
+                        <label class="m-radio m-radio--solid m-radio--brand">
+                            <input type="radio" name="account_group" checked="checked" value="2">
+                            Yes
+                            <span></span>
+                        </label>
+                        <label class="m-radio m-radio--solid m-radio--brand">
+                            <input type="radio" name="account_group" value="2">
+                            No
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <label class="mandatory">Select Site</label>
+                    <select class="form-control m-bootstrap-select m_selectpicker" tabindex="-98">
+                        <option>
+                            Select Site
+                        </option>
+                        <option>
+                            Ketchup
+                        </option>
+                        <option>
+                            Relish
+                        </option>
+                    </select>
+                </div>
+            </div>*@
+        <div class="form-group m-form__group row">
+            <div class="col-lg-4">
+                <label class="mandatory">Vehicle Type</label>
+                <select tabindex="-98" class="form-control" id="vehicleType">
+                   
+                </select>
+            </div>
+            <div class="col-lg-4">
+                <label class="mandatory">Vehicle Price</label>
+                <input ng-num="10" class="form-control m-input" ng-model="siteVehicle.VehiclePrice" id="vehiclePrice" name="vehiclePrice" required/>
+                <span class="text-danger" ng-show="(frm.vehiclePrice.$touched || frm.vehiclePrice.$dirty && frm.vehiclePrice.$invalid)">
+                    <span ng-show="frm.vehiclePrice.$error.required">Enter Vehicle Price</span>
+                </span>
+            </div>
+            <div class="col-lg-4">
+                <label class="">Specification</label>
+                <select tabindex="-98" class="form-control" id="vehicleSpecification">
+                </select>
+            </div>
+          
+
+        </div>
+
+      
+        <div class="form-group m-form__group row">
+            <div class="col-lg-4">
+                <label class="mandatory">Side(Inches)</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Height" ng-model="siteVehicle.SideHeight" name="sideheight" required />
+                        <span class="text-danger" ng-show="(frm.sideheight.$touched || frm.sideheight.$dirty && frm.sideheight.$invalid)">
+                            <span ng-show="frm.sideheight.$error.required">Enter side height</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Width" ng-model="siteVehicle.SideWidth" name="sidewidth"  required />
+                        <span class="text-danger" ng-show="(frm.sidewidth.$touched || frm.sidewidth.$dirty && frm.sidewidth.$invalid)">
+                            <span ng-show="frm.sidewidth.$error.required">Enter side width</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label class="mandatory">Front(Inches)</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Height" ng-model="siteVehicle.FrontHeight" name="frontheight" required />
+                        <span class="text-danger" ng-show="(frm.frontheight.$touched || frm.frontheight.$dirty && frm.frontheight.$invalid)">
+                            <span ng-show="frm.frontheight.$error.required">Enter front height</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Width" ng-model="siteVehicle.FrontWidth" name="frontwidth" required />
+                        <span class="text-danger" ng-show="(frm.frontwidth.$touched || frm.frontwidth.$dirty && frm.frontwidth.$invalid)">
+                            <span ng-show="frm.frontwidth.$error.required">Enter front width</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label class="mandatory">Rear(Inches)</label>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Height" ng-model="siteVehicle.RearHeight" name="rearheight" required />
+                        <span class="text-danger" ng-show="(frm.rearheight.$touched || frm.rearheight.$dirty && frm.rearheight.$invalid)">
+                            <span ng-show="frm.rearheight.$error.required">Enter rear height</span>
+                        </span>
+                    </div>
+                    <div class="col-lg-6">
+                        <input ng-num="5" class="form-control m-input" placeholder="Width" ng-model="siteVehicle.RearWidth" name="rearwidth" required />
+                        <span class="text-danger" ng-show="(frm.rearwidth.$touched || frm.rearwidth.$dirty && frm.rearwidth.$invalid)">
+                            <span ng-show="frm.rearwidth.$error.required">Enter rear width</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group m-form__group">
+            <input type="submit" ng-disabled="frm.$invalid" ng-click="update()" value="Submit" class="btn m-btn--square btn-success" />
+            <a href="/SiteVehicleType/Types/{{siteVehicle.SiteId}}${{siteVehicle.SiteName}}$false" class="btn m-btn--square btn-danger">Cancel</a>
+            <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+        </div>
+    </form>
+</div>

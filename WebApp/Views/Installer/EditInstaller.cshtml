@@ -1,0 +1,301 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Edit Installer ";
+    ViewBag.MainMenu = "mInstaller";
+    ViewBag.SubMenu = "sEditInstaller";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/Installer/installer-edit.js"></script>
+}
+
+<input type="hidden" name="id" id="id" value="@Model" />
+
+<form ng-controller="installer_edit" autocomplete="off" name="frm">
+    <h4>Profile Information</h4> <hr />
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">First Name</label>
+            <input type="text" class="form-control m-input" name="firstName" required ng-model="installer.FirstName" />
+            <span class="text-danger" ng-show="(frm.firstName.$touched || frm.firstName.$dirty && frm.firstName.$invalid)">
+                <span ng-show="frm.firstName.$error.required">Enter first name</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Last Name</label>
+            <input type="text" class="form-control m-input" ng-model="installer.LastName" name="lastName" required />
+            <span class="text-danger" ng-show="(frm.lastName.$touched || frm.lastName.$dirty && frm.lastName.$invalid)">
+                <span ng-show="frm.lastName.$error.required">Enter last name</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Email</label>
+            <input id="EmailFocusOut" type="email" class="form-control m-input" ng-model="installer.EmailAddress" ng-blur="EmailCheck()" name="email" required />
+            <span class="text-danger" ng-show="(frm.email.$touched || frm.email.$dirty && frm.email.$invalid)">
+                <span ng-show="frm.email.$error.required">Enter email</span>
+                <span ng-show="frm.email.$error.email">Enter valid email</span>
+                <span ng-show="installer.EmailAddress != '' && installer.EmailAddress != null  && UniqueEmail != null && UniqueEmail == false">Email already in use</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Phone No.</label>
+            <input ng-Phone class="form-control m-input" ng-model="installer.PhoneNo" name="phone" />
+            <span class="text-danger" ng-show="(frm.phone.$touched || frm.phone.$dirty && frm.phone.$invalid)">
+                <span ng-show="frm.phone.$error.required">Enter phone number</span>
+               
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label>Address</label>
+            <input type="text" name="address" ng-model="installer.Address" class="form-control m-input" />
+        </div>
+        <div class="col-lg-4">
+            <label>Country</label>
+            <select id="pdrpCountry" class="form-control" tabindex="-98">
+            </select>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>State</label>
+            <select id="pdrpState" tabindex="-98">
+                <option value="0">--Select Country First--</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>City</label>
+            <select id="pdrpCity" name="pdrpCity" tabindex="-98">
+                <option value="0">--Select State First--</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>Zip Code</label>
+            <input  class="form-control m-input" ng-model="installer.PZipCode" ng-zip />
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Profile Picture</label>
+            <div></div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" accept="image/*" ng-image ng-model="installer.Picture">
+                <label class="custom-file-label" for="customFile">Choose file</label>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <label>Willing to travel (In miles)</label>
+            <input step="any" class="form-control m-input" ng-model="installer.TravelInMiles" ng-Num="30" />
+        </div>
+    </div>
+
+
+
+
+    <br /> <h4>Company Information</h4> <hr />
+    <div class="form-group m-form__group row">
+        @*<div class="col-lg-4">
+                <label class="mandatory">User Type</label>
+                <select id="drpCorporateUser" class="form-control" tabindex="-98">
+                    <option value="0">--Select user type--</option>
+                </select>
+            </div>*@
+        <div class="col-lg-4">
+            <label class="mandatory">Company Name</label>
+            <input type="text" class="form-control m-input" ng-model="installer.CompanyName" name="companyName" required />
+            <span class="text-danger" ng-show="(frm.companyName.$touched || frm.companyName.$dirty && frm.companyName.$invalid)">
+                <span ng-show="frm.companyName.$error.required">Enter company name</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Company Contact Number</label>
+            <input class="form-control m-input" ng-model="installer.CContactNo" ng-phone name="contactNo" required />
+            <span class="text-danger" ng-show="(frm.contactNo.$touched || frm.contactNo.$dirty && frm.contactNo.$invalid)">
+                <span ng-show="frm.contactNo.$error.required">Enter contact number</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Country</label>
+            <select id="cdrpCountry" class="form-control" tabindex="-98">
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>State</label>
+            <select id="cdrpState" tabindex="-98">
+                <option value="0">--Select Country First--</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label>City</label>
+            <select id="cdrpCity" name="pdrpCity" tabindex="-98">
+                <option value="0">--Select State First--</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Zip Code</label>
+            <input ng-zip class="form-control m-input" ng-model="installer.CZipCode" />
+        </div>
+        <div class="col-lg-4">
+            <label>Fax Number</label>
+            <input type="text" class="form-control m-input" ng-model="installer.FaxNo" ng-Num="15"  name="fax"/>
+            @*<span class="text-danger" ng-show="(frm.fax.$touched || frm.fax.$dirty && frm.fax.$invalid)">
+                <span ng-show="frm.fax.$error.maxlength">max lenght exceed by 15</span>
+            </span>*@
+        </div>
+        <div class="col-lg-4">
+            <label>Bill to Address</label>
+            <input type="text" class="form-control m-input" id="billToAddress" ng-model="installer.BillToAddress" />
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="col-10">
+                <span class="m-list-settings__item-label">
+                    Is company address same as profile address?
+                </span>
+            </label>
+            <div class="m-list-settings__item col-2">
+                <span class="m-list-settings__item-control">
+                    <span class="m-switch m-switch--icon m-switch--success">
+                        <label>
+                            <input type="checkbox" ng-click="sameAddresses($event)">
+                            <span></span>
+                        </label>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+    @*<br /> <h4>Documents</h4> <hr />
+        <div class="form-group m-form__group row">
+            <div class="col-lg-4">
+                <label>Upload NDA</label>
+                <div></div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" ng-model="installer.NDA">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label>Insurance</label>
+                <div></div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" ng-model="installer.insurance">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <label>W9 Document</label>
+                <div></div>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile" ng-model="installer.w9Document">Choose file</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group m-form__group row">
+            <div class="col-lg-4">
+                <label>Insurance Expiration Date</label>
+                <input type="text" class="form-control" id="m_datepicker_1" readonly="" ng-model="installer.insuranceExpirayDate" placeholder="Select date">
+            </div>
+        </div>*@
+
+
+    <br /> <h4>Qualification Information</h4> <hr />
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Company Email</label>
+            <input type="email" ng-model="installer.CompanyEmail" class="form-control m-input" name="cemail" />
+            <span class="text-danger" ng-show="(frm.cemail.$touched || frm.cemail.$dirty && frm.cemail.$invalid)">
+                <span ng-show="frm.cemail.$error.required">Enter email</span>
+                <span ng-show="frm.cemail.$error.email">Enter valid email</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label>F.E.I.N Number</label>
+            <input ng-Num="30" ng-model="installer.FEINumber" class="form-control m-input" />
+        </div>
+        <div class="col-lg-4">
+            <label># Employees</label>
+            <input ng-model="installer.NoOfEmployees" class="form-control m-input" ng-Num="15" name="noOfEmp" />
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Certification/Training</label>
+            <input type="text" class="form-control m-input"  ng-model="installer.CertificationTraining" />
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Are You Installers Employee?</label>
+            <select id="sltInstall" class="form-control m-bootstrap-select m_selectpicker"  ng-change="refreshPicker('sltInstall')" tabindex="-98" ng-model="installer.IsInstallersEmployee">
+                <option value="true">
+                    Yes
+                </option>
+                <option value="false">
+                    No
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Do you do Backgrounds Checks</label>
+            <select id="sltBackGround" class="form-control m-bootstrap-select m_selectpicker" ng-change="refreshPicker('sltBackGround')" ng-model="installer.IsEmployeesBackgroundCheck" tabindex="-98">
+                <option value="true">
+                    Yes
+                </option>
+                <option value="false">
+                    No
+                </option>
+            </select>
+            <span class="m-form__help helptext">(On your employees or sub-contractors)</span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">Do you Drug Test</label>
+            <select id="sltDrug" ng-change="refreshPicker('sltDrug')" class="form-control m-bootstrap-select m_selectpicker" ng-model="installer.IsDrugTest" tabindex="-98">
+                <option value="true">
+                    Yes
+                </option>
+                <option value="false">
+                    No
+                </option>
+            </select>
+            <span class="m-form__help helptext">(Of your employees or sub-contractors)</span>
+        </div>
+        <div class="col-lg-4">
+            <label>Equipment Owned/Operated</label>
+            <input type="text" class="form-control m-input" ng-model="installer.EquipmentOwned" />
+        </div>
+        <div class="col-lg-4">
+            <label>Install Locations/Geographic Areas</label>
+            <input type="text" class="form-control m-input" ng-model="installer.InstallLocations" />
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label>Type of Install Projects Completed</label>
+            <input type="text" class="form-control m-input" ng-model="installer.InstallProjectCompleted" />
+        </div>
+        <div class="col-lg-4">
+            <label>Year in Business</label>
+            <input class="form-control m-input" ng-model="installer.YearInBusiness" ng-Num="15" name="yearInbusiness"/>
+            @*<span class="text-danger" ng-show="(frm.yearInbusiness.$touched || frm.yearInbusiness.$dirty && frm.yearInbusiness.$invalid)">
+                <span ng-show="frm.yearInbusiness.$error.min">Year in business should be greater than 0</span>
+            </span>*@
+        </div>
+    </div>
+    <div class="form-group m-form__group custommargin">
+        @*<button ng-disabled="frm.$invalid || UniqueEmail != true" ng-click="update()" class="btn m-btn--square btn-success">Submit</button>*@
+
+        <button ng-disabled="frm.$invalid" ng-mousedown="update()" class="btn m-btn--square btn-success">Submit</button>
+        <a @*href="/Installer/InstallerList"*@ ng-mousedown="Cancel()" class="btn m-btn--square btn-danger">Cancel</a>
+        <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+    </div>
+</form>

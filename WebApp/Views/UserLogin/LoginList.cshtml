@@ -1,0 +1,192 @@
+﻿@{
+    ViewBag.Title = "User Login List";
+    ViewBag.MainMenu = "mLogin";
+    ViewBag.SubMenu = "sListLogin";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/userLogin/login-list.js"></script>
+}
+
+
+<div ng-controller="login_list">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input type="text" class="form-control m-input form-control-sm" placeholder="Username" ng-model="searchModel.loginName" />
+            </div>
+            <div class="form-group m-form__group">
+                <input type="text" class="form-control m-input form-control-sm" placeholder="Name" ng-model="searchModel.userName" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <select id="drpActive" class="form-control m-input btn-sm m-bootstrap-select m_selectpicker"
+                        ng-model="searchModel.roleString" tabindex="-98">
+                    <option value="">All User</option>
+                    <option value="0">User</option>
+                    <option value="1">Approval Manager</option>
+                    <option value="2">Finance Manager</option>
+                    <option value="3">Corporate User</option>
+                    <option value="4">Installer</option>
+                    <option value="5">Fleet Owner</option>
+                    @*<option value="6">Crew</option>*@
+                </select>
+            </div>
+            <div class="form-group m-form__group">
+                <input type="text" class="form-control m-input form-control-sm" placeholder="Email" ng-model="searchModel.email" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <select id="drpActive" class="form-control m-input btn-sm m-bootstrap-select m_selectpicker"
+                        ng-model="searchModel.isActive" tabindex="-98">
+                    <option value="">
+                        All
+                    </option>
+                    <option value="true">
+                        Active
+                    </option>
+                    <option value="false">
+                        In-Active
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <button ng-click="search()" type="button" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                    Search
+                </button>
+                <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Username</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Name</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Email</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Role</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Status</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Action</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="totalCount <= 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="userLogin in userLogins">
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{userLogin.Username}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{userLogin.Name}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{userLogin.Email}}</span></td>
+                    <td class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span ng-if="userLogin.UserRole == '0'">
+                                User
+                            </span>
+                            <span ng-if="userLogin.UserRole == '1'">
+                                Approval Manager
+                            </span>
+                            <span ng-if="userLogin.UserRole == '2'">
+                                Finance Manager
+                            </span>
+                            <span ng-if="userLogin.UserRole == '3'">
+                                Corporate User
+                            </span>
+                            <span ng-if="userLogin.UserRole == '4'">
+                                Installer
+                            </span>
+                            <span ng-if="userLogin.UserRole == '5'">
+                                Fleet Owner
+                            </span>
+                            <span ng-if="userLogin.UserRole == '6'">
+                                Crew
+                            </span>
+
+                        </span>
+                    </td>
+                    <td class="m-datatable__cell m--align-center">
+                        <span style="width: 110px; color:white" class="m-badge m-badge--success m-badge--wide" ng-if="userLogin.IsActive != true">In-Active</span>
+                        <span style="width: 110px;color:white" class="m-badge m-badge--success m-badge--wide" ng-if="userLogin.IsActive == true">Active</span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <a href="/UserLogin/ChangePassword/{{userLogin.Id}}" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Change Password">
+                                <i class="la la-edit"></i>
+                            </a>
+                            <div class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" ng-if="userLogin.IsActive != true" ng-click="changeStatus(userLogin.Id)" href="#">
+                                        <i class="la la-check-circle"></i> Change Status To Active
+                                    </a>
+                                    <a class="dropdown-item" ng-if="userLogin.IsActive == true" ng-click="changeStatus(userLogin.Id)" href="#">
+                                        <i class="la la-check-circle"></i> Change Status To In-Active
+                                    </a>
+                                </div>
+                            </div>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

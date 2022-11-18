@@ -1,0 +1,176 @@
+﻿
+@{
+    ViewBag.Title = "Crew";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+}
+@section controller {
+    <script src="~/Angular/controllers/dashboard/crew.js"></script>
+}
+<div ng-app="app">
+    <div ng-controller="crew">
+        <!--Begin::Section-->
+        <div class="row">
+            <div class="col-xl-6">
+                <!--begin:: Widgets/Top Products-->
+                <div class="m-portlet m-portlet--bordered-semi m-portlet--full-height  m-portlet--rounded">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Crew
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <!--begin::Widget5-->
+                        <div class="m-widget4">
+                            <div class="m-widget4__chart m-portlet-fit--sides m--margin-top-10 m--margin-top-20" style="height:260px;">
+                                <canvas id="m_chart_trends_stats"></canvas>
+                            </div>
+                            <!--
+                            <div class="m-widget4__item">
+                                <div class="m-widget4__img m-widget4__img--logo">
+                                    <img src="~/Theme/img/client-logos/logo3.png" alt="">
+                                </div>
+                                <div class="m-widget4__info">
+                                    <span class="m-widget4__title">
+                                        Projects
+                                    </span>
+                                    <br>
+                                    <span class="m-widget4__sub">
+                                        Completed
+                                    </span>
+                                </div>
+                                <span class="m-widget4__ext">
+                                    <span class="m-widget4__number m--font-danger">
+                                        17
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="m-widget4__item">
+                                <div class="m-widget4__img m-widget4__img--logo">
+                                    <img src="~/Theme/img/client-logos/logo1.png" alt="">
+                                </div>
+                                <div class="m-widget4__info">
+                                    <span class="m-widget4__title">
+                                        Sites
+                                    </span>
+                                    <br>
+                                    <span class="m-widget4__sub">
+                                        Awarded and Assigned
+                                    </span>
+                                </div>
+                                <span class="m-widget4__ext">
+                                    <span class="m-widget4__number m--font-danger">
+                                        20
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="m-widget4__item">
+                                <div class="m-widget4__img m-widget4__img--logo">
+                                    <img src="~/Theme/img/client-logos/logo2.png" alt="">
+                                </div>
+                                <div class="m-widget4__info">
+                                    <span class="m-widget4__title">
+                                        Jobs
+                                    </span>
+                                    <br>
+                                    <span class="m-widget4__sub">
+                                        Total
+                                    </span>
+                                </div>
+                                <span class="m-widget4__ext">
+                                    <span class="m-widget4__number m--font-danger">
+                                        150
+                                    </span>
+                                </span>
+                            </div>
+                                -->
+                        </div>
+                        <!--end::Widget 5-->
+                    </div>
+                </div>
+                <!--end:: Widgets/Top Products-->
+            </div>
+            <div class="col-xl-6">
+                <!--begin:: Widgets/Activity-->
+                <div class="m-portlet m-portlet--bordered-semi m-portlet--widget-fit m-portlet--full-height m-portlet--skin-light  m-portlet--rounded m-portlet--rounded-force">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text m--font-light">
+                                    Jobs Detail
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        <div class="m-widget17">
+                            <div class="m-widget17__visual m-widget17__visual--chart m-portlet-fit--top m-portlet-fit--sides m--bg-danger">
+                                <div class="m-widget17__chart" style="height:320px;">
+                                    <canvas id="m_chart_activities"></canvas>
+                                </div>
+                            </div>
+                            <div class="m-widget17__stats">
+                                <div class="m-widget17__items m-widget17__items-col1">
+                                    <div class="m-widget17__item">
+                                        <span class="m-widget17__icon">
+                                            <i class="fa fa-th"></i>
+                                        </span>
+                                        <span class="m-widget17__subtitle" ng-model="AssignedSites">
+                                            {{AssignedSites}}
+                                        </span>
+                                        <span class="m-widget17__desc">
+                                            Assigned Sights
+                                        </span>
+                                    </div>
+                                    <div class="m-widget17__item">
+                                        <span class="m-widget17__icon">
+                                            <i class="fa fa-exclamation-triangle"></i>
+                                        </span>
+                                        <span class="m-widget17__subtitle" ng-model="AssignedJobs">
+                                            {{AssignedJobs}}
+                                        </span>
+                                        <span class="m-widget17__desc">
+                                            Assigned Jobs
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="m-widget17__items m-widget17__items-col2">
+                                    <div class="m-widget17__item">
+                                        <span class="m-widget17__icon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                        <span class="m-widget17__subtitle" ng-model="JobsUnderReview">
+                                            {{JobsUnderReview}}
+                                        </span>
+                                        <span class="m-widget17__desc">
+                                            Jobs Under Review
+                                        </span>
+                                    </div>
+                                    <div class="m-widget17__item">
+                                        <span class="m-widget17__icon">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                        <span class="m-widget17__subtitle">
+                                            0
+                                        </span>
+                                        <span class="m-widget17__desc">
+                                            Completed Jobs
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end:: Widgets/Activity-->
+            </div>
+        </div>
+        <!--End::Section-->
+    </div>
+</div>
+
+<script src="~/Theme/js/dashboard.js" type="text/javascript"></script>

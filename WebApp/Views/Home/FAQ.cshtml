@@ -1,0 +1,2356 @@
+﻿
+@if ((string)ViewBag.Role.ToString() == "User")
+{
+    ViewBag.Title = "Admin Dashboard";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size: 16px;">
+            How to add Data Entry Operator?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new data entry operator.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.</p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added data entry operator by clicking “User Listing” under ‘Users’ tab.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExampl1" style="font-size: 16px;">
+            How to Add Vehicle Type?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample1">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Vehicle Type” under ‘Vehicle Type’ tab.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting vehicle type will be added.</p>
+            <p> <b>Step 4</b> - You can view added vehicle by clicking “Vehicle Type Listing” under ‘Vehicle Type’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExampl2" style="font-size: 16px;">
+            How to add Project?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample2">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Project” under ‘Project & Site’ tab to add project.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting project will be added.</p>
+            <p> <b>Step 4</b> - You can view added project by clicking “Project Listing” under ‘Project & Site’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExampl3" style="font-size: 16px;">
+            How to add Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample3">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Site” under ‘Project & Site’ tab to add site.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting site will be added.</p>
+            <p> <b>Step 4</b> - You can view added site by clicking “Site Listing” under ‘Project & Site’ tab.</p>
+            <p>(Note: Site is added under fleet owner you can perform all fleet owner related task on site by that fleet owner which you selected for site) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExampl4" style="font-size: 16px;">
+            How to Add Vehicle Details for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample4">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” under ‘Actions’ of specifics site for which you want to add vehicle details.</p>
+            <p> <b>Step 4</b> - Click “Add Vehicle Details” on ‘Vehicle Detail’ screen.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting vehicle details will be added.</p>
+            <p> <b>Step 6</b> - You can view added vehicle details by clicking “Vehicle Details” under site ‘Actions’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExampl5" style="font-size: 16px;">
+            How to Add Job(Vehicle) for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample5">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” from ‘Actions’ menu of specifics site for which you want to add vehicle details .</p>
+            <p> <b>Step 4</b> - Click “Jobs(Vehicles)” from ‘Actions’ menu of ‘Vehicle Details’ list for which you want to add job.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting job will be added.</p>
+            <p> <b>Step 6</b> - You can view added job by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExampl6" style="font-size: 16px;">
+            How to Enable Bid on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample6">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab . </p>
+            <p> <b>Step 3</b> - Click “Enable Biding” under ‘Actions’ menu for which site you want to enable bid.</p>
+            <p>(Note: Site must have at least one vehicle to enable biding) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExampl7" style="font-size: 16px;">
+            How to View and Approve or Reject Bid?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample7">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Bid Details” under ‘Actions’ menu or “Bids” count link from ‘Site Listing’ to view bid for site.</p>
+            <p> <b>Step 4</b> - On ‘Bids’ screen you can view list of bids for site and you can also approve or reject bid by clicking “Approve” or “Reject” button.</p>
+            <p>(Note: When you click “Approve” button in bid list site will be awarded to that which made that bid)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample8" role="button" aria-expanded="false" aria-controls="collapseExampl8" style="font-size: 16px;">
+            How to View Job status for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample8">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.  </p>
+            <p> <b>Step 3</b> - You can view job status by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample9" role="button" aria-expanded="false" aria-controls="collapseExampl9" style="font-size: 16px;">
+            How to add Approval Manger?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample9">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new approval manager.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to already approved “Approval Manager”. </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added approval manager by clicking “User Listing” under ‘Users’ tab. </p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample10" role="button" aria-expanded="false" aria-controls="collapseExampl10" style="font-size: 16px;">
+            How to approve Data Entry Operator or Approval Manager?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample10">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved approval manager.</p>
+            <p> <b>Step 2</b> - Click “User” under ‘Approval’ tab to approve user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample11" role="button" aria-expanded="false" aria-controls="collapseExampl11" style="font-size: 16px;">
+            How to approve Corporate User?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample11">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Corporate User” under ‘Approval’ tab to approve corporate user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Corporate User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Corporate User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once corporate user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample12" role="button" aria-expanded="false" aria-controls="collapseExampl12" style="font-size: 16px;">
+            How to approve Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample12">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Fleet Owners” under ‘Approval’ tab to approve fleet owner.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Fleet Owners’ list . </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Fleet Owner’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once fleet owner is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample13" role="button" aria-expanded="false" aria-controls="collapseExampl13" style="font-size: 16px;">
+            How to approve Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample13">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager. </p>
+            <p> <b>Step 2</b> - Click “Installers” under ‘Approval’ tab to approve installer.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Installers’ list.  </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Installer’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once installer is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample14" role="button" aria-expanded="false" aria-controls="collapseExampl14" style="font-size: 16px;">
+            How to approve or reject job which is under Approval Manager Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample14">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.  </p>
+            <p> <b>Step 2</b> - Click “Jobs” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Jobs’ list.   </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Jobs’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved it forwarded to “Supervisor” for review if job is rejected it again added to ‘InQueue’ jobs of site.  </p>
+            <p>(Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample15" role="button" aria-expanded="false" aria-controls="collapseExampl15" style="font-size: 16px;">
+            How to add login for Data Entry Operator, Approval Manager, Corporate User, Fleet Owner or Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample15">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.   </p>
+            <p> <b>Step 2</b> - Click “Add Account” under ‘Manage Login’ tab to create login.</p>
+            <p> <b>Step 3</b> - Select ‘User Type’ then select user from ‘User’ dropdown for which you want to create login and fill reaming details.    </p>
+            <p> <b>Step 4</b> - Click “Submit” button on submitting new login will be created. </p>
+            <p> <b>Step 5</b> - You can view added login by clicking “Account List” under ‘Manage Login’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExampl16" style="font-size: 16px;">
+            How to add Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample16">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.    </p>
+            <p> <b>Step 2</b> - Click “Add Fleet Owner” under ‘Fleet Owner’ tab to add profile of new fleet owner.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.   </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added fleet owner by clicking “Fleet Owner Listing” under ‘Fleet Owner’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample17" role="button" aria-expanded="false" aria-controls="collapseExampl17" style="font-size: 16px;">
+            How to assign site to Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample17">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site. </p>
+            <p> <b>Step 2</b> - Click “Assign Supervisor” under ‘Supervisor’ tab to assign site.</p>
+            <p> <b>Step 3</b> - You can view all site related to fleet owner that has not assigned to any supervisor in ‘Assign Supervisor’ list.  </p>
+            <p> <b>Step 4</b> - Click “Assign” button under ‘Actions’ menu of ‘Assign Supervisor’ list for which site you want to assign supervisor. </p>
+            <p> <b>Step 5</b> - After clicking popup will open you can select as may supervisor as you want assign to site after selecting supervisor click “Assign” button. </p>
+            <p> <b>Step 6</b> - Now site is assigned to selected supervisors you view site assigned to supervisor by clicking “Site” link in ‘Supervisor Listing’ under ‘Supervisor’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample18" role="button" aria-expanded="false" aria-controls="collapseExampl18" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample18">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site.   </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample19" role="button" aria-expanded="false" aria-controls="collapseExampl19" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample19">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample20" role="button" aria-expanded="false" aria-controls="collapseExampl20" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample20">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list. </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p>  (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p>  (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample21" role="button" aria-expanded="false" aria-controls="collapseExampl21" style="font-size: 16px;">
+            How to add Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample21">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you want to add supervisor. </p>
+            <p> <b>Step 2</b> - Click “Add Supervisor” under ‘Supervisor’ tab to add profile of new supervisor.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new supervisor will be created now you can add login for that supervisor.  </p>
+            <p> <b>Step 4</b> - You can view added supervisor by clicking “Supervisor Listing” under ‘Supervisor’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample22" role="button" aria-expanded="false" aria-controls="collapseExampl22" style="font-size: 16px;">
+            How to add Supervisor Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample22">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you previously added supervisor.  </p>
+            <p> <b>Step 2</b> - Click “Supervisor Listing” under ‘Supervisor’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Supervisor Listing’ for which supervisor you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for supervisor and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample23" role="button" aria-expanded="false" aria-controls="collapseExampl23" style="font-size: 16px;">
+            How supervisor can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample23">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor.</p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that supervisor and you can also view project details by clicking “Project” link of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample25" role="button" aria-expanded="false" aria-controls="collapseExampl25" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample25">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Site’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site. </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample26" role="button" aria-expanded="false" aria-controls="collapseExampl26" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample26">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample27" role="button" aria-expanded="false" aria-controls="collapseExampl27" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample27">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list.  </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample28" role="button" aria-expanded="false" aria-controls="collapseExampl28" style="font-size: 16px;">
+            How to add Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample28">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator. </p>
+            <p> <b>Step 2</b> - Click “Add Installer” under ‘Installer’ tab to add profile of new installer.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.  </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added installer by clicking “Installer Listing” under ‘Installer’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample29" role="button" aria-expanded="false" aria-controls="collapseExampl29" style="font-size: 16px;">
+            How to bid on Open Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample29">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Open Site” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Bid” button under ‘Actions’ menu or click “Bid” button of ‘Open Bid’ list for which site you want to bid.  </p>
+            <p> <b>Step 4</b> - After clicking popup will open provided required details and submit. </p>
+            <p> <b>Step 5</b> - On submit bid will be submitted to data entry operator and now data entry operator can accept that bid or reject that bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample30" role="button" aria-expanded="false" aria-controls="collapseExampl30" style="font-size: 16px;">
+            How to view Awarded Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample30">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.   </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which are awarded to that installer and you can also view project details by clicking “Project” of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample31" role="button" aria-expanded="false" aria-controls="collapseExampl31" style="font-size: 16px;">
+            How to awarded site to Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample31">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer. </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Assign” button under ‘Actions’ menu of ‘Awarded Sites’ list for which site you want to award.</p>
+            <p> <b>Step 4</b> - After clicking popup will open you can select as may crews as you want to assign after selecting crews click “Assign” button. </p>
+            <p> <b>Step 5</b> - Now site is assigned to selected crews you view assigned site by clicking “Assigned Sites” under ‘Site’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample32" role="button" aria-expanded="false" aria-controls="collapseExampl32" style="font-size: 16px;">
+            How installer can view his Bids?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample32">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Bid History” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites on which installer already made bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample33" role="button" aria-expanded="false" aria-controls="collapseExampl33" style="font-size: 16px;">
+            How to add Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample33">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you want to add crew.  </p>
+            <p> <b>Step 2</b> - Click “Add Crew” under ‘Crew’ tab to add profile of new crew.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new crew will be created now you can add login for that crew. </p>
+            <p> <b>Step 4</b> - You can view added crew by clicking “Crew Listing” under ‘Crew’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample34" role="button" aria-expanded="false" aria-controls="collapseExampl34" style="font-size: 16px;">
+            How to add Crew Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample34">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you previously added crew. </p>
+            <p> <b>Step 2</b> - Click “Crew Listing” under ‘Crew’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Crew Listing’ for which crew you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for crew and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample35" role="button" aria-expanded="false" aria-controls="collapseExampl35" style="font-size: 16px;">
+            How crew can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample35">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that crew and you can also view project details by clicking “Project” link of site and can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+            <p> <b>Step 4</b> - You can start working by picking job from ‘Jobs_In_Que’ list.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample36" role="button" aria-expanded="false" aria-controls="collapseExampl36" style="font-size: 16px;">
+            How crew can start work on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample36">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Jobs_In_Que’” link or “Jobs_In_Que’” button under ‘Actions’ menu of ‘Assigned Sites’ list for which site you want to start work.</p>
+            <p> <b>Step 4</b> - After clicking you view list of job related to that site, you can pick job by clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - After clicking popup will open select image type as “Starting” and upload staring “Image” of job and submit. On submitting working will be started on that job.</p>
+            <p> <b>Step 6</b> - You can view job on which crew is start working by clicking “Job in Process” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample37" role="button" aria-expanded="false" aria-controls="collapseExampl37" style="font-size: 16px;">
+            How crew can submit job for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample37">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Job in Process” button under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - After clicking you view list of job on which crew is currently working, you can upload as many images you want clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 4</b> - After uploading all images to submit that job for approval you must have to select image type as “Ending”, “Upload Image”, check “Mark as completed” and submit. </p>
+            <p> <b>Step 5</b> - You can view jobs submitted for review by clicking “Jobs Under Review” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample38" role="button" aria-expanded="false" aria-controls="collapseExampl38" style="font-size: 16px;">
+            How crew can Report Incident?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample38">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Generate Incident Report” under ‘Action’ menu of job for which you want to report.</p>
+            <p> <b>Step 3</b> - After clicking popup will open add “Incident Remarks” and upload incident “Image” and submit. On submitting job will be forwarded to supervisor for taking corrective actions.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample39" role="button" aria-expanded="false" aria-controls="collapseExampl39" style="font-size: 16px;">
+            How crew can view Status of job that are submitted for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample39">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Jobs Under Review” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are submitted for approval and you also view status of site.</p>
+            <p> <b>Step 4</b> - Job first forwarded to “Approval Manger” after approval job forwarded to “Supervisor” when supervisor approve then job mark as ‘Completed’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample40" role="button" aria-expanded="false" aria-controls="collapseExampl40" style="font-size: 16px;">
+            How crew can view Completed Jobs?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample40">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Jobs Completed” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are completed.</p>
+        </div>
+    </div>
+
+}
+
+@if ((string)ViewBag.Role.ToString() == "ApprovalManager")
+{
+    ViewBag.Title = "Approval Manager";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size: 16px;">
+            How to add Data Entry Operator?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new data entry operator.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.</p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added data entry operator by clicking “User Listing” under ‘Users’ tab.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExampl1" style="font-size: 16px;">
+            How to Add Vehicle Type?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample1">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Vehicle Type” under ‘Vehicle Type’ tab.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting vehicle type will be added.</p>
+            <p> <b>Step 4</b> - You can view added vehicle by clicking “Vehicle Type Listing” under ‘Vehicle Type’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExampl2" style="font-size: 16px;">
+            How to add Project?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample2">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Project” under ‘Project & Site’ tab to add project.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting project will be added.</p>
+            <p> <b>Step 4</b> - You can view added project by clicking “Project Listing” under ‘Project & Site’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExampl3" style="font-size: 16px;">
+            How to add Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample3">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Site” under ‘Project & Site’ tab to add site.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting site will be added.</p>
+            <p> <b>Step 4</b> - You can view added site by clicking “Site Listing” under ‘Project & Site’ tab.</p>
+            <p>(Note: Site is added under fleet owner you can perform all fleet owner related task on site by that fleet owner which you selected for site) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExampl4" style="font-size: 16px;">
+            How to Add Vehicle Details for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample4">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” under ‘Actions’ of specifics site for which you want to add vehicle details.</p>
+            <p> <b>Step 4</b> - Click “Add Vehicle Details” on ‘Vehicle Detail’ screen.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting vehicle details will be added.</p>
+            <p> <b>Step 6</b> - You can view added vehicle details by clicking “Vehicle Details” under site ‘Actions’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExampl5" style="font-size: 16px;">
+            How to Add Job(Vehicle) for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample5">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” from ‘Actions’ menu of specifics site for which you want to add vehicle details .</p>
+            <p> <b>Step 4</b> - Click “Jobs(Vehicles)” from ‘Actions’ menu of ‘Vehicle Details’ list for which you want to add job.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting job will be added.</p>
+            <p> <b>Step 6</b> - You can view added job by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExampl6" style="font-size: 16px;">
+            How to Enable Bid on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample6">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab . </p>
+            <p> <b>Step 3</b> - Click “Enable Biding” under ‘Actions’ menu for which site you want to enable bid.</p>
+            <p>(Note: Site must have at least one vehicle to enable biding) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExampl7" style="font-size: 16px;">
+            How to View and Approve or Reject Bid?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample7">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Bid Details” under ‘Actions’ menu or “Bids” count link from ‘Site Listing’ to view bid for site.</p>
+            <p> <b>Step 4</b> - On ‘Bids’ screen you can view list of bids for site and you can also approve or reject bid by clicking “Approve” or “Reject” button.</p>
+            <p>(Note: When you click “Approve” button in bid list site will be awarded to that which made that bid)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample8" role="button" aria-expanded="false" aria-controls="collapseExampl8" style="font-size: 16px;">
+            How to View Job status for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample8">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.  </p>
+            <p> <b>Step 3</b> - You can view job status by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample9" role="button" aria-expanded="false" aria-controls="collapseExampl9" style="font-size: 16px;">
+            How to add Approval Manger?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample9">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new approval manager.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to already approved “Approval Manager”. </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added approval manager by clicking “User Listing” under ‘Users’ tab. </p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample10" role="button" aria-expanded="false" aria-controls="collapseExampl10" style="font-size: 16px;">
+            How to approve Data Entry Operator or Approval Manager?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample10">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved approval manager.</p>
+            <p> <b>Step 2</b> - Click “User” under ‘Approval’ tab to approve user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample11" role="button" aria-expanded="false" aria-controls="collapseExampl11" style="font-size: 16px;">
+            How to approve Corporate User?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample11">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Corporate User” under ‘Approval’ tab to approve corporate user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Corporate User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Corporate User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once corporate user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample12" role="button" aria-expanded="false" aria-controls="collapseExampl12" style="font-size: 16px;">
+            How to approve Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample12">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Fleet Owners” under ‘Approval’ tab to approve fleet owner.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Fleet Owners’ list . </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Fleet Owner’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once fleet owner is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample13" role="button" aria-expanded="false" aria-controls="collapseExampl13" style="font-size: 16px;">
+            How to approve Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample13">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager. </p>
+            <p> <b>Step 2</b> - Click “Installers” under ‘Approval’ tab to approve installer.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Installers’ list.  </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Installer’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once installer is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample14" role="button" aria-expanded="false" aria-controls="collapseExampl14" style="font-size: 16px;">
+            How to approve or reject job which is under Approval Manager Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample14">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.  </p>
+            <p> <b>Step 2</b> - Click “Jobs” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Jobs’ list.   </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Jobs’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved it forwarded to “Supervisor” for review if job is rejected it again added to ‘InQueue’ jobs of site.  </p>
+            <p>(Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample15" role="button" aria-expanded="false" aria-controls="collapseExampl15" style="font-size: 16px;">
+            How to add login for Data Entry Operator, Approval Manager, Corporate User, Fleet Owner or Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample15">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.   </p>
+            <p> <b>Step 2</b> - Click “Add Account” under ‘Manage Login’ tab to create login.</p>
+            <p> <b>Step 3</b> - Select ‘User Type’ then select user from ‘User’ dropdown for which you want to create login and fill reaming details.    </p>
+            <p> <b>Step 4</b> - Click “Submit” button on submitting new login will be created. </p>
+            <p> <b>Step 5</b> - You can view added login by clicking “Account List” under ‘Manage Login’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExampl16" style="font-size: 16px;">
+            How to add Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample16">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.    </p>
+            <p> <b>Step 2</b> - Click “Add Fleet Owner” under ‘Fleet Owner’ tab to add profile of new fleet owner.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.   </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added fleet owner by clicking “Fleet Owner Listing” under ‘Fleet Owner’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample17" role="button" aria-expanded="false" aria-controls="collapseExampl17" style="font-size: 16px;">
+            How to assign site to Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample17">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site. </p>
+            <p> <b>Step 2</b> - Click “Assign Supervisor” under ‘Supervisor’ tab to assign site.</p>
+            <p> <b>Step 3</b> - You can view all site related to fleet owner that has not assigned to any supervisor in ‘Assign Supervisor’ list.  </p>
+            <p> <b>Step 4</b> - Click “Assign” button under ‘Actions’ menu of ‘Assign Supervisor’ list for which site you want to assign supervisor. </p>
+            <p> <b>Step 5</b> - After clicking popup will open you can select as may supervisor as you want assign to site after selecting supervisor click “Assign” button. </p>
+            <p> <b>Step 6</b> - Now site is assigned to selected supervisors you view site assigned to supervisor by clicking “Site” link in ‘Supervisor Listing’ under ‘Supervisor’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample18" role="button" aria-expanded="false" aria-controls="collapseExampl18" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample18">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site.   </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample19" role="button" aria-expanded="false" aria-controls="collapseExampl19" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample19">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample20" role="button" aria-expanded="false" aria-controls="collapseExampl20" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample20">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list. </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p>  (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p>  (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample21" role="button" aria-expanded="false" aria-controls="collapseExampl21" style="font-size: 16px;">
+            How to add Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample21">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you want to add supervisor. </p>
+            <p> <b>Step 2</b> - Click “Add Supervisor” under ‘Supervisor’ tab to add profile of new supervisor.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new supervisor will be created now you can add login for that supervisor.  </p>
+            <p> <b>Step 4</b> - You can view added supervisor by clicking “Supervisor Listing” under ‘Supervisor’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample22" role="button" aria-expanded="false" aria-controls="collapseExampl22" style="font-size: 16px;">
+            How to add Supervisor Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample22">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you previously added supervisor.  </p>
+            <p> <b>Step 2</b> - Click “Supervisor Listing” under ‘Supervisor’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Supervisor Listing’ for which supervisor you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for supervisor and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample23" role="button" aria-expanded="false" aria-controls="collapseExampl23" style="font-size: 16px;">
+            How supervisor can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample23">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor.</p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that supervisor and you can also view project details by clicking “Project” link of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample25" role="button" aria-expanded="false" aria-controls="collapseExampl25" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample25">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Site’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site. </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample26" role="button" aria-expanded="false" aria-controls="collapseExampl26" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample26">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample27" role="button" aria-expanded="false" aria-controls="collapseExampl27" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample27">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list.  </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample28" role="button" aria-expanded="false" aria-controls="collapseExampl28" style="font-size: 16px;">
+            How to add Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample28">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator. </p>
+            <p> <b>Step 2</b> - Click “Add Installer” under ‘Installer’ tab to add profile of new installer.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.  </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added installer by clicking “Installer Listing” under ‘Installer’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample29" role="button" aria-expanded="false" aria-controls="collapseExampl29" style="font-size: 16px;">
+            How to bid on Open Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample29">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Open Site” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Bid” button under ‘Actions’ menu or click “Bid” button of ‘Open Bid’ list for which site you want to bid.  </p>
+            <p> <b>Step 4</b> - After clicking popup will open provided required details and submit. </p>
+            <p> <b>Step 5</b> - On submit bid will be submitted to data entry operator and now data entry operator can accept that bid or reject that bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample30" role="button" aria-expanded="false" aria-controls="collapseExampl30" style="font-size: 16px;">
+            How to view Awarded Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample30">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.   </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which are awarded to that installer and you can also view project details by clicking “Project” of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample31" role="button" aria-expanded="false" aria-controls="collapseExampl31" style="font-size: 16px;">
+            How to awarded site to Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample31">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer. </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Assign” button under ‘Actions’ menu of ‘Awarded Sites’ list for which site you want to award.</p>
+            <p> <b>Step 4</b> - After clicking popup will open you can select as may crews as you want to assign after selecting crews click “Assign” button. </p>
+            <p> <b>Step 5</b> - Now site is assigned to selected crews you view assigned site by clicking “Assigned Sites” under ‘Site’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample32" role="button" aria-expanded="false" aria-controls="collapseExampl32" style="font-size: 16px;">
+            How installer can view his Bids?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample32">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Bid History” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites on which installer already made bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample33" role="button" aria-expanded="false" aria-controls="collapseExampl33" style="font-size: 16px;">
+            How to add Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample33">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you want to add crew.  </p>
+            <p> <b>Step 2</b> - Click “Add Crew” under ‘Crew’ tab to add profile of new crew.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new crew will be created now you can add login for that crew. </p>
+            <p> <b>Step 4</b> - You can view added crew by clicking “Crew Listing” under ‘Crew’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample34" role="button" aria-expanded="false" aria-controls="collapseExampl34" style="font-size: 16px;">
+            How to add Crew Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample34">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you previously added crew. </p>
+            <p> <b>Step 2</b> - Click “Crew Listing” under ‘Crew’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Crew Listing’ for which crew you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for crew and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample35" role="button" aria-expanded="false" aria-controls="collapseExampl35" style="font-size: 16px;">
+            How crew can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample35">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that crew and you can also view project details by clicking “Project” link of site and can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+            <p> <b>Step 4</b> - You can start working by picking job from ‘Jobs_In_Que’ list.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample36" role="button" aria-expanded="false" aria-controls="collapseExampl36" style="font-size: 16px;">
+            How crew can start work on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample36">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Jobs_In_Que’” link or “Jobs_In_Que’” button under ‘Actions’ menu of ‘Assigned Sites’ list for which site you want to start work.</p>
+            <p> <b>Step 4</b> - After clicking you view list of job related to that site, you can pick job by clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - After clicking popup will open select image type as “Starting” and upload staring “Image” of job and submit. On submitting working will be started on that job.</p>
+            <p> <b>Step 6</b> - You can view job on which crew is start working by clicking “Job in Process” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample37" role="button" aria-expanded="false" aria-controls="collapseExampl37" style="font-size: 16px;">
+            How crew can submit job for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample37">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Job in Process” button under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - After clicking you view list of job on which crew is currently working, you can upload as many images you want clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 4</b> - After uploading all images to submit that job for approval you must have to select image type as “Ending”, “Upload Image”, check “Mark as completed” and submit. </p>
+            <p> <b>Step 5</b> - You can view jobs submitted for review by clicking “Jobs Under Review” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample38" role="button" aria-expanded="false" aria-controls="collapseExampl38" style="font-size: 16px;">
+            How crew can Report Incident?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample38">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Generate Incident Report” under ‘Action’ menu of job for which you want to report.</p>
+            <p> <b>Step 3</b> - After clicking popup will open add “Incident Remarks” and upload incident “Image” and submit. On submitting job will be forwarded to supervisor for taking corrective actions.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample39" role="button" aria-expanded="false" aria-controls="collapseExampl39" style="font-size: 16px;">
+            How crew can view Status of job that are submitted for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample39">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Jobs Under Review” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are submitted for approval and you also view status of site.</p>
+            <p> <b>Step 4</b> - Job first forwarded to “Approval Manger” after approval job forwarded to “Supervisor” when supervisor approve then job mark as ‘Completed’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample40" role="button" aria-expanded="false" aria-controls="collapseExampl40" style="font-size: 16px;">
+            How crew can view Completed Jobs?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample40">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Jobs Completed” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are completed.</p>
+        </div>
+    </div>
+
+}
+
+@if ((string)ViewBag.Role.ToString() == "FleetOwner")
+{
+    ViewBag.Title = "Fleet Owner";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExampl16" style="font-size: 16px;">
+            How to add Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample16">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.    </p>
+            <p> <b>Step 2</b> - Click “Add Fleet Owner” under ‘Fleet Owner’ tab to add profile of new fleet owner.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.   </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added fleet owner by clicking “Fleet Owner Listing” under ‘Fleet Owner’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample17" role="button" aria-expanded="false" aria-controls="collapseExampl17" style="font-size: 16px;">
+            How to assign site to Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample17">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site. </p>
+            <p> <b>Step 2</b> - Click “Assign Supervisor” under ‘Supervisor’ tab to assign site.</p>
+            <p> <b>Step 3</b> - You can view all site related to fleet owner that has not assigned to any supervisor in ‘Assign Supervisor’ list.  </p>
+            <p> <b>Step 4</b> - Click “Assign” button under ‘Actions’ menu of ‘Assign Supervisor’ list for which site you want to assign supervisor. </p>
+            <p> <b>Step 5</b> - After clicking popup will open you can select as may supervisor as you want assign to site after selecting supervisor click “Assign” button. </p>
+            <p> <b>Step 6</b> - Now site is assigned to selected supervisors you view site assigned to supervisor by clicking “Site” link in ‘Supervisor Listing’ under ‘Supervisor’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample18" role="button" aria-expanded="false" aria-controls="collapseExampl18" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample18">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site.   </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample19" role="button" aria-expanded="false" aria-controls="collapseExampl19" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample19">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample20" role="button" aria-expanded="false" aria-controls="collapseExampl20" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample20">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list. </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p>  (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p>  (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+}
+
+@if ((string)ViewBag.Role.ToString() == "Supervisor")
+{
+    ViewBag.Title = "Supervisor";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample21" role="button" aria-expanded="false" aria-controls="collapseExampl21" style="font-size: 16px;">
+            How to add Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample21">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you want to add supervisor. </p>
+            <p> <b>Step 2</b> - Click “Add Supervisor” under ‘Supervisor’ tab to add profile of new supervisor.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new supervisor will be created now you can add login for that supervisor.  </p>
+            <p> <b>Step 4</b> - You can view added supervisor by clicking “Supervisor Listing” under ‘Supervisor’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample22" role="button" aria-expanded="false" aria-controls="collapseExampl22" style="font-size: 16px;">
+            How to add Supervisor Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample22">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you previously added supervisor.  </p>
+            <p> <b>Step 2</b> - Click “Supervisor Listing” under ‘Supervisor’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Supervisor Listing’ for which supervisor you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for supervisor and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample23" role="button" aria-expanded="false" aria-controls="collapseExampl23" style="font-size: 16px;">
+            How supervisor can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample23">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor.</p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that supervisor and you can also view project details by clicking “Project” link of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample25" role="button" aria-expanded="false" aria-controls="collapseExampl25" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample25">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Site’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site. </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample26" role="button" aria-expanded="false" aria-controls="collapseExampl26" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample26">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample24" role="button" aria-expanded="false" aria-controls="collapseExampl24" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample24">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list. </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site. </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p>(Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+
+}
+
+@if ((string)ViewBag.Role.ToString() == "Crew")
+{
+
+    ViewBag.Title = "FAQ";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+    <h2>FAQ</h2>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample33" role="button" aria-expanded="false" aria-controls="collapseExampl33" style="font-size: 16px;">
+            How to add Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample33">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you want to add crew.  </p>
+            <p> <b>Step 2</b> - Click “Add Crew” under ‘Crew’ tab to add profile of new crew.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new crew will be created now you can add login for that crew. </p>
+            <p> <b>Step 4</b> - You can view added crew by clicking “Crew Listing” under ‘Crew’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample34" role="button" aria-expanded="false" aria-controls="collapseExampl34" style="font-size: 16px;">
+            How to add Crew Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample34">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you previously added crew. </p>
+            <p> <b>Step 2</b> - Click “Crew Listing” under ‘Crew’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Crew Listing’ for which crew you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for crew and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample35" role="button" aria-expanded="false" aria-controls="collapseExampl35" style="font-size: 16px;">
+            How crew can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample35">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that crew and you can also view project details by clicking “Project” link of site and can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+            <p> <b>Step 4</b> - You can start working by picking job from ‘Jobs_In_Que’ list.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample36" role="button" aria-expanded="false" aria-controls="collapseExampl36" style="font-size: 16px;">
+            How crew can start work on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample36">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Jobs_In_Que’” link or “Jobs_In_Que’” button under ‘Actions’ menu of ‘Assigned Sites’ list for which site you want to start work.</p>
+            <p> <b>Step 4</b> - After clicking you view list of job related to that site, you can pick job by clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - After clicking popup will open select image type as “Starting” and upload staring “Image” of job and submit. On submitting working will be started on that job.</p>
+            <p> <b>Step 6</b> - You can view job on which crew is start working by clicking “Job in Process” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample37" role="button" aria-expanded="false" aria-controls="collapseExampl37" style="font-size: 16px;">
+            How crew can submit job for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample37">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Job in Process” button under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - After clicking you view list of job on which crew is currently working, you can upload as many images you want clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 4</b> - After uploading all images to submit that job for approval you must have to select image type as “Ending”, “Upload Image”, check “Mark as completed” and submit. </p>
+            <p> <b>Step 5</b> - You can view jobs submitted for review by clicking “Jobs Under Review” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample38" role="button" aria-expanded="false" aria-controls="collapseExampl38" style="font-size: 16px;">
+            How crew can Report Incident?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample38">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Generate Incident Report” under ‘Action’ menu of job for which you want to report.</p>
+            <p> <b>Step 3</b> - After clicking popup will open add “Incident Remarks” and upload incident “Image” and submit. On submitting job will be forwarded to supervisor for taking corrective actions.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample39" role="button" aria-expanded="false" aria-controls="collapseExampl39" style="font-size: 16px;">
+            How crew can view Status of job that are submitted for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample39">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Jobs Under Review” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are submitted for approval and you also view status of site.</p>
+            <p> <b>Step 4</b> - Job first forwarded to “Approval Manger” after approval job forwarded to “Supervisor” when supervisor approve then job mark as ‘Completed’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample40" role="button" aria-expanded="false" aria-controls="collapseExampl40" style="font-size: 16px;">
+            How crew can view Completed Jobs?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample40">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Jobs Completed” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are completed.</p>
+        </div>
+    </div>
+
+}
+
+@if ((string)ViewBag.Role.ToString() == "Installer")
+{
+    ViewBag.Title = "Installer";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample28" role="button" aria-expanded="false" aria-controls="collapseExampl28" style="font-size: 16px;">
+            How to add Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample28">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator. </p>
+            <p> <b>Step 2</b> - Click “Add Installer” under ‘Installer’ tab to add profile of new installer.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.  </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added installer by clicking “Installer Listing” under ‘Installer’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample29" role="button" aria-expanded="false" aria-controls="collapseExampl29" style="font-size: 16px;">
+            How to bid on Open Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample29">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Open Site” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Bid” button under ‘Actions’ menu or click “Bid” button of ‘Open Bid’ list for which site you want to bid.  </p>
+            <p> <b>Step 4</b> - After clicking popup will open provided required details and submit. </p>
+            <p> <b>Step 5</b> - On submit bid will be submitted to data entry operator and now data entry operator can accept that bid or reject that bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample30" role="button" aria-expanded="false" aria-controls="collapseExampl30" style="font-size: 16px;">
+            How to view Awarded Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample30">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.   </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which are awarded to that installer and you can also view project details by clicking “Project” of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample31" role="button" aria-expanded="false" aria-controls="collapseExampl31" style="font-size: 16px;">
+            How to awarded site to Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample31">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer. </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Assign” button under ‘Actions’ menu of ‘Awarded Sites’ list for which site you want to award.</p>
+            <p> <b>Step 4</b> - After clicking popup will open you can select as may crews as you want to assign after selecting crews click “Assign” button. </p>
+            <p> <b>Step 5</b> - Now site is assigned to selected crews you view assigned site by clicking “Assigned Sites” under ‘Site’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample32" role="button" aria-expanded="false" aria-controls="collapseExampl32" style="font-size: 16px;">
+            How installer can view his Bids?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample32">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Bid History” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites on which installer already made bid.</p>
+        </div>
+    </div>
+}
+
+
+
+@if ((string)ViewBag.Role.ToString() == "CorporateUser")
+{
+    ViewBag.Title = "CorporateUser Dashboard";
+    ViewBag.MainMenu = "mDashboard";
+    ViewBag.SubMenu = "sDashboard";
+
+    <h2>FAQ</h2>
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" style="font-size: 16px;">
+            How to add Data Entry Operator?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new data entry operator.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.</p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added data entry operator by clicking “User Listing” under ‘Users’ tab.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExampl1" style="font-size: 16px;">
+            How to Add Vehicle Type?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample1">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Vehicle Type” under ‘Vehicle Type’ tab.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting vehicle type will be added.</p>
+            <p> <b>Step 4</b> - You can view added vehicle by clicking “Vehicle Type Listing” under ‘Vehicle Type’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExampl2" style="font-size: 16px;">
+            How to add Project?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample2">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Project” under ‘Project & Site’ tab to add project.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting project will be added.</p>
+            <p> <b>Step 4</b> - You can view added project by clicking “Project Listing” under ‘Project & Site’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExampl3" style="font-size: 16px;">
+            How to add Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample3">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add Site” under ‘Project & Site’ tab to add site.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit after submitting site will be added.</p>
+            <p> <b>Step 4</b> - You can view added site by clicking “Site Listing” under ‘Project & Site’ tab.</p>
+            <p>(Note: Site is added under fleet owner you can perform all fleet owner related task on site by that fleet owner which you selected for site) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample4" role="button" aria-expanded="false" aria-controls="collapseExampl4" style="font-size: 16px;">
+            How to Add Vehicle Details for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample4">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” under ‘Actions’ of specifics site for which you want to add vehicle details.</p>
+            <p> <b>Step 4</b> - Click “Add Vehicle Details” on ‘Vehicle Detail’ screen.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting vehicle details will be added.</p>
+            <p> <b>Step 6</b> - You can view added vehicle details by clicking “Vehicle Details” under site ‘Actions’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample5" role="button" aria-expanded="false" aria-controls="collapseExampl5" style="font-size: 16px;">
+            How to Add Job(Vehicle) for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample5">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Vehicle Details” from ‘Actions’ menu of specifics site for which you want to add vehicle details .</p>
+            <p> <b>Step 4</b> - Click “Jobs(Vehicles)” from ‘Actions’ menu of ‘Vehicle Details’ list for which you want to add job.</p>
+            <p> <b>Step 5</b> - Fill required details and click submit after submitting job will be added.</p>
+            <p> <b>Step 6</b> - You can view added job by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample6" role="button" aria-expanded="false" aria-controls="collapseExampl6" style="font-size: 16px;">
+            How to Enable Bid on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample6">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab . </p>
+            <p> <b>Step 3</b> - Click “Enable Biding” under ‘Actions’ menu for which site you want to enable bid.</p>
+            <p>(Note: Site must have at least one vehicle to enable biding) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample7" role="button" aria-expanded="false" aria-controls="collapseExampl7" style="font-size: 16px;">
+            How to View and Approve or Reject Bid?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample7">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab. </p>
+            <p> <b>Step 3</b> - Click “Bid Details” under ‘Actions’ menu or “Bids” count link from ‘Site Listing’ to view bid for site.</p>
+            <p> <b>Step 4</b> - On ‘Bids’ screen you can view list of bids for site and you can also approve or reject bid by clicking “Approve” or “Reject” button.</p>
+            <p>(Note: When you click “Approve” button in bid list site will be awarded to that which made that bid)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample8" role="button" aria-expanded="false" aria-controls="collapseExampl8" style="font-size: 16px;">
+            How to View Job status for site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample8">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Site Listing” under ‘Project & Site’ tab.  </p>
+            <p> <b>Step 3</b> - You can view job status by clicking “Job(Vehicle)” under ‘Actions’ menu of ‘Vehicle Details’ or by clicking “#Jobs” from ‘Vehicle Detail’ list of site.</p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample9" role="button" aria-expanded="false" aria-controls="collapseExampl9" style="font-size: 16px;">
+            How to add Approval Manger?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample9">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.</p>
+            <p> <b>Step 2</b> - Click “Add User” under ‘Users’ tab to add profile of new approval manager.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to already approved “Approval Manager”. </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added approval manager by clicking “User Listing” under ‘Users’ tab. </p>
+
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample10" role="button" aria-expanded="false" aria-controls="collapseExampl10" style="font-size: 16px;">
+            How to approve Data Entry Operator or Approval Manager?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample10">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from an already approved approval manager.</p>
+            <p> <b>Step 2</b> - Click “User” under ‘Approval’ tab to approve user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample11" role="button" aria-expanded="false" aria-controls="collapseExampl11" style="font-size: 16px;">
+            How to approve Corporate User?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample11">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Corporate User” under ‘Approval’ tab to approve corporate user.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Corporate User’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Corporate User’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once corporate user is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample12" role="button" aria-expanded="false" aria-controls="collapseExampl12" style="font-size: 16px;">
+            How to approve Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample12">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.</p>
+            <p> <b>Step 2</b> - Click “Fleet Owners” under ‘Approval’ tab to approve fleet owner.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Fleet Owners’ list . </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Fleet Owner’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once fleet owner is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample13" role="button" aria-expanded="false" aria-controls="collapseExampl13" style="font-size: 16px;">
+            How to approve Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample13">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager. </p>
+            <p> <b>Step 2</b> - Click “Installers” under ‘Approval’ tab to approve installer.</p>
+            <p> <b>Step 3</b> - You can view all approval request in ‘Installers’ list.  </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Installer’ list for which user you want to approve request. </p>
+            <p> <b>Step 5</b> - Once installer is approved you can create login for that user. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample14" role="button" aria-expanded="false" aria-controls="collapseExampl14" style="font-size: 16px;">
+            How to approve or reject job which is under Approval Manager Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample14">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.  </p>
+            <p> <b>Step 2</b> - Click “Jobs” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Jobs’ list.   </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Jobs’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved it forwarded to “Supervisor” for review if job is rejected it again added to ‘InQueue’ jobs of site.  </p>
+            <p>(Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample15" role="button" aria-expanded="false" aria-controls="collapseExampl15" style="font-size: 16px;">
+            How to add login for Data Entry Operator, Approval Manager, Corporate User, Fleet Owner or Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample15">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from approval manager.   </p>
+            <p> <b>Step 2</b> - Click “Add Account” under ‘Manage Login’ tab to create login.</p>
+            <p> <b>Step 3</b> - Select ‘User Type’ then select user from ‘User’ dropdown for which you want to create login and fill reaming details.    </p>
+            <p> <b>Step 4</b> - Click “Submit” button on submitting new login will be created. </p>
+            <p> <b>Step 5</b> - You can view added login by clicking “Account List” under ‘Manage Login’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample16" role="button" aria-expanded="false" aria-controls="collapseExampl16" style="font-size: 16px;">
+            How to add Fleet Owner?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample16">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator.    </p>
+            <p> <b>Step 2</b> - Click “Add Fleet Owner” under ‘Fleet Owner’ tab to add profile of new fleet owner.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.   </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user. </p>
+            <p> <b>Step 5</b> - You can view added fleet owner by clicking “Fleet Owner Listing” under ‘Fleet Owner’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample17" role="button" aria-expanded="false" aria-controls="collapseExampl17" style="font-size: 16px;">
+            How to assign site to Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample17">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site. </p>
+            <p> <b>Step 2</b> - Click “Assign Supervisor” under ‘Supervisor’ tab to assign site.</p>
+            <p> <b>Step 3</b> - You can view all site related to fleet owner that has not assigned to any supervisor in ‘Assign Supervisor’ list.  </p>
+            <p> <b>Step 4</b> - Click “Assign” button under ‘Actions’ menu of ‘Assign Supervisor’ list for which site you want to assign supervisor. </p>
+            <p> <b>Step 5</b> - After clicking popup will open you can select as may supervisor as you want assign to site after selecting supervisor click “Assign” button. </p>
+            <p> <b>Step 6</b> - Now site is assigned to selected supervisors you view site assigned to supervisor by clicking “Site” link in ‘Supervisor Listing’ under ‘Supervisor’ tab.  </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample18" role="button" aria-expanded="false" aria-controls="collapseExampl18" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample18">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Approval’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu. </p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site.   </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample19" role="button" aria-expanded="false" aria-controls="collapseExampl19" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample19">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample20" role="button" aria-expanded="false" aria-controls="collapseExampl20" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample20">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Approval’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list. </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p>  (Note: Both fleet owner and supervisor can perform this task) </p>
+            <p>  (Note: If job is rejected job will be in queued and crew will have to start working from beginning) </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample21" role="button" aria-expanded="false" aria-controls="collapseExampl21" style="font-size: 16px;">
+            How to add Supervisor?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample21">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you want to add supervisor. </p>
+            <p> <b>Step 2</b> - Click “Add Supervisor” under ‘Supervisor’ tab to add profile of new supervisor.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new supervisor will be created now you can add login for that supervisor.  </p>
+            <p> <b>Step 4</b> - You can view added supervisor by clicking “Supervisor Listing” under ‘Supervisor’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample22" role="button" aria-expanded="false" aria-controls="collapseExampl22" style="font-size: 16px;">
+            How to add Supervisor Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample22">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from fleet owner under which you previously added supervisor.  </p>
+            <p> <b>Step 2</b> - Click “Supervisor Listing” under ‘Supervisor’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Supervisor Listing’ for which supervisor you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for supervisor and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample23" role="button" aria-expanded="false" aria-controls="collapseExampl23" style="font-size: 16px;">
+            How supervisor can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample23">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor.</p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that supervisor and you can also view project details by clicking “Project” link of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample25" role="button" aria-expanded="false" aria-controls="collapseExampl25" style="font-size: 16px;">
+            How to approve or reject job which is under Supervisor Review?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample25">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Completed Jobs Approvals” under ‘Site’ tab to approve jobs.</p>
+            <p> <b>Step 3</b> - You can view all job approval requests in ‘Completed Jobs Approvals’ list. </p>
+            <p> <b>Step 4</b> - Click “Approve” button under ‘Actions’ menu of ‘Completed Jobs Approvals’ list for which job you want to approve request you also reject job by clicking “Reject” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - Once job is Approved then it will be considered as ‘completed’ and if job is rejected it again added to ‘InQueue’ jobs of site. </p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample26" role="button" aria-expanded="false" aria-controls="collapseExampl26" style="font-size: 16px;">
+            How to approve or reject Incident Report?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample26">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Incident Reports” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all incident report requests in ‘Incident Reports’ list. </p>
+            <p> <b>Step 4</b> - You can send this job(vehicle) for repair by clicking “Sent for Repair” button under ‘Actions’ menu and if you consider vehicle doesn’t need to repair you can click “Approve” button under ‘Actions’ menu of ‘Incident Reports’ list then this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample27" role="button" aria-expanded="false" aria-controls="collapseExampl27" style="font-size: 16px;">
+            How to approve Repairable Vehicles?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample27">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from supervisor of site.</p>
+            <p> <b>Step 2</b> - Click “Repairable Vehicle” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all vehicle that are sent for repair in ‘Repairable Vehicle’ list.  </p>
+            <p> <b>Step 4</b> - If vehicle is repaired you can approve this job(vehicle) by clicking “Repaired” button under ‘Actions’ of ‘Repairable Vehicle’ list after clicking this job will be added to ‘InQueue’ jobs of site.</p>
+            <p> (Note: Both fleet owner and supervisor can perform this task)</p>
+            <p> (Note: If job is rejected job will be in queued and crew will have to start working from beginning)</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample28" role="button" aria-expanded="false" aria-controls="collapseExampl28" style="font-size: 16px;">
+            How to add Installer?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample28">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from data entry operator. </p>
+            <p> <b>Step 2</b> - Click “Add Installer” under ‘Installer’ tab to add profile of new installer.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new user request will be forwarded to “Approval Manager”.  </p>
+            <p> <b>Step 4</b> - “Approval Manager” will approve this user request and create the login for this user.</p>
+            <p> <b>Step 5</b> - You can view added installer by clicking “Installer Listing” under ‘Installer’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample29" role="button" aria-expanded="false" aria-controls="collapseExampl29" style="font-size: 16px;">
+            How to bid on Open Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample29">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Open Site” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Bid” button under ‘Actions’ menu or click “Bid” button of ‘Open Bid’ list for which site you want to bid.  </p>
+            <p> <b>Step 4</b> - After clicking popup will open provided required details and submit. </p>
+            <p> <b>Step 5</b> - On submit bid will be submitted to data entry operator and now data entry operator can accept that bid or reject that bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample30" role="button" aria-expanded="false" aria-controls="collapseExampl30" style="font-size: 16px;">
+            How to view Awarded Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample30">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.   </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which are awarded to that installer and you can also view project details by clicking “Project” of site or can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample31" role="button" aria-expanded="false" aria-controls="collapseExampl31" style="font-size: 16px;">
+            How to awarded site to Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample31">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer. </p>
+            <p> <b>Step 2</b> - Click “Awarded Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Assign” button under ‘Actions’ menu of ‘Awarded Sites’ list for which site you want to award.</p>
+            <p> <b>Step 4</b> - After clicking popup will open you can select as may crews as you want to assign after selecting crews click “Assign” button. </p>
+            <p> <b>Step 5</b> - Now site is assigned to selected crews you view assigned site by clicking “Assigned Sites” under ‘Site’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample32" role="button" aria-expanded="false" aria-controls="collapseExampl32" style="font-size: 16px;">
+            How installer can view his Bids?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample32">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer.  </p>
+            <p> <b>Step 2</b> - Click “Bid History” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites on which installer already made bid.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample33" role="button" aria-expanded="false" aria-controls="collapseExampl33" style="font-size: 16px;">
+            How to add Crew?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample33">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you want to add crew.  </p>
+            <p> <b>Step 2</b> - Click “Add Crew” under ‘Crew’ tab to add profile of new crew.</p>
+            <p> <b>Step 3</b> - Fill all required details and submit. On submitting new crew will be created now you can add login for that crew. </p>
+            <p> <b>Step 4</b> - You can view added crew by clicking “Crew Listing” under ‘Crew’ tab.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample34" role="button" aria-expanded="false" aria-controls="collapseExampl34" style="font-size: 16px;">
+            How to add Crew Login?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample34">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from installer under which you previously added crew. </p>
+            <p> <b>Step 2</b> - Click “Crew Listing” under ‘Crew’ tab.</p>
+            <p> <b>Step 3</b> - Click “Add Login” button under ‘Actions’ menu of ‘Crew Listing’ for which crew you want to add login.</p>
+            <p> <b>Step 4</b> - After clicking popup will open provided login details for crew and submit. On submitting new login will be created.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample35" role="button" aria-expanded="false" aria-controls="collapseExampl35" style="font-size: 16px;">
+            How crew can view Assigned Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample35">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - You can view all sites which assigned to that crew and you can also view project details by clicking “Project” link of site and can view vehicle details by clicking “# of Jobs (Vehicles)” link.</p>
+            <p> <b>Step 4</b> - You can start working by picking job from ‘Jobs_In_Que’ list.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample36" role="button" aria-expanded="false" aria-controls="collapseExampl36" style="font-size: 16px;">
+            How crew can start work on Site?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample36">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Assigned Sites” under ‘Site’ tab.</p>
+            <p> <b>Step 3</b> - Click “Jobs_In_Que’” link or “Jobs_In_Que’” button under ‘Actions’ menu of ‘Assigned Sites’ list for which site you want to start work.</p>
+            <p> <b>Step 4</b> - After clicking you view list of job related to that site, you can pick job by clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 5</b> - After clicking popup will open select image type as “Starting” and upload staring “Image” of job and submit. On submitting working will be started on that job.</p>
+            <p> <b>Step 6</b> - You can view job on which crew is start working by clicking “Job in Process” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample37" role="button" aria-expanded="false" aria-controls="collapseExampl37" style="font-size: 16px;">
+            How crew can submit job for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample37">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Job in Process” button under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - After clicking you view list of job on which crew is currently working, you can upload as many images you want clicking “Upload Images” button under ‘Actions’ menu.</p>
+            <p> <b>Step 4</b> - After uploading all images to submit that job for approval you must have to select image type as “Ending”, “Upload Image”, check “Mark as completed” and submit. </p>
+            <p> <b>Step 5</b> - You can view jobs submitted for review by clicking “Jobs Under Review” under ‘Jobs(Vehicles)’ tab. </p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample38" role="button" aria-expanded="false" aria-controls="collapseExampl38" style="font-size: 16px;">
+            How crew can Report Incident?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample38">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Generate Incident Report” under ‘Action’ menu of job for which you want to report.</p>
+            <p> <b>Step 3</b> - After clicking popup will open add “Incident Remarks” and upload incident “Image” and submit. On submitting job will be forwarded to supervisor for taking corrective actions.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample39" role="button" aria-expanded="false" aria-controls="collapseExampl39" style="font-size: 16px;">
+            How crew can view Status of job that are submitted for Approval?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample39">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew.  </p>
+            <p> <b>Step 2</b> - Click “Jobs Under Review” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are submitted for approval and you also view status of site.</p>
+            <p> <b>Step 4</b> - Job first forwarded to “Approval Manger” after approval job forwarded to “Supervisor” when supervisor approve then job mark as ‘Completed’.</p>
+        </div>
+    </div>
+
+    <p>
+        <a class="btn btn-link ng-binding" data-toggle="collapse" href="#collapseExample40" role="button" aria-expanded="false" aria-controls="collapseExampl40" style="font-size: 16px;">
+            How crew can view Completed Jobs?
+        </a>
+
+    </p>
+    <div class="collapse" id="collapseExample40">
+        <div class="card card-body" style="font-size:15px;border:none !important;">
+            <p> <b>Step 1</b> - Login from crew. </p>
+            <p> <b>Step 2</b> - Click “Jobs Completed” under ‘Jobs(Vehicle)’ tab.</p>
+            <p> <b>Step 3</b> - You can view all jobs which are completed.</p>
+        </div>
+    </div>
+
+}

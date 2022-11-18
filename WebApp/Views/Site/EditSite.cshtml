@@ -1,0 +1,906 @@
+﻿@model int?
+
+@{
+    ViewBag.Title = "Edit Project Site";
+    ViewBag.MainMenu = "mProject";
+    ViewBag.SubMenu = "sEditSite";
+}
+@section controller {
+    <script src="~/Angular/controllers/site/site-edit.js"></script>
+}
+
+<input type="hidden" name="id" id="id" value="@Model" />
+
+<div ng-controller="site_edit">
+    <div class="row">
+        <div class="col-xl-12">
+            <!--Begin::Main Portlet-->
+            <div class="">
+                <!--begin: Portlet Head-->
+                @*<div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <h3 class="m-portlet__head-text">
+                                    Project Site
+                                </h3>
+                            </div>
+                        </div>
+                        <div class="m-portlet__head-tools">
+                            <ul class="m-portlet__nav">
+                                <li class="m-portlet__nav-item">
+                                    <a href="#" data-toggle="m-tooltip" class="m-portlet__nav-link m-portlet__nav-link--icon" data-direction="left" data-width="auto" title="" data-original-title="Get help with filling up this form">
+                                        <i class="flaticon-info m--icon-font-size-lg3"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+                <!--end: Portlet Head-->
+                <!--begin: Form Wizard-->
+                <div class="m-wizard m-wizard--1 m-wizard--success m-wizard--step-between" id="m_wizard">
+                    <!--begin: Message container -->
+                    <div class="m-portlet__padding-x">
+                        <!-- Here you can put a message or alert -->
+                    </div>
+                    <!--end: Message container -->
+                    <!--begin: Form Wizard Head -->
+                    <div class="m-wizard__head m-portlet__padding-x" style="margin:0px !important; ">
+                        <!--begin: Form Wizard Progress -->
+                        <div class="m-wizard__progress">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: calc(50% + 26px);"></div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Progress -->
+                        <!--begin: Form Wizard Nav -->
+                        <div class="m-wizard__nav">
+                            <div class="m-wizard__steps">
+                                <div class="m-wizard__step m-wizard__step--done" m-wizard-target="m_wizard_form_step_1">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span>
+                                                <span>
+                                                    1
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="m-wizard__step-line">
+                                            <span></span>
+                                        </div>
+                                        <div class="m-wizard__step-label">
+                                            Add Project Site
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="m-wizard__step m-wizard__step--current" m-wizard-target="m_wizard_form_step_2">
+                                    <div class="m-wizard__step-info">
+                                        <a href="#" class="m-wizard__step-number">
+                                            <span>
+                                                <span>
+                                                    2
+                                                </span>
+                                            </span>
+                                        </a>
+                                        <div class="m-wizard__step-line">
+                                            <span></span>
+                                        </div>
+                                        <div class="m-wizard__step-label">
+                                            Project Site Setup
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--end: Form Wizard Nav -->
+                    </div>
+                    <!--end: Form Wizard Head -->
+                    <!--begin: Form Wizard Form-->
+                    <div class="m-wizard__form">
+                        <!--
+                            1) Use m-form--label-align-left class to alight the form input lables to the right
+                            2) Use m-form--state class to highlight input control borders on form validation
+                        -->
+                        <form class="m-form m-form--label-align-left- m-form--state-" id="m_form" name="frm" novalidate="novalidate">
+                            <!--begin: Form Body -->
+                            <div class="m-portlet__body">
+                                <!--begin: Form Wizard Step 1-->
+                                <div class="m-wizard__form-step" id="m_wizard_form_step_1">
+                                    <br /> <h4>Site Information</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Site Name</label>
+                                            <input type="text" class="form-control m-input" name="sitename" ng-model="site.Name" required nameregex />
+                                            <span class="text-danger" ng-show="(frm.sitename.$touched || frm.sitename.$dirty && frm.sitename.$invalid)">
+                                                <span ng-show="frm.sitename.$error.required">Enter site name</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Fleet Owner</label>
+                                            <select class="form-control" tabindex="-98" id="drpFleetOwner">
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Project Name</label>
+                                            <select class="form-control" tabindex="-98" id="drpProject">
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">CSR</label>
+                                            <input type="text" class="form-control m-input" ng-model="site.CSR" name="csr" required />
+                                            <span class="text-danger" ng-show="(frm.csr.$touched || frm.csr.$dirty && frm.csr.$invalid)">
+                                                <span ng-show="frm.csr.$error.required">Enter csr</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Sales Man</label>
+                                            <input type="text" class="form-control m-input" ng-model="site.SalesMan" name="saleman" required />
+                                            <span class="text-danger" ng-show="(frm.saleman.$touched || frm.saleman.$dirty && frm.saleman.$invalid)">
+                                                <span ng-show="frm.saleman.$error.required">Enter sale man</span>
+                                            </span>
+                                        </div>
+                                        @*<div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label m-switch--icon">
+                                                    Is it for bid?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.IsForBid">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>*@
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Bid Due Date</label>
+                                            <input type="text" class="form-control" name="dueDate" ng-model="site.BidDueDate" id="m_datepicker_1" readonly="" placeholder="Bid due date" required>
+                                            <span class="text-danger" ng-show="(frm.dueDate.$touched || frm.dueDate.$dirty && frm.dueDate.$invalid)">
+                                                <span ng-show="frm.dueDate.$error.required">Enter due date</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Site Start Date</label>
+                                            <input type="text" class="form-control" id="m_datepicker_2" readonly="" name="startDate" placeholder="Site start date" ng-model="site.SiteStartDate" required>
+                                            <span class="text-danger" ng-show="(frm.startDate.$touched || frm.startDate.$dirty && frm.startDate.$invalid)">
+                                                <span ng-show="frm.startDate.$error.required">Enter start date</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Site End Date</label>
+                                            <input type="text" class="form-control" id="m_datepicker_3" readonly="" placeholder="Site end date" ng-model="site.SiteEndDate" name="endDate" required>
+                                            <span class="text-danger" ng-show="(frm.endDate.$touched || frm.endDate.$dirty && frm.endDate.$invalid)">
+                                                <span ng-show="frm.endDate.$error.required">Enter end date</span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Maximum Bid Amount</label>
+                                            <input ng-num="15" class="form-control m-input" ng-model="site.MaximumBidAmount" name="maxBidAmount" required />
+                                            <span class="text-danger" ng-show="(frm.maxBidAmount.$touched || frm.maxBidAmount.$dirty && frm.maxBidAmount.$invalid)">
+                                                <span ng-show="frm.maxBidAmount.$error.required">Enter maximum bid amount</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Sale Price</label>
+                                            <input ng-num="15" class="form-control m-input" ng-model="site.SalePrice" name="saleprice" required />
+                                            <span class="text-danger" ng-show="(frm.saleprice.$touched || frm.saleprice.$dirty && frm.saleprice.$invalid)">
+                                                <span ng-show="frm.saleprice.$error.required">Enter sale price</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Attach Documents</label>
+                                            <div></div>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Choose file</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <br /> <h4>Scope of Work</h4> <hr />
+                                            <textarea class="form-control m-input" id="exampleTextarea" rows="8" ng-model="site.ScopeOfWork"></textarea>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <br /> <h4>Special Instructions</h4> <hr />
+                                            <textarea class="form-control m-input" id="exampleTextarea" ng-model="site.SpecialInstruction" rows="8"></textarea>
+                                        </div>
+                                    </div>
+                                    <br /> <h4>Installation Location</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Address</label>
+                                            <input type="text" class="form-control m-input" name="address" ng-model="site.Address" required />
+                                            <span class="text-danger" ng-show="(frm.address.$touched || frm.address.$dirty && frm.address.$invalid)">
+                                                <span ng-show="frm.address.$error.required">Enter Address</span>
+                                            </span>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Country</label>
+                                            <select id="drpCountry" class="form-control" tabindex="-98">
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">State</label>
+                                            <select id="drpState" tabindex="-98">
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">City</label>
+                                            <select id="drpCity" name="drpCity" tabindex="-98">
+                                            </select>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="mandatory">Zip Code</label>
+                                            <input ng-zip class="form-control m-input" ng-model="site.ZipCode" name="zip" required />
+                                            <span class="text-danger" ng-show="(frm.zip.$touched || frm.zip.$dirty && frm.zip.$invalid)">
+                                                <span ng-show="frm.zip.$error.required">Enter zip</span>
+                                                @*<span ng-show="frm.zip.$error.maxlength">max lenght exceed by 5</span>*@
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <br /> <h4>Account Details</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label>PO Number</label>
+                                            <input ng-num="15" class="form-control m-input" ng-model="site.PONo" />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>EPMS Job #</label>
+                                            <input ng-num="15" class="form-control m-input" ng-model="site.EPMSJobNo" />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="form-control-label">
+                                                Select Takedown Option
+                                            </label>
+                                            <div class="m-radio-inline">
+                                                <label class="m-radio m-radio--solid m-radio--brand">
+                                                    <input type="radio" name="account_group" value="0" ng-model="site.TakeDownStatus">
+                                                    Site
+                                                    <span></span>
+                                                </label>
+                                                <label class="m-radio m-radio--solid m-radio--brand">
+                                                    <input type="radio" name="account_group" value="1" ng-model="site.TakeDownStatus">
+                                                    Vehicle Type
+                                                    <span></span>
+                                                </label>
+                                                <label class="m-radio m-radio--solid m-radio--brand">
+                                                    <input type="radio" name="account_group" value="2" ng-model="site.TakeDownStatus">
+                                                    None
+                                                    <span></span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end: Form Wizard Step 1-->
+                                <!--begin: Form Wizard Step 2-->
+                                <div class="m-wizard__form-step m-wizard__form-step--current" id="m_wizard_form_step_2">
+                                    <br /> <h4>Installation Location Information</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Are Indoor Facilities Available?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.IndoorFacility">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    During Reg. Business Hours?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.BusinessHours">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Weekend Hours?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.WeekendHours">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Is a Spoting Tractor Available?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.IsSpottingTractor">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Can Store Mat'l/Equip. on site?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.StoreEquipmentOnSite">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Mod Allowed to Spot Vehicles?
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.SpotVehicle">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br /> <h4>Installation Services</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Remove Existing Graphics
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.RemoveExistingGraphics">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label>Number of years on Vehicle</label>
+                                            <input ng-num="10" class="form-control m-input col-2" ng-model="site.YearsOnVehicle" />
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Cleaning & Prep of Vehicles
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.CleaningAndPrepVehicle">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Power Wash surface cleaning
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.PowerWash">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Application of vinyl Graphics
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.IsVinylGraphics" ng-change="UncheckVinylMaterial()">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <label class="col-10">
+                                                <span class="m-list-settings__item-label">
+                                                    Edge seal of Decals required
+                                                </span>
+                                            </label>
+                                            <div class="m-list-settings__item col-2">
+                                                <span class="m-list-settings__item-control">
+                                                    <span class="m-switch m-switch--icon m-switch--success">
+                                                        <label>
+                                                            <input type="checkbox" ng-model="site.SealOfDecals">
+                                                            <span></span>
+                                                        </label>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div ng-show="site.IsVinylGraphics">
+                                        <br /> <h4>Vinyl Decal Material</h4> <hr />
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h5>Removal</h5>
+                                            </div>
+                                            <div class="col-lg-4 pl-3">
+                                                <h5>Apply</h5>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        Arlon Vinyl Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.ArlonVinylFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.ArlonVinylFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        Avery Vinyl Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.AveryVinylFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.AveryVinylFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        3M Vinyl Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.M3VinylFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.M3VinylFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        Arlon Reflective Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.ArlonReflectiveFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.ArlonReflectiveFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        Avery Reflective Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.AveryReflectiveFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.AveryReflectiveFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        3M Reflective Film
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.M3ReflectiveFilmRemoval">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-2">
+                                                    <span class="m-list-settings__item-control">
+                                                        <span class="m-switch m-switch--icon m-switch--success">
+                                                            <label>
+                                                                <input type="checkbox" ng-model="site.M3ReflectiveFilmApply">
+                                                                <span></span>
+                                                            </label>
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group m-form__group row">
+                                            <div class="col-lg-4">
+                                                <label class="col-10">
+                                                    <span class="m-list-settings__item-label">
+                                                        Total SQ. FT.
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-4">
+                                                    <input ng-num="5" class="form-control m-input" ng-model="site.TotalSqFtRemoval" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="m-list-settings__item col-4">
+                                                    <input ng-num="5" class="form-control m-input" ng-model="site.TotalSqFtApply" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <br /> <h4>Other Questions & Comments</h4> <hr />
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-4">
+                                            <input type="text" class="form-control m-input" ng-model="site.OtherQuestionsComments" />
+                                        </div>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-1">
+                                            <span class="m-switch m-switch--icon m-switch--success">
+                                                <label>
+                                                    <input type="checkbox" ng-model="site.CustomerAvailabilityOnInstallationDay">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-10 col-form-label">
+                                            Will the customer be on site the day of the install to answer questions?
+                                        </label>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-1">
+                                            <span class="m-switch m-switch--icon m-switch--success">
+                                                <label>
+                                                    <input type="checkbox" ng-model="site.InsideFacilities">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-10 col-form-label">
+                                            Do you have heated inside facilities where we can work?
+                                        </label>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-1">
+                                            <span class="m-switch m-switch--icon m-switch--success">
+                                                <label>
+                                                    <input type="checkbox" ng-model="site.IsDecalsReceived">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-10 col-form-label">
+                                            Have you received the decals yet?
+                                        </label>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-1">
+                                            <span class="m-switch m-switch--icon m-switch--success">
+                                                <label>
+                                                    <input type="checkbox" ng-model="site.VehicleCleanessBeforeArrival">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-10 col-form-label">
+                                            Customer was informed that vehicle needs to be cleaned (not waxed) prior to our arrival
+                                        </label>
+                                    </div>
+                                    <div class="m-form__group form-group row">
+                                        <div class="col-1">
+                                            <span class="m-switch m-switch--icon m-switch--success">
+                                                <label>
+                                                    <input type="checkbox" ng-model="site.IsInformed6FeetArea">
+                                                    <span></span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        <label class="col-10 col-form-label">
+                                            Informed customer that we need 6 feet around the vehicle so we can get ladders around vehicle
+                                        </label>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>What is the best day for the vehicle to be made available?</label>
+                                            <input type="text" class="form-control" id="m_datepicker_1" readonly="" ng-model="site.VehicleAvailabilityDate" placeholder="Select date">
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Are there any additional contacts in case the main contact is not available?</label>
+                                            <input type="text" class="form-control m-input" ng-model="site.AdditionalContacts" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-6">
+                                            <label>What are the hours that we can work at your facility?</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group m-form__group row">
+                                        <div class="col-lg-2">
+                                            <label>From</label>
+                                            <input type="text" class="form-control" id="m_timepicker_1" readonly="" name="WorkHoursForm">
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <label>To</label>
+                                            <input type="text" class="form-control" id="m_timepicker_1" readonly="" name="workHoursTo">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end: Form Wizard Step 2-->
+
+                            </div>
+                            <!--end: Form Body -->
+                            <!--begin: Form Actions -->
+                            <div class="m-portlet__foot m-portlet__foot--fit m--margin-top-40">
+                                <div class="m-form__actions m-form__actions">
+                                    <div class="row">
+                                        <div class="col-lg-10 m--align-left">
+                                            <button class="btn m-btn--square btn-success" data-wizard-action="prev">
+                                                <span>
+                                                    <i class="la la-arrow-left"></i>
+                                                    &nbsp;&nbsp;
+                                                    <span>
+                                                        Previous
+                                                    </span>
+                                                </span>
+                                            </button>
+                                            @*<button class="btn m-btn--square btn-danger" data-wizard-action="submit">*@
+                                            <button ng-disabled="frm.$invalid" ng-click="update()" value="submit" class="btn m-btn--square btn-success">
+                                                <span>
+                                                    <i class="la la-check"></i>
+                                                    &nbsp;&nbsp;
+                                                    <span>
+                                                        Submit
+                                                    </span>
+                                                </span>
+                                            </button>
+                                            <a href="/Site/SiteList" class="btn m-btn--square btn-danger">Cancel</a>
+                                            <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+                                        </div>
+                                        @*<div class="col-lg-2 m--align-left">
+
+                                            </div>*@
+                                        <div class="col-lg-2 m--align-right">
+                                            <button class="btn m-btn--square btn-success pull-right" data-wizard-action="next">
+                                                <span>
+                                                    <span>
+                                                        Next
+                                                    </span>
+                                                    &nbsp;&nbsp;
+                                                    <i class="la la-arrow-right"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--end: Form Actions -->
+                        </form>
+                    </div>
+                    <!--end: Form Wizard Form-->
+                </div>
+                <!--end: Form Wizard-->
+            </div>
+            <!--End::Main Portlet-->
+        </div>
+    </div>
+</div>
+<script src="~/Theme/js/wizard.js"></script>
+<script src="~/Theme/js/bootstrap-datepicker.js"></script>
+<script src="~/Theme/js/bootstrap-select.js"></script>
+<script src="~/Theme/js/bootstrap-timepicker.js"></script>
+<script>
+    $('#m_datepicker_1').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
+    $('#m_datepicker_2').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+
+    $('#m_datepicker_3').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+</script>

@@ -1,0 +1,419 @@
+﻿
+@{
+    ViewBag.Title = "Sites For Bid";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sOpenSites";
+}
+@section controller {
+    <script src="~/Angular/controllers/site/sites-open.js"></script>
+}
+<style>
+    #Projectdetail {
+        width: 110px;
+        cursor: pointer;
+        color: cornflowerblue;
+    }
+
+        #Projectdetail:hover {
+            text-decoration: underline
+        }
+</style>
+<div ng-controller="site_open">
+
+    <form autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Project" ng-model="searchModel.projectName" name="projectName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Site" ng-model="searchModel.siteName" name="siteName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Opening Date" ng-model="searchModel.openingDate" name="openingDate" id="m_datepicker_7" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group m-form__group">
+                    <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                        Search
+                    </button>
+                    <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Project</span></th>
+                    <th data-field="Site" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site</span></th>
+                    <th data-field="Opening Date" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Opening Date</span></th>
+                    <th data-field="# of Vehicles" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;"># of Jobs (Vehicles)</span></th>
+                    <th data-field="Bid" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Bid</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 90px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="sites.length == 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="site in sites">
+                    <td data-field="Project" class="m-datatable__cell">
+                        <span id="Projectdetail" ng-click="ProjectAgainstSite(site.Id)">
+                            {{site.ProjectName}}
+                        </span>
+                    </td>
+                    <td data-field="Site" class="m-datatable__cell"><span style="width: 110px;">{{site.Name}}</span></td>
+                    <td data-field="Opening Date" class="m-datatable__cell"><span style="width: 110px;">{{site.OpenDate | dateFormat }}</span></td>
+                    <td data-field="# of Vehicles" class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <button ng-click="vehicleDetailsModal(site.Id)" class="btn btn-link" data-toggle="m-popover" data-content="Check Vehicle Details" style="cursor: pointer;">
+                                {{site.TotalVehicles}}
+                            </button>
+                        </span>
+                    </td>
+                    <td data-field="Bid" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <button ng-if="site.TotalVehicles != 0" ng-click="bid(site.Id)" class="m-portlet__nav-link btn btn-success m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill">
+                                <i style="color:#000" class="la la-check"></i>
+                            </button>
+                            <button ng-if="site.TotalVehicles == 0" class="m-portlet__nav-link btn btn-success m-btn m-btn--hover-brand m-btn--icon m-btn--icon-only m-btn--pill" style="cursor:not-allowed">
+                                <i style="color:#000" class="la la-times"></i>
+                            </button>
+                        </span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 90px;">
+                            <span class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <span class="dropdown-menu dropdown-menu-right">
+                                    <a ng-if="site.TotalVehicles != 0" class="dropdown-item" ng-click="bid(site.Id)" href="#">
+                                        <i class="la la-check"></i> Bid
+                                    </a>
+                                    <a ng-if="site.TotalVehicles == 0" class="dropdown-item" href="#" style="cursor:not-allowed">
+                                        <i class="la la-times"></i> Bid
+                                    </a>
+                                    <a class="dropdown-item" ng-click="vehicleDetailsModal(site.Id)" href="#">
+                                        <i class="la la-list"></i> # of Jobs (Vehicles)
+                                    </a>
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div class="dropdown bootstrap-select m-datatable__pager-size dropup" style="width: 70px;">
+                    <button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="button" title="Select page size" aria-expanded="false">
+                        <div class="filter-option">
+                            <div class="filter-option-inner">10</div>
+                        </div>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+                    </button>
+                    <div class="dropdown-menu" role="combobox" x-placement="top-start" style="max-height: 315.391px; overflow: hidden; min-height: 130px; position: absolute; will-change: transform; min-width: 108px; top: 0px; left: 0px; transform: translate3d(0px, -211px, 0px);">
+                        <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 303.391px; overflow-y: auto; min-height: 118px;">
+                            <ul class="dropdown-menu inner show">
+                                <li class="selected active"><a role="option" class="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">10</span></a></li>
+                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">20</span></a></li>
+                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">30</span></a></li>
+                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">50</span></a></li>
+                                <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">100</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div><span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="bid-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirm Bid</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="bidDetail" name="frmBid">
+                        <div class="form-group">
+                            <label class="mandatory">Price</label>
+                            <input name="price" ng-model="bidModel.price" autocomplete="off" id="price" class="form-control" type="number" min="1" required />
+                            <span class="text-danger" ng-show="(frmBid.price.$touched || frmBid.price.$dirty) && frmBid.price.$invalid">
+                                <span ng-show="frmBid.price.$error.required">Please enter price</span>
+                                <span ng-show="frmBid.price.$error.min">Price cannot be less then 1</span>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea name="comment" ng-model="bidModel.comments" class="form-control" id="comment"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" ng-disabled="frmBid.$invalid" ng-click="saveBid()" class="btn btn-success">Submit</button>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#bid-modal">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="vehicle-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Vehicle Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="vehicles in VehiclesType">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Vehicle Type</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{vehicles.VehicleTypeName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>#of Vehicles</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{vehicles.Vehicles}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Side(Inches)</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{vehicles.SideWidth}}</label><b>x</b><label>{{vehicles.SideHeight}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Front(Inches)</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{vehicles.FrontWidth}}</label><b>x</b><label>{{vehicles.FrontHeight}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Rear(Inches)</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{vehicles.RearWidth}}</label><b>x</b><label>{{vehicles.RearHeight}}</label>
+                        </div>
+                    </div>
+                    <!--<div class="form-group m-form__group row" ng-repeat="vehicles in VehiclesType">
+                        <div class="col-lg-3">
+                            <label>{{vehicles.VehicleTypeName}}</label>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>{{vehicles.Vehicles}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{vehicles.SideWidth}}</label><b>x</b><label>{{vehicles.SideHeight}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{vehicles.FrontWidth}}</label><b>x</b><label>{{vehicles.FrontHeight}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{vehicles.RearWidth}}</label><b>x</b><label>{{vehicles.RearHeight}}</label>
+                        </div>-->
+                    @*<div class="col-lg-6">
+                    <b>Name :</b><label>{{vehicles.VehicleTypeName}}</label>
+                    <br />
+                    <b>Price :</b><label>{{vehicles.VehiclePrice}}</label>
+                    <br />
+                    <b>SideHeight :</b><label>{{vehicles.SideHeight}}</label>
+                    <br />
+                    <b>SideWidth :</b><label>{{vehicles.SideWidth}}</label>
+                    <br />
+                    <b>FrontHeight :</b><label>{{vehicles.FrontHeight}}</label>
+                    <br />
+                    <b>FrontWidth :</b><label>{{vehicles.FrontWidth}}</label>
+                    <br />
+                    <b>RearHeight :</b><label>{{vehicles.RearHeight}}</label>
+                    <br />
+                    <b>RearWidth :</b><label>{{vehicles.RearWidth}}</label>
+                    </div>
+                    <div class="col-lg-6">
+                    <label>{{vehicles.Vehicles}}</label>
+                    </div>*@
+                    <!--</div>-->
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ProjectDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Project Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="Project in Projects">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Project</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Fleet_Owner</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.FleetOwnerName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Phone</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactPhone}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Address</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Address}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 110px;">
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '0'">
+                                    Active
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '1'">
+                                    InActive
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '2'">
+                                    Pending
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    @*<div class="form-group m-form__group row" ng-repeat="Project in Projects">
+                            <div class="col-lg-2">
+                                <label>{{Project.Name}}</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>{{Project.FleetOwnerName}}</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>{{Project.ContactName}}</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>{{Project.ContactPhone}}</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <label>{{Project.Address}}</label>
+                            </div>
+                            <div class="col-lg-2">
+                                <span style="width: 110px;">
+                                    <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '0'">
+                                        Active
+                                    </span>
+                                    <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '1'">
+                                        InActive
+                                    </span>
+                                    <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '2'">
+                                        Pending
+                                    </span>
+                                </span>
+                            </div>
+                        </div>*@
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#ProjectDetail">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#m_datepicker_7').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+</script>
+<script>
+    //$(document).ready(() => {
+    //});
+
+    //var vehicleDetailsModal = () => {
+    //    $("#vehicle-details-modal").modal('show');
+    //};
+</script>
+<script src="~/Theme/js/data-local.js"></script>
+<script>
+    function ConfirmBid() {
+        var id = $(this).data('id');
+        var price = $('#price').val();
+        var comment = $('#comment').val();
+        alert(id + "  " + price + comment);
+    }
+</script>

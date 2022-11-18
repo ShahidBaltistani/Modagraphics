@@ -1,0 +1,294 @@
+﻿
+@{
+    ViewBag.Title = "AssignedSites";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sAssignedSites";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/Installer/installer-assignedSites.js"></script>
+}
+<style>
+    #Projectdetail {
+        width: 110px;
+        cursor: pointer;
+        color: cornflowerblue;
+    }
+
+        #Projectdetail:hover {
+            text-decoration: underline
+        }
+</style>
+<div ng-controller="installer_assignedSite">
+
+
+    <form autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Project" ng-model="searchModel.projectName" name="projectName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Site" ng-model="searchModel.siteName" name="siteName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Assigned Date" ng-model="searchModel.awardedDate" name="awardedDate" id="m_datepicker_7" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group m-form__group">
+                    <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                        Search
+                    </button>
+                    <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Project</span></th>
+                    <th data-field="Site" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site</span></th>
+                    <th data-field="Crew" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;"># of Crews</span></th>
+                    <th data-field="Assigned Date" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Assigned Date</span></th>
+                    <th data-field="Progress" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Progress</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="assignedSites.length == 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="site in assignedSites">
+                    <td data-field="Project" class="m-datatable__cell">
+                        <span id="Projectdetail" ng-click="ProjectAgainstSite(site.SiteId)">
+                            {{site.ProjectName}}
+                        </span>
+                    </td>
+                    <td data-field="Site" class="m-datatable__cell"><span style="width: 110px;">{{site.SiteName}}</span></td>
+                    <td data-field="Crew" class="m-datatable__cell">
+                        <span style="width: 110px;" ng-if="site.CrewCount != 0">
+                            <button ng-click="CrewsDetailsModal(site.SiteId)" href="#" class="btn btn-link">{{site.CrewCount}}</button>
+                        </span>
+                        <span style="width: 110px;" ng-if="site.CrewCount == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.CrewCount}}</a>
+                        </span>
+                    </td>
+                    <td data-field="Assigned Date" class="m-datatable__cell"><span style="width: 110px;">{{site.AssignDate | dateFormat}}</span></td>
+                    <td data-field="Progress" class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span class="progress">
+                                <span class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">
+                                    <span class="css_class">{{site.Progress}}</span>
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <button ng-disabled="site.Progress < 100" href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill" title="Generate Invoice">
+                                <i class="la la-file-text"></i>
+                            </button>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="Crews-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Crews Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="crews in Items">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{crews.FirstName}}</label>&nbsp;<label>{{crews.LastName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Email</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{crews.EmailAddress}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Phone No.</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{crews.PhoneNo}}</label>
+                        </div>
+
+                    </div>
+                    <div id="modal_container">
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ProjectDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Project Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="Project in Projects">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Project</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Fleet_Owner</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.FleetOwnerName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Phone</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactPhone}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Address</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Address}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 110px;">
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '0'">
+                                    Active
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '1'">
+                                    InActive
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '2'">
+                                    Pending
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#ProjectDetail">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#m_datepicker_7').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+</script>
+<script>
+    $(document).ready(() => {
+
+    });
+
+    var vehicleDetailsModal = () => {
+        $("#vehicle-details-modal").modal('show');
+    };
+</script>
+
+<script src="~/Theme/js/data-local.js"></script>

@@ -1,0 +1,591 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9556229A-E936-432A-A7D3-9172AC8F174B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebApp</RootNamespace>
+    <AssemblyName>WebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApprovalsController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\BidController.cs" />
+    <Compile Include="Controllers\CorporateUserController.cs" />
+    <Compile Include="Controllers\CrewController.cs" />
+    <Compile Include="Controllers\DashboardController.cs" />
+    <Compile Include="Controllers\DropdownController.cs" />
+    <Compile Include="Controllers\EmailCheckController.cs" />
+    <Compile Include="Controllers\ExceptionController.cs" />
+    <Compile Include="Controllers\FleetOwnerController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InstallerController.cs" />
+    <Compile Include="Controllers\InvoiceController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
+    <Compile Include="Controllers\ListCounterController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\LogsController.cs" />
+    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SiteController.cs" />
+    <Compile Include="Controllers\SiteVehicleTypeController.cs" />
+    <Compile Include="Controllers\SupervisorController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Email.cs" />
+    <Compile Include="RoleAttribute.cs" />
+    <Compile Include="Utility.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Angular\app.js" />
+    <Content Include="Angular\com.js" />
+    <Content Include="Angular\controllers\approvals\corporate-user-list.js" />
+    <Content Include="Angular\controllers\approvals\fleet-owner-list.js" />
+    <Content Include="Angular\controllers\approvals\installer-list.js" />
+    <Content Include="Angular\controllers\approvals\jobs-for-approval.js" />
+    <Content Include="Angular\controllers\approvals\user-list.js" />
+    <Content Include="Angular\controllers\corporateUser\corporate-user-add.js" />
+    <Content Include="Angular\controllers\corporateUser\corporate-user-edit.js" />
+    <Content Include="Angular\controllers\corporateUser\corporate-user-list.js" />
+    <Content Include="Angular\controllers\corporateUser\fleet-owner-list.js" />
+    <Content Include="Angular\controllers\crew\crew-completedjobs.js" />
+    <Content Include="Angular\controllers\crew\crew-jobsinprocess.js" />
+    <Content Include="Angular\controllers\crew\crew-reviewjobs.js" />
+    <Content Include="Angular\controllers\crew\crew-assignSites.js" />
+    <Content Include="Angular\controllers\crew\crew-quejobs.js" />
+    <Content Include="Angular\controllers\crew\crew-list.js" />
+    <Content Include="Angular\controllers\crew\crew-add.js" />
+    <Content Include="Angular\controllers\crew\crew-edit.js" />
+    <Content Include="Angular\controllers\dashboard\admin.js" />
+    <Content Include="Angular\controllers\dashboard\approvalmanager.js" />
+    <Content Include="Angular\controllers\dashboard\corporateuser.js" />
+    <Content Include="Angular\controllers\dashboard\crew.js" />
+    <Content Include="Angular\controllers\dashboard\fleetowner.js" />
+    <Content Include="Angular\controllers\dashboard\installer.js" />
+    <Content Include="Angular\controllers\dashboard\supervisor.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleet-owner-add.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleet-owner-awardedSites.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleet-owner-edit.js" />
+    <Content Include="Angular\controllers\fleetOwner\JobsFleetOwner.js" />
+    <Content Include="Angular\controllers\fleetOwner\SitesFleetOwner.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleet-owner-supervisorAwardedSites.js" />
+    <Content Include="Angular\controllers\fleetOwner\jobs-for-approval.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleetOwner-incident-reports.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleetOwner-vehicles-repair.js" />
+    <Content Include="Angular\controllers\Installer\installer-assignedSites.js" />
+    <Content Include="Angular\controllers\Installer\installer-awardedSites.js" />
+    <Content Include="Angular\controllers\Installer\JobList-Log.js" />
+    <Content Include="Angular\controllers\StatusLogs\JobLog.js" />
+    <Content Include="Angular\controllers\StatusLogs\Logs.js" />
+    <Content Include="Angular\controllers\supervisor\AssignedSites.js" />
+    <Content Include="Angular\controllers\supervisor\jobs-for-approval.js" />
+    <Content Include="Angular\controllers\supervisor\JobList-Log.js" />
+    <Content Include="Angular\controllers\supervisor\SiteList-Log.js" />
+    <Content Include="Angular\controllers\supervisor\supervisor-edit.js" />
+    <Content Include="Angular\controllers\supervisor\supervisor-add.js" />
+    <Content Include="Angular\controllers\supervisor\supervisor-incident-reports.js" />
+    <Content Include="Angular\controllers\supervisor\supervisor-list.js" />
+    <Content Include="Angular\controllers\fleetOwner\fleet-owner-list.js" />
+    <Content Include="Angular\controllers\Installer\installer-add.js" />
+    <Content Include="Angular\controllers\Installer\installer-bidHistory.js" />
+    <Content Include="Angular\controllers\Installer\installer-edit.js" />
+    <Content Include="Angular\controllers\Installer\Installer-list.js" />
+    <Content Include="Angular\controllers\Job\add-job.js" />
+    <Content Include="Angular\controllers\Job\edit-job.js" />
+    <Content Include="Angular\controllers\Job\job-list.js" />
+    <Content Include="Angular\controllers\project\project-add.js" />
+    <Content Include="Angular\controllers\project\project-edit.js" />
+    <Content Include="Angular\controllers\project\project-list.js" />
+    <Content Include="Angular\controllers\siteVehicleType\add-site-Vehicle-type.js" />
+    <Content Include="Angular\controllers\site\site-add.js" />
+    <Content Include="Angular\controllers\site\site-bidList.js" />
+    <Content Include="Angular\controllers\site\site-edit.js" />
+    <Content Include="Angular\controllers\site\sites-open.js" />
+    <Content Include="Angular\controllers\site\site-list.js" />
+    <Content Include="Angular\controllers\supervisor\supervisor-vehicles-repair.js" />
+    <Content Include="Angular\controllers\userLogin\change-password-login.js" />
+    <Content Include="Angular\controllers\userLogin\login-list.js" />
+    <Content Include="Angular\controllers\user\add-user.js" />
+    <Content Include="Angular\controllers\user\edit-user.js" />
+    <Content Include="Angular\controllers\user\user-list.js" />
+    <Content Include="Angular\controllers\siteVehicleType\edit-site-vehicle-type.js" />
+    <Content Include="Angular\controllers\siteVehicleType\site-vehicle-type-list.js" />
+    <Content Include="Angular\controllers\vehicle\edit-vehicle-type.js" />
+    <Content Include="Angular\controllers\vehicle\vehicle-type-list.js" />
+    <Content Include="Angular\controllers\vehicle\vehicle-type.js" />
+    <Content Include="Theme\img\logo\rapidus-logo-white.png" />
+    <Content Include="Theme\js\image-compressor.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Theme\css\custom.css" />
+    <Content Include="Theme\css\fonts\flaticon\flaticon.html" />
+    <Content Include="Theme\css\fonts\flaticon\Flaticon.svg" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-brands-400.svg" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-regular-400.svg" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-solid-900.svg" />
+    <Content Include="Theme\css\fonts\line-awesome\line-awesome.svg" />
+    <Content Include="Theme\css\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.svg" />
+    <Content Include="Theme\css\fullcalendar.bundle.css" />
+    <Content Include="Theme\css\modal-carousal.css" />
+    <Content Include="Theme\css\style.bundle.css" />
+    <Content Include="Theme\css\vendors.bundle.css" />
+    <Content Include="Theme\default.php" />
+    <Content Include="Theme\img\bg\bg-1.jpg" />
+    <Content Include="Theme\img\bg\bg-2.jpg" />
+    <Content Include="Theme\img\bg\bg-3.jpg" />
+    <Content Include="Theme\img\bg\bg-4.jpg" />
+    <Content Include="Theme\img\bg\bg-5.jpg" />
+    <Content Include="Theme\img\bg\bg-6.jpg" />
+    <Content Include="Theme\img\bg\bg-6.png" />
+    <Content Include="Theme\img\bg\bg-7.jpg" />
+    <Content Include="Theme\img\blog\blog1.jpg" />
+    <Content Include="Theme\img\blog\blog2.jpg" />
+    <Content Include="Theme\img\blog\blog3.jpg" />
+    <Content Include="Theme\img\blog\blog4.jpg" />
+    <Content Include="Theme\img\blog\blog5.jpg" />
+    <Content Include="Theme\img\client-logos\logo1.png" />
+    <Content Include="Theme\img\client-logos\logo2.png" />
+    <Content Include="Theme\img\client-logos\logo3.png" />
+    <Content Include="Theme\img\client-logos\logo4.png" />
+    <Content Include="Theme\img\client-logos\logo5.png" />
+    <Content Include="Theme\img\dented-car.jpg" />
+    <Content Include="Theme\img\dropdown-arrow-icon.jpg.png" />
+    <Content Include="Theme\img\envato\screen1.jpg" />
+    <Content Include="Theme\img\envato\screen2.jpg" />
+    <Content Include="Theme\img\error\bg1.jpg" />
+    <Content Include="Theme\img\error\bg2.jpg" />
+    <Content Include="Theme\img\error\bg3.jpg" />
+    <Content Include="Theme\img\error\bg4.jpg" />
+    <Content Include="Theme\img\error\bg5.jpg" />
+    <Content Include="Theme\img\error\bg6.jpg" />
+    <Content Include="Theme\img\files\css.svg" />
+    <Content Include="Theme\img\files\csv.svg" />
+    <Content Include="Theme\img\files\doc.svg" />
+    <Content Include="Theme\img\files\html.svg" />
+    <Content Include="Theme\img\files\javascript.svg" />
+    <Content Include="Theme\img\files\jpg.svg" />
+    <Content Include="Theme\img\files\mp4.svg" />
+    <Content Include="Theme\img\files\pdf.svg" />
+    <Content Include="Theme\img\files\xml.svg" />
+    <Content Include="Theme\img\files\zip.svg" />
+    <Content Include="Theme\img\icons\exchange.svg" />
+    <Content Include="Theme\img\icons\logout.svg" />
+    <Content Include="Theme\img\icons\question.svg" />
+    <Content Include="Theme\img\icons\warning.svg" />
+    <Content Include="Theme\img\jeep.jpg" />
+    <Content Include="Theme\img\logos\logo-1.png" />
+    <Content Include="Theme\img\logos\logo-2.png" />
+    <Content Include="Theme\img\logos\logo-3.png" />
+    <Content Include="Theme\img\logos\logo_client_color.png" />
+    <Content Include="Theme\img\logos\logo_client_white.png" />
+    <Content Include="Theme\img\logos\logo_invoice_dark.png" />
+    <Content Include="Theme\img\logos\logo_invoice_white.png" />
+    <Content Include="Theme\img\logos\m-logo-1.png" />
+    <Content Include="Theme\img\logo\fav-icon.ico" />
+    <Content Include="Theme\img\logo\favicon.ico" />
+    <Content Include="Theme\img\logo\logo.png" />
+    <Content Include="Theme\img\logo\logo_inverse.png" />
+    <Content Include="Theme\img\logo\logo_mini.png" />
+    <Content Include="Theme\img\logo\m-logo-2.png" />
+    <Content Include="Theme\img\logo\rapidus-logo.png" />
+    <Content Include="Theme\img\misc\notification_bg.jpg" />
+    <Content Include="Theme\img\misc\quick_actions_bg.jpg" />
+    <Content Include="Theme\img\misc\user_profile_bg.jpg" />
+    <Content Include="Theme\img\nestle\nestle.jpg" />
+    <Content Include="Theme\img\nestle\nestle1.jpg" />
+    <Content Include="Theme\img\nestle\nestle2.jpg" />
+    <Content Include="Theme\img\products\product1.jpg" />
+    <Content Include="Theme\img\products\product10.jpg" />
+    <Content Include="Theme\img\products\product11.jpg" />
+    <Content Include="Theme\img\products\product2.jpg" />
+    <Content Include="Theme\img\products\product3.jpg" />
+    <Content Include="Theme\img\products\product4.jpg" />
+    <Content Include="Theme\img\products\product5.jpg" />
+    <Content Include="Theme\img\products\product6.jpg" />
+    <Content Include="Theme\img\products\product7.jpg" />
+    <Content Include="Theme\img\products\product8.jpg" />
+    <Content Include="Theme\img\products\product9.jpg" />
+    <Content Include="Theme\img\under_development.jpg" />
+    <Content Include="Theme\img\users\100_1.jpg" />
+    <Content Include="Theme\img\users\100_10.jpg" />
+    <Content Include="Theme\img\users\100_11.jpg" />
+    <Content Include="Theme\img\users\100_12.jpg" />
+    <Content Include="Theme\img\users\100_13.jpg" />
+    <Content Include="Theme\img\users\100_14.jpg" />
+    <Content Include="Theme\img\users\100_2.jpg" />
+    <Content Include="Theme\img\users\100_3.jpg" />
+    <Content Include="Theme\img\users\100_4.jpg" />
+    <Content Include="Theme\img\users\100_5.jpg" />
+    <Content Include="Theme\img\users\100_6.jpg" />
+    <Content Include="Theme\img\users\100_7.jpg" />
+    <Content Include="Theme\img\users\100_8.jpg" />
+    <Content Include="Theme\img\users\100_9.jpg" />
+    <Content Include="Theme\img\users\300_1.jpg" />
+    <Content Include="Theme\img\users\300_10.jpg" />
+    <Content Include="Theme\img\users\300_11.jpg" />
+    <Content Include="Theme\img\users\300_12.jpg" />
+    <Content Include="Theme\img\users\300_13.jpg" />
+    <Content Include="Theme\img\users\300_14.jpg" />
+    <Content Include="Theme\img\users\300_2.jpg" />
+    <Content Include="Theme\img\users\300_3.jpg" />
+    <Content Include="Theme\img\users\300_4.jpg" />
+    <Content Include="Theme\img\users\300_5.jpg" />
+    <Content Include="Theme\img\users\300_6.jpg" />
+    <Content Include="Theme\img\users\300_7.jpg" />
+    <Content Include="Theme\img\users\300_8.jpg" />
+    <Content Include="Theme\img\users\300_9.jpg" />
+    <Content Include="Theme\img\users\user1.jpg" />
+    <Content Include="Theme\img\users\user2.jpg" />
+    <Content Include="Theme\img\users\user3.jpg" />
+    <Content Include="Theme\img\users\user4.jpg" />
+    <Content Include="Theme\img\users\user5.jpg" />
+    <Content Include="Theme\js\angular-route.js" />
+    <Content Include="Theme\js\angular-route.min.js" />
+    <Content Include="Theme\js\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Theme\js\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Theme\js\angular-ui\ui-bootstrap.js" />
+    <Content Include="Theme\js\angular-ui\ui-bootstrap.min.js" />
+    <Content Include="Theme\js\angular.js" />
+    <Content Include="Theme\js\angular.min.js" />
+    <Content Include="Theme\js\bootstrap-datepicker.js" />
+    <Content Include="Theme\js\bootstrap-select.js" />
+    <Content Include="Theme\js\bootstrap-timepicker.js" />
+    <Content Include="Theme\js\custom.js" />
+    <Content Include="Theme\js\dashboard.js" />
+    <Content Include="Theme\js\data-local.js" />
+    <Content Include="Theme\js\fullcalendar.bundle.js" />
+    <Content Include="Theme\js\jquery.min.js" />
+    <Content Include="Theme\js\scripts.bundle.js" />
+    <Content Include="Theme\js\vendors.bundle.js" />
+    <Content Include="Theme\js\wizard.js" />
+    <Content Include="Theme\login\fav-icon.ico" />
+    <Content Include="Theme\login\favicon.ico" />
+    <Content Include="Theme\login\login.js" />
+    <Content Include="Theme\login\logo-1.png" />
+    <Content Include="Theme\login\scripts.bundle.js" />
+    <Content Include="Theme\login\style.bundle.css" />
+    <Content Include="Theme\login\vendors.bundle.css" />
+    <Content Include="Theme\login\vendors.bundle.js" />
+    <Content Include="Theme\Reference.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Theme\js\ui-bootstrap\" />
+    <Folder Include="Theme\plugins\" />
+    <Folder Include="Theme\SiteVehicle\" />
+    <Folder Include="Views\Bid\" />
+    <Folder Include="Views\ListCounter\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="libman.json" />
+    <Content Include="Angular\controllers\userLogin\add-login.js" />
+    <None Include="packages.config" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Dashboard\Admin.cshtml" />
+    <Content Include="Theme\css\fonts\flaticon\Flaticon.eot" />
+    <Content Include="Theme\css\fonts\flaticon\Flaticon.ttf" />
+    <Content Include="Theme\css\fonts\flaticon\Flaticon.woff" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-brands-400.eot" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-brands-400.ttf" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-brands-400.woff" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-brands-400.woff2" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-regular-400.eot" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-regular-400.ttf" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-regular-400.woff" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-regular-400.woff2" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-solid-900.eot" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-solid-900.ttf" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-solid-900.woff" />
+    <Content Include="Theme\css\fonts\fontawesome5\fa-solid-900.woff2" />
+    <Content Include="Theme\css\fonts\line-awesome\line-awesome.eot" />
+    <Content Include="Theme\css\fonts\line-awesome\line-awesome.ttf" />
+    <Content Include="Theme\css\fonts\line-awesome\line-awesome.woff" />
+    <Content Include="Theme\css\fonts\line-awesome\line-awesome.woff2" />
+    <Content Include="Theme\css\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.eot" />
+    <Content Include="Theme\css\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.ttf" />
+    <Content Include="Theme\css\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.woff" />
+    <Content Include="Theme\css\fonts\metronic\Metronic_fda1334c35d0f5fe2afb3afebbb6774a.woff2" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\Installer\AddInstaller.cshtml" />
+    <Content Include="Views\Installer\InstallerList.cshtml" />
+    <Content Include="Views\Vehicle\CreateType.cshtml" />
+    <Content Include="Views\Vehicle\Types.cshtml" />
+    <Content Include="Views\FleetOwner\AddFleetOwner.cshtml" />
+    <Content Include="Views\FleetOwner\FleetOwnerList.cshtml" />
+    <Content Include="Views\CorporateUser\AddCorporateUser.cshtml" />
+    <Content Include="Views\CorporateUser\CorporateUserList.cshtml" />
+    <Content Include="Views\Supervisor\AddSupervisor.cshtml" />
+    <Content Include="Views\Supervisor\SupervisorList.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\User\UserList.cshtml" />
+    <Content Include="Views\Project\AddProject.cshtml" />
+    <Content Include="Views\Project\ProjectList.cshtml" />
+    <Content Include="Views\Site\AddSite.cshtml" />
+    <Content Include="Views\Site\SiteList.cshtml" />
+    <Content Include="Views\Exception\Index.cshtml" />
+    <Content Include="Views\Vehicle\EditType.cshtml" />
+    <Content Include="Views\SiteVehicleType\AddType.cshtml" />
+    <Content Include="Views\SiteVehicleType\Types.cshtml" />
+    <Content Include="Views\Job\Jobs.cshtml" />
+    <Content Include="Views\Job\AddJob.cshtml" />
+    <Content Include="Views\Site\SiteBidList.cshtml" />
+    <Content Include="Views\Installer\AwardedSites.cshtml" />
+    <Content Include="Views\Shared\_UserMenu.cshtml" />
+    <Content Include="Views\Shared\_InstallerMenu.cshtml" />
+    <Content Include="Views\Dashboard\Installer.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\Installer\AssignedSites.cshtml" />
+    <Content Include="Views\Installer\InvoicedSites.cshtml" />
+    <Content Include="Views\Invoice\InvoicesForApproval.cshtml" />
+    <Content Include="Views\Invoice\IncidentDetails.cshtml" />
+    <Content Include="Views\Shared\_FleetOwnerMenu.cshtml" />
+    <Content Include="Views\Dashboard\FleetOwner.cshtml" />
+    <Content Include="Views\FleetOwner\PendingInvoices.cshtml" />
+    <Content Include="Views\Supervisor\IncidentReports.cshtml" />
+    <Content Include="Views\Shared\_CrewMenu.cshtml" />
+    <Content Include="Views\Dashboard\Crew.cshtml" />
+    <Content Include="Views\Crew\AddCrew.cshtml" />
+    <Content Include="Views\Crew\CrewList.cshtml" />
+    <Content Include="Views\Crew\AssignedSites.cshtml" />
+    <Content Include="Views\Crew\JobsInProcess.cshtml" />
+    <Content Include="Views\Crew\JobsUnderReview.cshtml" />
+    <Content Include="Views\Crew\CompletedJobs.cshtml" />
+    <Content Include="Views\FleetOwner\JobsForApproval.cshtml" />
+    <Content Include="Views\Installer\BidHistory.cshtml" />
+    <Content Include="Views\Supervisor\VehiclesToRepair.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\CorporateUser\EdituserCorporate.cshtml" />
+    <Content Include="Views\FleetOwner\FleetOwnerEdit.cshtml" />
+    <Content Include="Views\Installer\EditInstaller.cshtml" />
+    <Content Include="Views\Project\EditProject.cshtml" />
+    <Content Include="Views\Site\EditSite.cshtml" />
+    <Content Include="Views\UserLogin\AddLogin.cshtml" />
+    <Content Include="Views\UserLogin\LoginList.cshtml" />
+    <Content Include="Views\UserLogin\ChangePassword.cshtml" />
+    <Content Include="Views\SiteVehicleType\EditType.cshtml" />
+    <Content Include="Views\Shared\_ApprovalManagerMenu.cshtml" />
+    <Content Include="Views\Dashboard\ApprovalManager.cshtml" />
+    <Content Include="Views\Approvals\PendingInstallers.cshtml" />
+    <Content Include="Views\Approvals\PendingFleetOwners.cshtml" />
+    <Content Include="Views\Approvals\PendingUsers.cshtml" />
+    <Content Include="Views\Approvals\PendingCorporateUsers.cshtml" />
+    <Content Include="Views\Job\EditJob.cshtml" />
+    <Content Include="Views\Installer\SitesForBid.cshtml" />
+    <Content Include="Views\Site\OpenSites.cshtml" />
+    <Content Include="Views\Supervisor\SupervisorEdit.cshtml" />
+    <Content Include="Views\Crew\EditCrew.cshtml" />
+    <Content Include="Views\Crew\JobsInQue.cshtml" />
+    <Content Include="Views\FleetOwner\AwardedSites.cshtml" />
+    <Content Include="Views\Supervisor\AssignedSites.cshtml" />
+    <Content Include="Views\Shared\_SupervisorMenu.cshtml" />
+    <Content Include="Views\Dashboard\Supervisor.cshtml" />
+    <Content Include="Views\Approvals\JobsForApproval.cshtml" />
+    <Content Include="Views\Supervisor\JobsForApproval.cshtml" />
+    <Content Include="Views\FleetOwner\IncidentReports.cshtml" />
+    <Content Include="Views\FleetOwner\VehiclesToRepair.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Dashboard\CorporateUser.cshtml" />
+    <Content Include="Views\Shared\_CorporateUserMenu.cshtml" />
+    <Content Include="Views\CorporateUser\GetCorporateUserFleetOwnerList.cshtml" />
+    <Content Include="Views\Site\SiteStatusList.cshtml" />
+    <Content Include="Views\Logs\SiteStatusList.cshtml" />
+    <Content Include="Views\Logs\JobStatusList.cshtml" />
+    <Content Include="Views\FleetOwner\SitesByFleetId.cshtml" />
+    <Content Include="Views\FleetOwner\JobsByFleetId.cshtml" />
+    <Content Include="Views\Supervisor\SiteLog.cshtml" />
+    <Content Include="Views\Supervisor\JobList.cshtml" />
+    <Content Include="Views\Installer\JobList.cshtml" />
+    <Content Include="Views\FleetOwner\SupervisorAwardedSites.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{91587D81-7A74-45A1-B4D2-105F4D1F6409}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49758</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49758/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

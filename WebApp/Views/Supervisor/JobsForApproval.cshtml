@@ -1,0 +1,212 @@
+﻿
+@{
+    ViewBag.Title = "JobsForApproval";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sPendCorporateUsers";
+}
+@section controller{
+    <script src="~/Angular/controllers/supervisor/jobs-for-approval.js"></script>
+
+}
+
+<div ng-controller="approve_job">
+
+
+    <form autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Installer" ng-model="searchModel.installer" name="installer" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Site" ng-model="searchModel.siteName" name="siteName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="LPN" ng-model="searchModel.LPN" name="LPN" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="VIN" ng-model="searchModel.VIN" name="VIN" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Assign Date" ng-model="searchModel.assignDate" name="assignDate" id="m_datepicker_7" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group m-form__group">
+                    <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                        Search
+                    </button>
+                    <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Installer</span></th>
+                    <th data-field="Site" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site</span></th>
+                    <th data-field="LPN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">LPN</span></th>
+                    <th data-field="VIN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">VIN</span></th>
+                    <th data-field="Unit #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Assign Date</span></th>
+                    <th data-field="Unit #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Status</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 80px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="totalCount <= 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="job in jobs">
+                    <td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">{{job.InstallerName}}</span></td>
+                    <td data-field="Site" class="m-datatable__cell"><span style="width: 110px;">{{job.SiteName}}</span></td>
+                    <td data-field="LPN" class="m-datatable__cell"><span style="width: 110px;">{{job.LPN}}</span></td>
+                    <td data-field="VIN" class="m-datatable__cell"><span style="width: 110px;">{{job.VIN}}</span></td>
+                    <td data-field="Unit #" class="m-datatable__cell"><span style="width: 110px;">{{job.AssignedDate | dateFormat}}</span></td>
+                    <td class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span class="m-badge pl-3 m-badge--bordered pr-3" ng-if="job.Status == 3">
+                                Under Review Supervisor
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="job.Status == 4">
+                                Under Review Approval Manager
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 80px;">
+                            <div class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="#" ng-click="ApproveJob(job.Id)">
+                                        <i class="la la-check"></i> Approve
+                                    </a>
+                                    <a class="dropdown-item" href="#" ng-click="RejectJob(job.Id)">
+                                        <i class="la la-forward"></i> Reject
+                                    </a>
+                                </div>
+                            </div>
+                            <a ng-click="showImage(job.Id)" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View Image">
+                                <i class="la la-eye"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{imgModal.title}}</h5>
+                </div>
+                <div class="modal-body p-1 " ng-repeat="image in imgModal">
+                    <span> </span>
+                    <img style="height: 100%; width:100%; display:inline;" ng-src="{{image.Picture}}" />
+                </div>
+                <button class="btn btn-success" ng-click="ApproveJob()"> Approve </button>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reject-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Reject Job</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="bidDetail" name="frmBid">
+                        <div class="form-group">
+                            <label>Comments</label>
+                            <textarea name="comment" ng-model="rejectModel.comments" class="form-control" id="comment" required></textarea>
+                            <span ng-show="frmBid.price.$error.required">Please enter price</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <button type="button" ng-disabled="frmBid.$invalid" ng-click="Reject()" class="btn btn-success">Submit</button>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#reject-modal">Cancel</a>
+                        @*<p class="text-danger" style="display:none">Please fill all mandatory fields</p>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    $('#m_datepicker_7').on('changeDate', function (ev) {
+        $(this).datepicker('hide');
+    });
+</script>

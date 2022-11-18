@@ -1,0 +1,1098 @@
+﻿
+@{
+    ViewBag.Title = "Site List";
+    ViewBag.MainMenu = "mProject";
+    ViewBag.SubMenu = "sSiteList";
+}
+@section controller {
+    <script src="~/Angular/controllers/site/site-list.js"></script>
+}
+<style>
+    #Projectdetail,#Sitedetail {
+        width: 110px;
+        cursor: pointer;
+        color: cornflowerblue;
+    }
+        #Projectdetail:hover {
+            text-decoration: underline
+        }
+        #Sitedetail:hover {
+            text-decoration: underline
+        }
+</style>
+<div ng-controller="site_list">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Fleet Owner Name" ng-model="searchModel.fleetOwnerName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Project Name" ng-model="searchModel.projectName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input type="text" class="form-control form-control-sm" placeholder="Site Name" ng-model="searchModel.siteName">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input type="text" class="form-control form-control-sm" placeholder="PO Number" ng-num="15" ng-model="searchModel.po">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group m-form__group">
+                <button ng-click="search()" type="button" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                    Search
+                </button>
+                <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="FleetOwner" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Fleet Owner</span></th>
+                    <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Project</span></th>
+                    <th data-field="Site Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site Name</span></th>
+                    <th data-field="PO #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 100px;">PO #</span></th>
+                    <th data-field="Vehicle Details" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 60px;">Vehicle Details</span></th>
+                    <th data-field="Vehicles" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 60px;">Jobs</span></th>
+                    <th data-field="Bids" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 60px;">Bids</span></th>
+                    <th data-field="Jobs in Queue" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 50px;">Jobs in Queue</span></th>
+                    <th data-field="Jobs in Progress" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 60px;">Jobs in Progress</span></th>
+                    <th data-field="Jobs UnderReview" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 90px;">Jobs UnderReview</span></th>
+                    <th data-field="Jobs Completed" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 80px;">Jobs Completed</span></th>
+                    <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 120px;">Status</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 90px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="sites.length == 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="site in sites">
+                    <td data-field="FleetOwner" class="m-datatable__cell"><span style="width: 110px;">{{site.FleetOwnerName}}</span></td>
+                    <td data-field="Project" class="m-datatable__cell">
+                        <span style="width: 110px;" id="Projectdetail" ng-click="ProjectAgainstSite(site.Id)">
+                            {{site.ProjectName}}
+                        </span>
+                    </td>
+                    <td data-field="Site Name" class="m-datatable__cell"><span id="Sitedetail" ng-click="SiteAgainstProject(site.Id)" style="width: 110px;">{{site.Name}}</span></td>
+                    <td data-field="PO #" class="m-datatable__cell">
+                        <span ng-if="site.PONo != null || site.PONo != ''" style="width: 100px;">{{site.PONo}}</span>
+                        <span ng-if="site.PONo == null || site.PONo == ''" style="width: 100px;">-</span>
+                    </td>
+                    <td data-field="Vehicle Types" class="m-datatable__cell">
+                        <span style="width: 60px;" ng-if="site.TotalVehicleTypes != 0">
+                            <a href="/SiteVehicleType/Types/{{site.Id}}${{site.Name}}${{IsModificationDisabled(site.SiteStatus)}}" class="btn btn-link">{{site.TotalVehicleTypes}}</a>
+                        </span>
+                        <span style="width: 60px;" ng-if="site.TotalVehicleTypes == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.TotalVehicleTypes}}</a>
+                        </span>
+                    </td>
+                    <td data-field="Vehicles" class="m-datatable__cell"><span style="width: 60px;">{{site.TotalVehicles}}</span></td>
+                    <td data-field="Bids" class="m-datatable__cell">
+                        <span style="width: 60px;" ng-if="site.TotalBids != 0">
+                            <a href="/Site/SiteBidList/{{site.Id}}${{site.Name}}" class="btn btn-link">{{site.TotalBids}}</a>
+                        </span>
+                        <span style="width: 60px;" ng-if="site.TotalBids == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.TotalBids}}</a>
+                        </span>
+                    </td>
+
+                    <td data-field="Jobs in Queue" class="m-datatable__cell">
+                        <span style="width: 60px;" ng-if="site.JobsInQueue != 0">
+                            <button ng-click="InQueue(site.Id)" class="btn btn-link">{{site.JobsInQueue}}</button>
+                        </span>
+                        <span style="width: 60px;" ng-if="site.JobsInQueue == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.JobsInQueue}}</a>
+                        </span>
+                    </td>
+
+                    <td data-field="Jobs in Progress" class="m-datatable__cell">
+                        <span style="width: 60px;" ng-if="site.JobsInProgress != 0">
+                            <button ng-click="InProgress(site.Id)" class="btn btn-link">{{site.JobsInProgress}}</button>
+                        </span>
+                        <span style="width: 60px;" ng-if="site.JobsInProgress == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.JobsInProgress}}</a>
+                        </span>
+                    </td>
+
+                    <td data-field="Jobs UnderReview" class="m-datatable__cell">
+                        <span style="width: 110px;" ng-if="site.JobsUnderReview != 0">
+                            <button ng-click="UnderReview(site.Id)" class="btn btn-link">{{site.JobsUnderReview}}</button>
+
+                        </span>
+                        <span style="width: 110px;" ng-if="site.JobsUnderReview == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.JobsUnderReview}}</a>
+                        </span>
+                    </td>
+
+                    <td data-field="Jobs Completed" class="m-datatable__cell">
+                        <span style="width: 60px;" ng-if="site.JobsCompleted != 0">
+                            <button ng-click="Completed(site.Id)" class="btn btn-link">{{site.JobsCompleted}}</button>
+                        </span>
+                        <span style="width: 60px;" ng-if="site.JobsCompleted == 0">
+                            <a style="cursor: default" class="btn btn-link">{{site.JobsCompleted}}</a>
+                        </span>
+                    </td>
+                    <td data-field="Status" class="m-datatable__cell">
+                        <span style="width: 120px;">
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="site.SiteStatus == '0'">
+                                {{SiteStatusName}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="site.SiteStatus == '1'">
+                                {{SiteStatusName = 'Open For Bid'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="site.SiteStatus == '2'">
+                                {{SiteStatusName = 'Awarded'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="site.SiteStatus == '3'">
+                                {{SiteStatusName = 'Assigned'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="site.SiteStatus == '4'">
+                                {{SiteStatusName = 'In Process'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="site.SiteStatus == '5'">
+                                {{SiteStatusName = 'ReadyForInvoice'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="site.SiteStatus == '6'">
+                                {{SiteStatusName = 'Invoiced'}}
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="site.SiteStatus == '7'">
+                                {{SiteStatusName = 'Closed For Bid'}}
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 90px;">
+                            <span class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <span class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" ng-if="site.SiteStatus == 0" href="/Site/EditSite/{{site.Id}}">
+                                        <i class="la la-edit"></i> Edit Details
+                                    </a>
+
+
+                                    <a class="dropdown-item" ng-if="(site.TotalVehicles != 0 && site.AllowBiding) && ( site.SiteStatus == 0 || site.SiteStatus == 7)" ng-click="StuatsOpenForBid(site.Id)" href="#">
+                                        <i class="la la-check-circle"></i> Enable Bidding
+                                    </a>
+                                    <a class="dropdown-item" ng-if="(site.TotalVehicles == 0 || !site.AllowBiding) && ( site.SiteStatus == 0 || site.SiteStatus == 7)" href="#" style="cursor:not-allowed">
+                                        <i class="la la-check-circle"></i> Enable Bidding
+                                    </a>
+
+
+                                    <a class="dropdown-item" ng-if="site.SiteStatus == 1" ng-click="StuatsClosedForBid(site.Id)" href="#">
+                                        <i class="la la-check-circle"></i> Close Bidding
+                                    </a>
+                                    <a ng-if="site.TotalBids != 0" class="dropdown-item" href="/Site/SiteBidList/{{site.Id}}${{site.Name}}">
+                                        <i class="la la-list"></i> Bids Details
+                                    </a>
+
+                                    <a class="dropdown-item" href="#" ng-click="SiteAgainstProject(site.Id)">
+                                        <i class="la la-list"></i> Site Details
+                                    </a>
+
+                                    <a class="dropdown-item" href="/SiteVehicleType/Types/{{site.Id}}${{site.Name}}${{IsModificationDisabled(site.SiteStatus)}}">
+                                        <i class="la la-list"></i> Vehicle Details
+                                    </a>
+
+                                    @*<a ng-if="site.SiteStatus == 0 || site.SiteStatus == 7" class="dropdown-item" href="/SiteVehicleType/AddType/{{site.Id}}${{site.Name}}">
+                                        <i class="la la-plus-circle"></i> Add Vehicle Details
+                                    </a>
+                                    <a ng-if="site.SiteStatus == 1 || site.SiteStatus == 2 || site.SiteStatus == 3 || site.SiteStatus == 4 || site.SiteStatus == 5 || site.SiteStatus == 6" class="dropdown-item" href="#" style="cursor:not-allowed">
+                                        <i class="la la-plus-circle"></i> Add Vehicle Details
+                                    </a>*@
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ProjectDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Project Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="Project in Projects">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Project</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Fleet_Owner</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.FleetOwnerName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Phone</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactPhone}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Address</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Address}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 110px;">
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '0'">
+                                    Active
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '1'">
+                                    InActive
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '2'">
+                                    Pending
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#ProjectDetail">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Siteinfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:900px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Site Detail</h5>
+                </div>
+                <div class="modal-body" style=" overflow-y: scroll; height: 600px;">
+                    <div class="form-group m-form__group row" @*ng-repeat="Site in sites"*@>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Site Name</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Fleet_Owner</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.FleetOwnerName}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Project Name</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ProjectName}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>CSR</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.CSR}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Sales Man</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SalesMan}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Bid Due Date</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.BidDueDate | dateFormat}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Site Start Date</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SiteStartDate | dateFormat}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Site End Date</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SiteEndDate | dateFormat}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Maximum Bid Amount</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.MaximumBidAmount}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Sale Price</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SalePrice}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Scope of Work</b></label>
+                        </div>
+                        <div class="col-lg-9 col-md-6 col-sm-6">
+                            <label>{{Site.ScopeOfWork}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Special Instructions</b></label>
+                        </div>
+                        <div class="col-lg-9 col-md-6 col-sm-6">
+                            <label>{{Site.SpecialInstruction}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Installation Location</b></label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Address</b></label>
+                        </div>
+                        <div class="col-lg-9 col-md-6 col-sm-6">
+                            <label>{{Site.Address}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Country</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.CountryName}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>State</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.StateName}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>City</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.CityName}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Zip Code</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ZipCode}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Account Details</b></label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>PO Number</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.PONo}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>EPMS Job #</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.EPMSJobNo}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Select Takedown Option</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.TakeDownStatus}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Installation Location Information</b></label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Are Indoor Facilities Available?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.IndoorFacility == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>During Reg. Business Hours?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.BusinessHours == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Weekend Hours?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.WeekendHours == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Is a Spoting Tractor Available?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.IsSpottingTractor == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Can Store Mat'l/Equip. on site?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.StoreEquipmentOnSite == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Mod Allowed to Spot Vehicles?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SpotVehicle == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Installation Services</b></label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Remove Existing Graphics</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.RemoveExistingGraphics == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Number of years on Vehicle</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.YearsOnVehicle}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Cleaning & Prep of Vehicles</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.CleaningAndPrepVehicle == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Power Wash surface cleaning</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.PowerWash == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Application of vinyl Graphics</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.IsVinylGraphics == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Edge seal of Decals required</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.SealOfDecals == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Vinyl Decal Material</b></label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-bottom:10px;background:#c6c6c6;"><b>Arlon Vinyl Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ArlonVinylFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ArlonVinylFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>Avery Vinyl Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.AveryVinylFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.AveryVinylFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>3M Vinyl Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.M3VinylFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.M3VinylFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>Arlon Reflective Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ArlonReflectiveFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.ArlonReflectiveFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>Avery Reflective Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.AveryReflectiveFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.AveryReflectiveFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>3M Reflective Film</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.M3ReflectiveFilmRemoval == true ? "Yes" : "No"}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.M3ReflectiveFilmApply == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label style="margin-top:10px; margin-bottom:10px;background:#c6c6c6;"><b>Total SQ. FT.</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Removal</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.TotalSqFtRemoval}}</label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Apply</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.TotalSqFtApply}}</label>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <label class="m-badge" style="background: #d0292a; color: white;width:100%;border-radius:0px !important;"><b>Other Questions & Comments</b></label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Comments</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.OtherQuestionsComments}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Customer Availability On Installation Day</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.CustomerAvailabilityOnInstallationDay == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Do you have heated inside facilities where we can work?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.InsideFacilities == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Have you received the decals yet?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.IsDecalsReceived == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Customer was informed that vehicle needs to be cleaned (not waxed) prior to our arrival</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.VehicleCleanessBeforeArrival == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Informed customer that we need 6 feet around the vehicle so we can get ladders around vehicle</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.IsInformed6FeetArea == true ? "Yes" : "No"}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>What is the best day for the vehicle to be made available?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            
+                            <label>{{Site.VehicleAvailabileDate}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>Are there any additional contacts in case the main contact is not available?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.AdditionalContacts}}</label>
+                        </div>
+
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label><b>What are the hours that we can work at your facility?</b></label>
+                        </div>
+                        <div class="col-lg-3 col-md-6 col-sm-6">
+                            <label>{{Site.WorkHoursAtFacility}}</label>
+                        </div>
+
+                    </div>
+                 
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#Siteinfo">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Job-In-Queue-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Job In Queue Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in JobInQ">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>VIN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.VIN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>LPN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.LPN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Unit#</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.UnitNo}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '1'">
+                                    In Queue
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '2'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '3'">
+                                    Under Review Supervisor
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '4'">
+                                    Under Review Approval Manager
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '5'">
+                                    Incident Reported
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '6'">
+                                    Sent For Repair
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '7'">
+                                    Completed
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '8'">
+                                    Rejected
+                                </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#Job-In-Queue-Modal">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Job-In-Progress-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Job In Progress Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in InProg">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>VIN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.VIN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>LPN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.LPN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Unit#</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.UnitNo}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '1'">
+                                    In Queue
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '2'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '3'">
+                                    Under Review Supervisor
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '4'">
+                                    Under Review Approval Manager
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '5'">
+                                    Incident Reported
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '6'">
+                                    Sent For Repair
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '7'">
+                                    Completed
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '8'">
+                                    Rejected
+                                </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#Job-In-Progress-Modal">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Job-Completed-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Job Completed Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in Complete">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>VIN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.VIN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>LPN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.LPN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Unit#</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.UnitNo}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '1'">
+                                    In Queue
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '2'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '3'">
+                                    UUnder Review Supervisor
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '4'">
+                                    Under Review Approval Manager
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '5'">
+                                    Incident Reported
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '6'">
+                                    Sent For Repair
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '7'">
+                                    Completed
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '8'">
+                                    Rejected
+                                </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#Job-Completed-Modal">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Job-Under-Review-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title">Job Under Review Detail</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in UnderReviews">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>VIN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.VIN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>LPN</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.LPN}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Unit#</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.UnitNo}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '1'">
+                                    In Queue
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '2'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '3'">
+                                    Under Review Supervisor
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.Status == '4'">
+                                    Under Review Approval Manager
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.Status == '5'">
+                                    Incident Reported
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '6'">
+                                    Sent For Repair
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '7'">
+                                    Completed
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.Status == '8'">
+                                    Rejected
+                                </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#Job-Under-Review-Modal">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,252 @@
+﻿@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <title>
+        Modagrafics - We Move Brands
+    </title>
+    <meta name="description" content="Latest updates and statistic charts">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+    <script>
+        WebFont.load({
+            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+            active: function () {
+                sessionStorage.fonts = true;
+            }
+        });
+    </script>
+    <link href="~/Theme/login/vendors.bundle.css" rel="stylesheet" />
+    <link href="~/Theme/login/style.bundle.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="/Theme/login/fav-icon.ico" />
+    <style>
+        /*the container must be positioned relative:*/
+        .custom-select {
+            position: relative;
+            font-family: Arial;
+        }
+
+            .custom-select select {
+                display: none; /*hide original SELECT element:*/
+            }
+
+        .select-selected {
+            background-color: DodgerBlue;
+        }
+
+            /*style the arrow inside the select element:*/
+            .select-selected:after {
+                position: absolute;
+                content: "";
+                top: 14px;
+                right: 10px;
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-color: #fff transparent transparent transparent;
+            }
+
+            /*point the arrow upwards when the select box is open (active):*/
+            .select-selected.select-arrow-active:after {
+                border-color: transparent transparent #fff transparent;
+                top: 7px;
+            }
+
+        /*style the items (options), including the selected item:*/
+        .select-items div, .select-selected {
+            color: #ffffff;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /*style items (options):*/
+        .select-items {
+            position: absolute;
+            background-color: DodgerBlue;
+            top: 100%;
+            left: 0;
+            right: 0;
+            z-index: 99;
+        }
+
+        /*hide the items when the select box is closed:*/
+        .select-hide {
+            display: none;
+        }
+
+        .select-items div:hover, .same-as-selected {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="m--skin- m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--fixed m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
+    <div class="m-grid m-grid--hor m-grid--root m-page">
+        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--hor m-login m-login--signin m-login--2 m-login-2--skin-3" id="m_login" style="        background-image: url(/Theme/img/bg/bg-3.jpg);">
+            <div class="m-grid__item m-grid__item--fluid	m-login__wrapper">
+                <div class="m-login__container">
+                    <div class="m-login__logo">
+                        <a href="#">
+                            <img src="~/Theme/img/logos/m-logo-1.png" style="width:100%;"/>
+                        </a>
+                    </div>
+                    <div class="m-login__signin">
+                        <div class="m-login__head">
+                            <h3 class="m-login__title">
+                                Sign In To Your Account
+                            </h3>
+                        </div>
+                        <form class="m-login__form m-form" method="post" action="/Login/LoginToAccount">
+                            <input name="TimeZoneOffset" id="timeZoneOffset" type="hidden" />
+                            <div class="form-group m-form__group">
+                                <input class="form-control m-input" type="text" placeholder="Username" id="username" name="Username" autocomplete="off">
+                            </div>
+                            <div class="form-group m-form__group ">
+                                <input class="form-control m-input m-login__form-input--last" id="password" type="password" placeholder="Password" name="Password">
+                            </div>
+                            <div class="form-group m-form__group mt-3">
+                                <a href="#" onclick="ForgotPassword()" style="color:#d11f2d;text-decoration:none;font-weight:bold">Forgot password?</a>
+                               </div>
+                                <div class="m-login__form-action mt-1">
+                                    <button type="submit" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">
+                                        Log In
+                                    </button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ForgotPassword_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important;background-color:#d11f2d;">
+                    <h5 class="modal-title" id="exampleModalLongTitle" style="color:white">Forgot password?</h5>
+                </div>
+                <form method="post" class="m-login__form m-form">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="form-group m-form__group">
+                                <input class="form-control m-input" id="txtUserId" type="text" placeholder="Please Enter Username" autocomplete="off" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div>
+                            <button type="button" id="btnForgetPassword" class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn">Submit</button>
+                            <a class="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air  m-login__btn" href="#" data-toggle="modal" data-target="#ForgotPassword_modal">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/Theme/login/vendors.bundle.js"></script>
+    <script src="~/Theme/login/scripts.bundle.js"></script>
+    <script src="~/Theme/login/login.js"></script>
+
+    <script>
+        $('form').on('submit', function () {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            var role = $('#role').val();
+            if (username === '' || password === '') {
+                setTimeout(function () {
+                    toastr.options = {
+                        "positionClass": "toast-top-center",
+                        "preventDuplicates": false,
+                        "timeOut": "1500",
+                        "showEasing": "swing",
+                        "hideEasing": "linear",
+                        "showMethod": "fadeIn",
+                        "hideMethod": "fadeOut"
+                    };
+
+                    toastr.warning("Please fill all the fields", "Required");
+                    $('#username').focus();
+                });
+                return false;
+            } else if (role === '--Select Role--') {
+                toastr.options = {
+                    "positionClass": "toast-top-center",
+                    "preventDuplicates": false,
+                    "timeOut": "1500",
+                    "showEasing": "swing",
+                    "hideEasing": "linear",
+                    "showMethod": "fadeIn",
+                    "hideMethod": "fadeOut"
+                };
+                toastr.warning("Please select role", "Required");
+                return false;
+            } else {
+                return true;
+            }
+        });
+        setTimeout(function () {
+            $('#timeZoneOffset').val(new Date().getTimezoneOffset() * -1);
+            var error = '@ViewBag.ErrorMessage';
+            if (error !== 'False') {
+                swal("Warning", "Username or password is incorrect", "warning").then(() => $('#username').first().focus());
+            }
+        });
+    </script>
+    <script>
+        function ForgotPassword() {
+            $('#ForgotPassword_modal').modal('show');
+        }
+        $("#btnForgetPassword").click(function () {
+            ////debugger;
+            var userid = $("#txtUserId").val();
+            if (userid.trim() != "") {
+               // $('#ForgotPassword_modal').modal('hide');
+                sendEmail(userid);
+            }
+        })
+        function sendEmail(userId) {
+            $('#ForgotPassword_modal').modal('hide');
+           // mApp.blockPage({ message: "Sending Email..." });
+            ////debugger;
+            $.ajax({
+                url: '/Login/ForgetPassword/',
+               // dataType: 'json',
+               // contentType: "application/x-www-form-urlencoded",
+                type: "POST",
+                async: false,
+                data: {
+                    user :userId 
+                },
+                success: function (data) {
+                    ////debugger;
+                 //   mApp.unblockPage();
+                    if (data.success) {
+                       
+                        $('#txtUserId').val('');
+                        swal("Success", data.message, "success");
+                    }
+                    else {
+                        swal("Error", data.message, 'error');
+                    }
+                  
+                },
+                error: function (error) {
+                    $('#txtUserId').val('');
+                  //  mApp.unblockPage();
+                    ////debugger;
+                    swal("Error", 'User not found', 'error');
+                    }
+                
+            });
+        }
+    </script>
+</body>
+</html>

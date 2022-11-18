@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewBag.Title = "Crew List";
+    ViewBag.MainMenu = "mCrew";
+    ViewBag.SubMenu = "sCrewList";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/crew/crew-list.js"></script>
+}
+
+    <div ng-controller="crew_list">
+        <form autocomplete="off">
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="User Name" ng-model="searchModel.CrewUserName" name="CrewUserName" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="First Name" ng-model="searchModel.firstName" name="firstName" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="Last Name" name="lastName" ng-model="searchModel.lastName" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="Email" name="email" ng-model="searchModel.email" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="Phone Number" name="phoneNumber" ng-model="searchModel.phoneNumber" ng-phone />
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-group m-form__group">
+                        <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                            Search
+                        </button>
+                        <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+            <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+                <thead class="m-datatable__head">
+                    <tr class="m-datatable__row">
+                        <th data-field="Installer Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">User Name</span></th>
+                        <th data-field="First Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">First Name</span></th>
+                        <th data-field="Last Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Last Name</span></th>
+                        <th data-field="Email" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 100px;">Email</span></th>
+                        <th data-field="Phone #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Phone #</span></th>
+                        <th data-field="Sites" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Sites</span></th>
+                        <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span></th>
+                    </tr>
+                </thead>
+                <tbody class="m-datatable__body" style="">
+                    <tr ng-if="totalCount <= 0" class="no-records-row">
+                        <td>
+                            No records found
+                        </td>
+                    </tr>
+                    <tr class="m-datatable__row" style="left: 0px;" ng-repeat="crew in crews">
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.CrewUserName}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.FirstName}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.LastName}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.EmailAddress}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.PhoneNo}}</span></td>
+                        <td class="m-datatable__cell"><span style="width: 110px;">{{crew.TotalSite}}</span></td>
+                        <td class="m-datatable__cell">
+                            <span style="overflow: visible; position: relative; width: 110px;">
+                                <div class="dropdown ">
+                                    <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                        <i class="la la-ellipsis-h"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a ng-href="{{(crew.Status !== 2 ? '/Crew/EditCrew/' + crew.Id : '')}}" class="dropdown-item" ng-class="{'disabled': crew.Status == 2}">
+                                            <i class="la la-edit"></i> Edit Crew
+                                        </a>
+
+                                        <button class="dropdown-item" ng-click="showLoginModal(crew.Id)">
+                                            <i class="la {{crew.IsLoginExists ? 'la-edit' : 'la-plus'}}"></i> {{crew.IsLoginExists ? 'Edit' : 'Add'}} Login
+                                        </button>
+
+                                    </div>
+                                </div>
+
+                                <a ng-click="showImage(crew.Id)" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View Image">
+                                    <i class="la la-eye"></i>
+                                </a>
+                            </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+                <ul class="m-datatable__pager-nav">
+                    <li>
+                        <a title="First" ng-click="firstPage()"
+                           class="m-datatable__pager-link m-datatable__pager-link--first"
+                           ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                    </li>
+                    <li>
+                        <a title="Previous" ng-click="previousPage()"
+                           class="m-datatable__pager-link m-datatable__pager-link--prev "
+                           ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                    </li>
+
+                    <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                        <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                           ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                           ng-click="pageChanged(i)">{{i}}</a>
+                    </li>
+
+                    <li ng-if="rightHide">
+                        <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                            <i class="la la-ellipsis-h"></i>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                           ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                    </li>
+                    <li>
+                        <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                           ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                    </li>
+                </ul>
+                <div class="m-datatable__pager-info">
+                    <div style="width:100px" class="pull-left mr-2">
+                        <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                        </select>
+                    </div>
+                    <div class="pull-right mt-1">
+                        <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header p-2 pl-3">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{imgModal.title}}</h5>
+                    </div>
+                    <div class="modal-body p-1">
+                        <img style="height: 100%; width:100%;" ng-src="{{imgModal.src}}" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header" style="padding: 20px !important">
+                        <h5 class="modal-title" id="exampleModalLongTitle">{{currentCrewName}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form name="frmLogin" autocomplete="off">
+                            <div class="form-group">
+                                <label class="mandatory">Username</label>
+                                <input type="text" name="username" id="username" class="form-control" required ng-model="loginModel.username" />
+                            </div>
+                            <div class="form-group">
+                                <label class="mandatory">Password</label>
+                                <input name="password" type="password" id="password" class="form-control" required ng-model="loginModel.password" />
+                            </div>
+                            <div class="form-group">
+                                <label class="mandatory">Confirm Password</label>
+                                <input name="cnfrmPassword" id="cnfrmPassword" type="password" class="form-control" required ng-model="cnfrmPssword" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer" style="padding: 12px !important">
+                        <button type="button" class="btn btn-success" ng-click="saveLoginInfo()">
+                            Submit
+                        </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>

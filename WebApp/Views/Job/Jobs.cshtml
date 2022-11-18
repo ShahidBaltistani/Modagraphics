@@ -1,0 +1,213 @@
+﻿@model int?
+@{
+    ViewBag.Title = "Site Vehicle Job List";
+    ViewBag.MainMenu = "mProject";
+    ViewBag.SubMenu = "sSiteVehicleJobList";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/Job/job-list.js"></script>
+}
+<div ng-controller="job_list">
+    <div  style="display:table-row">
+        <div style="display:table-cell">
+            <h4 class="link-heading"><a href="/Site/SiteList"> @ViewBag.SiteName</a> | <a href="/SiteVehicleType/Types/@ViewBag.SiteId$@ViewBag.SiteName$@ViewBag.IsModificationDisabled">@ViewBag.VehicleName</a> | Jobs(Vehicles)</h4>
+            <input type="hidden" name="siteVechcleId" id="siteVechcleId" value="@Model" />
+        </div>
+        <div style="display:table-cell; margin: 0 0 10px 10px;" >
+            <a ng-class="{disabled: @ViewBag.IsModificationDisabled}" href="/Job/AddJob/@Model$@ViewBag.SiteName$@ViewBag.SiteId$@ViewBag.VehicleName" class=" btn btn-danger m-btn m-btn--custom btn-sm " style="margin: 0 0 10px 10px;/* background: white; *//* color: black; */border: 3px solid #dd2130;font-weight: bold;">
+                <i class="m-menu__link-icon flaticon-add" style="font-size: 1.5rem !important;"></i>
+                &nbsp;
+                <span class="m-menu__link-text">
+                    Add Job
+                </span>
+            </a>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group m-form__group">
+                        <input class="form-control m-input form-control-sm" placeholder="VIN" ng-model="searchModel.VIN" />
+                    </div>
+
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group ">
+                        <input class="form-control m-input form-control-sm" placeholder="LPN" ng-model="searchModel.LPN" />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group m-form__group ">
+                        <select class="form-control btn-sm m-input m-bootstrap-select m_selectpicker" ng-model="searchModel.StatusString" tabindex="-98" id="StatusString">
+                            <option value="">
+                                All Jobs
+                            </option>
+                            <option value="0">
+                                Pending
+                            </option>
+                            <option value="1">
+                                In Queue
+                            </option>
+                            <option value="2">
+                                In Process
+                            </option>
+                            <option value="3">
+                                UnderReviewSupervisor
+                            </option>
+                            <option value="4">
+                                UnderReviewApprovalManager
+                            </option>
+                            <option value="5">
+                                IncidentReported
+                            </option>
+                            <option value="6">
+                                IncidentReported
+                            </option>
+                            <option value="7">
+                                Completed
+                            </option>
+                            <option value="8">
+                                Rejected
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+
+                    <div class="form-group m-form__group ">
+                        <input ng-phone class="form-control m-input form-control-sm" placeholder="Unit Number" ng-model="searchModel.UnitNo" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group m-form__group">
+                <button ng-click="search()" type="button" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                    Search
+                </button>
+                <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 100px;">VIN</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">LPN</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Unit #</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Job Status</span></th>
+                    <th class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="jobs.length == 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="job in jobs">
+                    <td class="m-datatable__cell"><span style="width: 100px;">{{job.VIN}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{job.LPN}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{job.UnitNo}}</span></td>
+                    <td class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="job.Status == 0">
+                                Pending
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="job.Status == 1">
+                                In Queue
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="job.Status == 2">
+                                In Process
+                            </span>
+                            <span class="m-badge pl-3 m-badge--bordered pr-3" ng-if="job.Status == 3">
+                                Under Review Supervisor
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="job.Status == 4">
+                                Under Review Approval Manager
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="job.Status == 5">
+                                Incident Reported
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="job.Status == 6">
+                                Sent For Repair
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="job.Status == 7">
+                                Completed
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="job.Status == 8">
+                                Rejected
+                            </span>
+                        </span>
+                    </td>
+                    @*<td data-field="Incident Report" class="m-datatable__cell"><span style="width: 110px;">0</span></td>*@
+                    @*<td data-field="Signature" class="m-datatable__cell"><span style="width: 110px;">N/A</span></td>*@
+                    @*<td data-field="Starting/Finish Pictures" class="m-datatable__cell"><span style="width: 110px;">10 SP/20 EP</span></td>*@
+                    <td class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <a ng-class="{disabled: @ViewBag.IsModificationDisabled}" href="/Job/EditJob/{{job.Id}}$@ViewBag.SiteId$@ViewBag.SiteName$@ViewBag.VehicleName$@Model" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit ">
+                                <i class="la la-edit"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

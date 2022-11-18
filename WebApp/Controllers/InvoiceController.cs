@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace WebApp.Controllers
+{
+    public class InvoiceController : BaseController
+    {
+        public InvoiceController() : base("SomeController")
+        {
+
+        }
+        public ActionResult InvoicesForApproval()
+        {
+            return View();
+        }
+
+        public ActionResult IncidentDetails()
+        {
+            return View();
+        }
+    }
+}

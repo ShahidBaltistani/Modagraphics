@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{9556229A-E936-432A-A7D3-9172AC8F174B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{9633EC36-3AAD-47C8-B43C-1C309F5DDD0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{91587D81-7A74-45A1-B4D2-105F4D1F6409}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{DF6AEBF5-51EE-4FCF-8290-67FCFA9F3964}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9556229A-E936-432A-A7D3-9172AC8F174B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9556229A-E936-432A-A7D3-9172AC8F174B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9556229A-E936-432A-A7D3-9172AC8F174B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9556229A-E936-432A-A7D3-9172AC8F174B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9633EC36-3AAD-47C8-B43C-1C309F5DDD0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9633EC36-3AAD-47C8-B43C-1C309F5DDD0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9633EC36-3AAD-47C8-B43C-1C309F5DDD0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9633EC36-3AAD-47C8-B43C-1C309F5DDD0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91587D81-7A74-45A1-B4D2-105F4D1F6409}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91587D81-7A74-45A1-B4D2-105F4D1F6409}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91587D81-7A74-45A1-B4D2-105F4D1F6409}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91587D81-7A74-45A1-B4D2-105F4D1F6409}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF6AEBF5-51EE-4FCF-8290-67FCFA9F3964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF6AEBF5-51EE-4FCF-8290-67FCFA9F3964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF6AEBF5-51EE-4FCF-8290-67FCFA9F3964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF6AEBF5-51EE-4FCF-8290-67FCFA9F3964}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E8ABF7AC-FD16-4C43-BADB-A2F447924B83}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.vu360solutions.org/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Database\\Database.csproj
+		SccProjectName1 = Database
+		SccLocalPath1 = Database
+		SccProjectUniqueName2 = Models\\Models.csproj
+		SccProjectName2 = Models
+		SccLocalPath2 = Models
+		SccProjectUniqueName3 = WebAPI\\WebAPI.csproj
+		SccProjectName3 = WebAPI
+		SccLocalPath3 = WebAPI
+		SccProjectUniqueName4 = WebApp\\WebApp.csproj
+		SccProjectName4 = WebApp
+		SccLocalPath4 = WebApp
+	EndGlobalSection
+EndGlobal

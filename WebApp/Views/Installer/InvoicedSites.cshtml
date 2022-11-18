@@ -1,0 +1,160 @@
+﻿
+@{
+    ViewBag.Title = "InvoicedSites";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sInvoicedSites";
+}
+
+
+<div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+    <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+        <thead class="m-datatable__head">
+            <tr class="m-datatable__row">
+                <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Project</span></th>
+                <th data-field="Site" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site</span></th>
+                <th data-field="Crew" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Crew</span></th>
+                <th data-field="Awarded Date" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Awarded Date</span></th>
+                <th data-field="Assigned Date" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Assigned Date</span></th>
+                <th data-field="Invoiced Date" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Invoiced Date</span></th>
+                <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Status</span></th>
+                <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 80px;">Actions</span></th>
+            </tr>
+        </thead>
+        <tbody class="m-datatable__body" style="">
+            <tr data-row="0" class="m-datatable__row" style="left: 0px;">
+                <td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">Rapidus</span></td>
+                <td data-field="Site" class="m-datatable__cell"><span style="width: 110px;">Rapidus.io</span></td>
+                <td data-field="Crew" class="m-datatable__cell"><span style="width: 110px;">XYZ</span></td>
+                <td data-field="Awarded Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Assigned Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Invoiced Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Status" class="m-datatable__cell">
+                    <span style="width: 110px;"><span class="m-badge m-badge--success m-badge--wide">Approved</span></span>
+                </td>
+                <td data-field="Actions" class="m-datatable__cell">
+                    <span style="overflow: visible; position: relative; width: 80px;">
+                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View Invoice">
+                            <i class="la la-eye"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+            <tr data-row="1" class="m-datatable__row" style="left: 0px;">
+                <td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">OMS</span></td>
+                <td data-field="Site" class="m-datatable__cell"><span style="width: 110px;">Oms.org</span></td>
+                <td data-field="Crew" class="m-datatable__cell"><span style="width: 110px;">XYZ</span></td>
+                <td data-field="Awarded Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Assigned Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Invoiced Date" class="m-datatable__cell"><span style="width: 110px;">04-04-2019</span></td>
+                <td data-field="Status" class="m-datatable__cell">
+                    <span style="width: 110px;"><span class="m-badge m-badge--danger m-badge--wide">Waiting for Approval</span></span>
+                </td>
+                <td data-field="Actions" class="m-datatable__cell">
+                    <span style="overflow: visible; position: relative; width: 80px;">
+                        <a href="#" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View Invoice">
+                            <i class="la la-eye"></i>
+                        </a>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+        <ul class="m-datatable__pager-nav">
+            <li><a title="First" class="m-datatable__pager-link m-datatable__pager-link--first m-datatable__pager-link--disabled" data-page="1" disabled="disabled"><i class="la la-angle-double-left"></i></a></li>
+            <li><a title="Previous" class="m-datatable__pager-link m-datatable__pager-link--prev m-datatable__pager-link--disabled" data-page="1" disabled="disabled"><i class="la la-angle-left"></i></a></li>
+            <li style="display: none;"><a title="More pages" class="m-datatable__pager-link m-datatable__pager-link--more-prev" data-page="1"><i class="la la-ellipsis-h"></i></a></li>
+            <li style="display: none;">
+                <input type="text" class="m-pager-input form-control" title="Page number">
+            </li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number m-datatable__pager-link--active" data-page="1" title="1">1</a></li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number" data-page="2" title="2">2</a></li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number" data-page="3" title="3">3</a></li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number" data-page="4" title="4">4</a></li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number" data-page="5" title="5">5</a></li>
+            <li><a class="m-datatable__pager-link m-datatable__pager-link-number" data-page="6" title="6">6</a></li>
+            <li><a title="More pages" class="m-datatable__pager-link m-datatable__pager-link--more-next" data-page="7"><i class="la la-ellipsis-h"></i></a></li>
+            <li><a title="Next" class="m-datatable__pager-link m-datatable__pager-link--next" data-page="2"><i class="la la-angle-right"></i></a></li>
+            <li><a title="Last" class="m-datatable__pager-link m-datatable__pager-link--last" data-page="10"><i class="la la-angle-double-right"></i></a></li>
+        </ul>
+        <div class="m-datatable__pager-info">
+            <div class="dropdown bootstrap-select m-datatable__pager-size dropup" style="width: 70px;">
+                <button type="button" class="btn dropdown-toggle btn-light" data-toggle="dropdown" role="button" title="Select page size" aria-expanded="false">
+                    <div class="filter-option">
+                        <div class="filter-option-inner">10</div>
+                    </div>&nbsp;<span class="bs-caret"><span class="caret"></span></span>
+                </button>
+                <div class="dropdown-menu" role="combobox" x-placement="top-start" style="max-height: 315.391px; overflow: hidden; min-height: 130px; position: absolute; will-change: transform; min-width: 108px; top: 0px; left: 0px; transform: translate3d(0px, -211px, 0px);">
+                    <div class="inner show" role="listbox" aria-expanded="false" tabindex="-1" style="max-height: 303.391px; overflow-y: auto; min-height: 118px;">
+                        <ul class="dropdown-menu inner show">
+                            <li class="selected active"><a role="option" class="dropdown-item selected active" aria-disabled="false" tabindex="0" aria-selected="true"><span class=" bs-ok-default check-mark"></span><span class="text">10</span></a></li>
+                            <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">20</span></a></li>
+                            <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">30</span></a></li>
+                            <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">50</span></a></li>
+                            <li><a role="option" class="dropdown-item" aria-disabled="false" tabindex="0" aria-selected="false"><span class=" bs-ok-default check-mark"></span><span class="text">100</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div><span class="m-datatable__pager-detail">Displaying 1 - 10 of 100 records</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="vehicle-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="padding: 20px !important">
+                <h5 class="modal-title" id="exampleModalLongTitle">Vehicle Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label><b>Vehicle Type</b></label>
+                    </div>
+                    <div class="col-lg-6">
+                        <label><b># of Vehicles</b></label>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>Car</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>34</label>
+                    </div>
+                </div>
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-6">
+                        <label>Truck</label>
+                    </div>
+                    <div class="col-lg-6">
+                        <label>16</label>
+                    </div>
+                </div>
+                <div id="modal_container">
+
+                </div>
+            </div>
+            <div class="modal-footer" style="padding: 12px !important">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(() => {
+
+    });
+
+    var vehicleDetailsModal = () => {
+        $("#vehicle-details-modal").modal('show');
+    };
+</script>
+
+<script src="~/Theme/js/data-local.js"></script>

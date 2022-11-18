@@ -1,0 +1,29 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Exception Occured</title>
+</head>
+<body>
+    <div> 
+        @{ 
+            var ex = ViewData["Ex"] as Exception;
+            <h3>Message</h3>
+            <p>@ex.Message</p>
+            <hr />
+            <h4>Inner Exception Messages</h4>
+            var inner = ex.InnerException;
+            while(inner != null)
+            {
+                <p>@inner.Message</p>
+            }
+        }
+    </div>
+</body>
+</html>

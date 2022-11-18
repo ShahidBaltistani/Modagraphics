@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Add Vehicle Type";
+    ViewBag.MainMenu = "mVehicle";
+    ViewBag.SubMenu = "sVehicleType";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/vehicle/vehicle-type.js"></script>
+}
+
+<form ng-controller="vehicle_type" autocomplete="off" name="frm">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="form-group m-form__group">
+                        <label class="mandatory">Vehicle Type</label>
+                        <input type="text" class="form-control" name="vehicleType" ng-model="vehicle.VehicleType" required nameregex />
+                        <span class="text-danger" ng-show="(frm.vehicleType.$touched || frm.vehicleType.$dirty && frm.vehicleType.$invalid)">
+                            <span ng-show="frm.vehicleType.$error.required">Enter vehicle type</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group m-form__group">
+                        <label class="mandatory">Base Price</label>
+                        <input step="any" class="form-control" name="basePrice" ng-model="vehicle.BasePrice" ng-Num="10" type="number" min="1" required />
+                        <span class="text-danger" ng-show="(frm.basePrice.$touched || frm.basePrice.$dirty ) && frm.basePrice.$invalid)">
+                            <span ng-show="frm.basePrice.$error.required">Enter base price</span>
+                            <span ng-show="frm.basePrice.$error.min">Price cannot be less then 1</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group m-form__group">
+                        <label>Picture</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" name="customFile" accept="image/*" ng-image ng-model="vehicle.ImageString">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="form-group m-form__group">
+                        <label>Is Active</label>
+                        <div>
+                            <span class="m-switch m-switch--icon m-switch--success">
+                                <label>
+                                    <input type="checkbox" ng-model="vehicle.IsActive" />
+                                    <span></span>
+                                </label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 border m--align-center" style="height:136px;">
+            <img ng-src="{{vehicle.ImageString}}" style="max-width:100%; max-height:135px;" alt="" />
+            <span class="no-image" ng-show="vehicle.ImageString == 'null'">No Image Selected</span>
+        </div>
+    </div>
+
+    <div class="form-group m-form__group row">
+        <div class="col-md-6">
+            <div class="row">
+                <label class="col-5">Specification</label>
+                <label class="col-5">Values</label>
+            </div>
+            <div id="specsDiv">
+            </div>
+            <button type="button" ng-click="addSpec()" class="btn m-btn--square btn-primary m-btn--icon">
+                <span>
+                    <i class="fa fa-plus-circle"></i>
+                    <span>
+                        Add Specification
+                    </span>
+                </span>
+            </button>
+        </div>
+    </div>
+    <div class="form-group m-form__group custommargin">
+        <button class="btn m-btn--square btn-success" ng-click="save()" ng-disabled="frm.$invalid">Submit</button>
+        <a href="/Vehicle/Types" class="btn m-btn--square btn-danger">Cancel</a>
+        <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+    </div>
+</form>
+

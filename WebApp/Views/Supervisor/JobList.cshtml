@@ -1,0 +1,360 @@
+﻿
+@{
+    ViewBag.Title = "Site List";
+    ViewBag.MainMenu = "mSite";
+    ViewBag.SubMenu = "sJobLog";
+}
+@section controller {
+    <script src="~/Angular/controllers/supervisor/JobList-Log.js"></script>
+}
+<style>
+    #Projectdetail {
+        width: 110px;
+        cursor: pointer;
+        color: cornflowerblue;
+    }
+
+        #Projectdetail:hover {
+            text-decoration: underline
+        }
+</style>
+<div ng-controller="JobList_Log">
+    <div class="row">
+
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input class="form-control m-input form-control-sm" placeholder="Project Name" ng-model="searchModel.ProjectName" name="ProjectName" />
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input class="form-control m-input form-control-sm" placeholder="Site Name" ng-model="searchModel.SiteName" name="SiteName" />
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input class="form-control m-input form-control-sm" placeholder="VehicleType" ng-model="searchModel.VehicleTypeName" name="VehicleTypeName" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input class="form-control m-input form-control-sm" placeholder="VIN" ng-model="searchModel.VIN" name="VIN" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <input class="form-control m-input form-control-sm" placeholder="LPN" ng-model="searchModel.LPN" name="LPN" />
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group m-form__group">
+                <select class="form-control form-control-sm" ng-model="searchModel.JobStatus">
+                    <option value="">All</option>
+                    <option value="0">Pending</option>
+                    <option value="1">InQueue</option>
+                    <option value="2">InProcess</option>
+                    <option value="3">UnderReviewSupervisor</option>
+                    <option value="4">UnderReviewApprovalManager</option>
+                    <option value="5">IncidentReported</option>
+                    <option value="6">SentForRepair</option>
+                    <option value="7">Completed</option>
+                    <option value="8">Rejected</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="form-group m-form__group">
+                <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                    Search
+                </button>
+                <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                    Clear
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Project" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Project</span></th>
+                    <th data-field="Site" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Site</span></th>
+                    <th data-field="Vehicle Type" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Vehicle Type</span></th>
+                    <th data-field="VIN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Awarded VIN</span></th>
+                    <th data-field="LPN" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">LPN</span></th>
+                    <th data-field="Unit #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 90px;">Unit #</span></th>
+                    <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 120px;">Status</span></th>
+                    <th data-field="# of Vehicles" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Action</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="totalCount <= 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr data-row="0" class="m-datatable__row" style="left: 0px;" ng-repeat="crew in crews">
+                    @*<td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">{{crew.ProjectName}}</span></td>*@
+                    <td data-field="Project" class="m-datatable__cell">
+                        <span id="Projectdetail" ng-click="ProjectAgainstSite(crew.SiteId)">
+                            {{crew.ProjectName}}
+                        </span>
+                    </td>
+                    <td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">{{crew.SiteName}}</span></td>
+                    <td data-field="Project" class="m-datatable__cell"><span style="width: 110px;">{{crew.VehicleTypeName}}</span></td>
+                    <td data-field="VIN" class="m-datatable__cell"><span style="width: 110px;">{{crew.VIN}}</span></td>
+                    <td data-field="LPN" class="m-datatable__cell"><span style="width: 110px;">{{crew.LPN}}</span></td>
+                    <td data-field="Unit #" class="m-datatable__cell"><span style="width: 60px;">{{crew.UnitNo}}</span></td>
+                    <td data-field="Status" class="m-datatable__cell">
+                        <span style="width: 120px;text-align:center">
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="crew.Status == '0'">
+                                Pendning
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == '1'">
+                                In Queue
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == '2'">
+                                In Process
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="crew.Status == '3'">
+                                Under Review Supervisor
+                            </span>
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="crew.Status == '4'">
+                                Under Review Approval Manager
+                            </span>
+                            <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="crew.Status == '5'">
+                                Incident Reported
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == '6'">
+                                Sent For Repair
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == '7'">
+                                Completed
+                            </span>
+                            <span class="m-badge pl-3 m-badge--success pr-3" ng-if="crew.Status == '8'">
+                                Rejected
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="Actions" class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <span class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <span class="dropdown-menu dropdown-menu-right">
+
+                                    <a class="dropdown-item" href="#" ng-click="ViewLogs(crew.JobId)">
+                                        <i class="la la-list"></i> View Job Logs
+                                    </a>
+                                </span>
+                            </span>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ProjectDetail" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Project Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="Project in Projects">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Project</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Fleet_Owner</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.FleetOwnerName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Contact_Phone</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.ContactPhone}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Address</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{Project.Address}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 110px;">
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '0'">
+                                    Active
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '1'">
+                                    InActive
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="Project.Status == '2'">
+                                    Pending
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#ProjectDetail">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="View-JobLog-Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Log Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in JobLog">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Updated Date</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.CreatedDate | dateFormat}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Updated By</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.CreatedBy}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.JobStatus == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.JobStatus == '1'">
+                                    In Queue
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.JobStatus == '2'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.JobStatus == '3'">
+                                    Under Review Supervisor
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.JobStatus == '4'">
+                                    Under Review Approval Manager
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.JobStatus == '5'">
+                                    Incident Reported
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.JobStatus == '6'">
+                                    Sent For Repair
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.JobStatus == '7'">
+                                    Completed
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.JobStatus == '8'">
+                                    Rejected
+                                </span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#View-JobLog-Modal">OK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

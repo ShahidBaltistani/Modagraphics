@@ -1,0 +1,364 @@
+﻿
+@{
+    ViewBag.Title = "Supervisor List";
+    ViewBag.MainMenu = "mSupervisor";
+    ViewBag.SubMenu = "sSupervisorList";
+}
+@section controller {
+    <script src="~/Angular/controllers/supervisor/supervisor-list.js"></script>
+}
+<div ng-controller="supervisor_list">
+    <form autocomplete="off">
+
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="User Name" ng-model="searchModel.SupervisorUserName" name="SupervisorUserName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="First Name" name="firstName" ng-model="searchModel.firstName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Last Name" name="lastName" ng-model="searchModel.lastName" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Email" name="email" ng-model="searchModel.email" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group m-form__group">
+                    <input class="form-control m-input form-control-sm" placeholder="Phone Number" name="phoneNumber" ng-model="searchModel.phoneNumber" />
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group m-form__group">
+                    <button type="button" ng-click="search()" class="btn btn-brand m-btn m-btn--custom btn-sm">
+                        Search
+                    </button>
+                    <button type="button" ng-click="clearSearch()" class="btn btn-danger m-btn m-btn--custom btn-sm">
+                        Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="m_datatable m-datatable m-datatable--default m-datatable--loaded" id="local_data" style="position: static; zoom: 1;">
+        <table class="m-datatable__table" style="display: block; min-height: 300px; overflow-x: auto;">
+            <thead class="m-datatable__head">
+                <tr class="m-datatable__row">
+                    <th data-field="Fleet Owner" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">User Name</span></th>
+                    <th data-field="First Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">First Name</span></th>
+                    <th data-field="Last Name" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Last Name</span></th>
+                    <th data-field="Email" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 100px;">Email</span></th>
+                    <th data-field="Phone #" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Phone #</span></th>
+                    <th data-field="Status" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Status</span></th>
+                    <th data-field="Sites" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Sites</span></th>
+                    <th data-field="Actions" class="m-datatable__cell m-datatable__cell--sort"><span style="width: 110px;">Actions</span></th>
+                </tr>
+            </thead>
+            <tbody class="m-datatable__body" style="">
+                <tr ng-if="totalCount <= 0" class="no-records-row">
+                    <td>
+                        No records found
+                    </td>
+                </tr>
+                <tr class="m-datatable__row" style="left: 0px;" ng-repeat="supervisor in supervisors">
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{supervisor.SupervisorUserName}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{supervisor.FirstName}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{supervisor.LastName}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 100px;">{{supervisor.EmailAddress}}</span></td>
+                    <td class="m-datatable__cell"><span style="width: 110px;">{{supervisor.PhoneNo}}</span></td>
+                    <td class="m-datatable__cell">
+                        <span style="width: 110px;">
+                            <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="supervisor.Status == '0'">
+                                Waiting For Approval
+                            </span>
+                            <span class="m-badge pl-3 m-badge--approved pr-3" ng-if="supervisor.Status == '1'">
+                                Approved
+                            </span>
+                            <span class="m-badge pl-3 m-badge--danger pr-3" ng-if="supervisor.Status == '2'">
+                                Rejected
+                            </span>
+                        </span>
+                    </td>
+                    <td data-field="Vehicle Types" class="m-datatable__cell">
+                        <span style="width: 110px;" ng-if="supervisor.NumberOfSite != 0">
+                            <a href="#" ng-click="SiteDetailModel(supervisor.Id)" class="btn btn-link">{{supervisor.NumberOfSite}}</a>
+                        </span>
+                        <span style="width: 110px;" ng-if="supervisor.NumberOfSite == 0">
+                            <a style="cursor: default" class="btn btn-link">{{supervisor.NumberOfSite}}</a>
+                        </span>
+                    </td>
+                    @* <td class="m-datatable__cell"><span style="width: 90px;text-align:center;">{{supervisor.NumberOfSite}}</span></td>*@
+                    @*<td class="m-datatable__cell"><span style="width: 90px;">{{supervisor.NumberOfSupervisor}}</span></td>*@
+                    <td class="m-datatable__cell">
+                        <span style="overflow: visible; position: relative; width: 110px;">
+                            <span class="dropdown ">
+                                <a href="#" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" data-toggle="dropdown">
+                                    <i class="la la-ellipsis-h"></i>
+                                </a>
+                                <span class="dropdown-menu dropdown-menu-right">
+                                    <a ng-href="{{(supervisor.Status !== 2 ? '/Supervisor/SupervisorEdit/' + supervisor.Id : '')}}" class="dropdown-item" ng-class="{'disabled': supervisor.Status == 2}">
+                                        <i class="la la-edit"></i> Edit Supervisor
+                                    </a>
+
+                                    <button class="dropdown-item" ng-click="showLoginModal(supervisor.Id)">
+                                        <i class="la {{supervisor.IsLoginExists ? 'la-edit' : 'la-plus'}}"></i> {{supervisor.IsLoginExists ? 'Edit' : 'Add'}} Login
+                                    </button>
+
+                                </span>
+                            </span>
+                            @*<a ng-href="{{(supervisor.Status !== 2 ? '/Supervisor/SupervisorEdit/' + supervisor.Id : '')}}" ng-class="{'disabled': supervisor.Status == 2}"
+                                   class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="Edit">
+                                    <i class="la la-edit"></i>
+                                </a>*@
+                            <a ng-click="showImage(supervisor.Id)" class="m-portlet__nav-link btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill" title="View Image">
+                                <i class="la la-eye"></i>
+                            </a>
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="m-datatable__pager m-datatable--paging-loaded clearfix">
+            <ul class="m-datatable__pager-nav">
+                <li>
+                    <a title="First" ng-click="firstPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--first"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-double-left"></i></a>
+                </li>
+                <li>
+                    <a title="Previous" ng-click="previousPage()"
+                       class="m-datatable__pager-link m-datatable__pager-link--prev "
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == 1}"><i class="la la-angle-left"></i></a>
+                </li>
+
+                <li ng-repeat="i in [] | range:numOfPages" ng-if="(i <= maxSize)">
+                    <a class="m-datatable__pager-link m-datatable__pager-link-number"
+                       ng-class="{'m-datatable__pager-link--active': i == pageIndex}"
+                       ng-click="pageChanged(i)">{{i}}</a>
+                </li>
+
+                <li ng-if="rightHide">
+                    <a title="More pages" ng-click="morePages()" class="m-datatable__pager-link m-datatable__pager-link--more-prev">
+                        <i class="la la-ellipsis-h"></i>
+                    </a>
+                </li>
+
+                <li>
+                    <a title="Next" ng-click="nextPage()" class="m-datatable__pager-link m-datatable__pager-link--next"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-right"></i></a>
+                </li>
+                <li>
+                    <a title="Last" ng-click="lastPage()" class="m-datatable__pager-link m-datatable__pager-link--last"
+                       ng-class="{'m-datatable__pager-link--disabled': pageIndex == numOfPages}"><i class="la la-angle-double-right"></i></a>
+                </li>
+            </ul>
+            <div class="m-datatable__pager-info">
+                <div style="width:100px" class="pull-left mr-2">
+                    <select id="drpPage" class="form-control form-control-sm" ng-model="pageSizeSelected" ng-change="changePageSize()">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+                <div class="pull-right mt-1">
+                    <span class="m-datatable__pager-detail">Displaying {{((pageIndex -1) * pageSizeSelected) + 1}} - {{pageIndex * pageSizeSelected > totalCount ? totalCount : pageIndex * pageSizeSelected}} of {{totalCount}} records</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal fade" id="Site-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:500px">
+            <div class="modal-content">
+                <div class="modal-header " style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Site Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group m-form__group row" ng-repeat="item in Sites">
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Project Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.ProjectName}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Name</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.Name}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>PO #</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.PONo}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Vehicle Details</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.TotalVehicleTypes}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Job (Vehicles)</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <label>{{item.TotalVehicles}}</label>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <label><b>Site Status</b></label>
+                        </div>
+                        <div class="col-lg-8 col-md-6 col-sm-6">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.SiteStatus == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '1'">
+                                    Open For Bid
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '2'">
+                                    Awarded
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.SiteStatus == '3'">
+                                    Assigned
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.SiteStatus == '4'">
+                                    In Process
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.SiteStatus == '5'">
+                                    Ready For Invoice
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '6'">
+                                    Invoiced
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '7'">
+                                    Closed For Bid
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                    @*<div class="form-group m-form__group row" ng-repeat="item in Sites">
+                        <div class="col-lg-2">
+                            <label>{{item.ProjectName}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{item.Name}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{item.PONo}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{item.TotalVehicleTypes}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>{{item.TotalVehicles}}</label>
+                        </div>
+                        <div class="col-lg-2">
+                            <span style="width: 100px;text-align:center">
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.SiteStatus == '0'">
+                                    Pendning
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '1'">
+                                    OpenForBid
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '2'">
+                                    Awarded
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.SiteStatus == '3'">
+                                    Assigned
+                                </span>
+                                <span class="m-badge pl-3 m-badge--warning pr-3" ng-if="item.SiteStatus == '4'">
+                                    InProcess
+                                </span>
+                                <span class="m-badge pl-3 m-badge--wide pr-3" ng-if="item.SiteStatus == '5'">
+                                    ReadyForInvoice
+                                </span>
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '6'">
+                                    Invoiced
+                                </span> 
+                                <span class="m-badge pl-3 m-badge--success pr-3" ng-if="item.SiteStatus == '7'">
+                                    ClosedForBid
+                                </span>
+                            </span>
+                        </div>
+                    </div>*@
+                    <div id="modal_container">
+
+                    </div>
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="image-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" >
+            <div class="modal-content">
+                <div class="modal-header p-2 pl-3">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{imgModal.title}}</h5>
+                </div>
+                <div class="modal-body p-1">
+                    <img style="height: 100%; width:100%;" ng-src="{{imgModal.src}}" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="login-modal" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="padding: 20px !important">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{currentSupervisorName}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form name="frmLogin" autocomplete="off">
+                        <div class="form-group">
+                            <label class="mandatory">Username</label>
+                            <input type="text" name="username" id="username" class="form-control" required ng-model="loginModel.username" />
+                        </div>
+                        <div class="form-group">
+                            <label class="mandatory">Password</label>
+                            <input name="password" type="password" id="password" class="form-control" required ng-model="loginModel.password" />
+                        </div>
+                        <div class="form-group">
+                            <label class="mandatory">Confirm Password</label>
+                            <input name="cnfrmPassword" id="cnfrmPassword" type="password" class="form-control" required ng-model="cnfrmPssword" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer" style="padding: 12px !important">
+                    <button type="button" class="btn btn-success" ng-click="saveLoginInfo()">
+                        Submit
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

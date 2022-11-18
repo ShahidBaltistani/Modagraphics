@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Add Login";
+    ViewBag.MainMenu = "mLogin";
+    ViewBag.SubMenu = "sAddLogin";
+}
+
+@section controller {
+    <script src="~/Angular/controllers/userLogin/add-login.js"></script>
+}
+
+<form ng-controller="add_login" autocomplete="off" name="frm">
+    <h4>Create Login</h4> <hr />
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">User Type</label>
+            <select class="form-control" tabindex="-98" id="drpusertype" ng-model="login.UserRole" ng-change="GetUsers()">
+                <option value="-1">--Select User Type--</option>
+                <option value="0">Data Entry Operator</option>
+                <option value="1">Approval Manager</option>
+                <option value="2">Finance Manager</option>
+                <option value="3">Corporate User</option>
+                <option value="4">Installer</option>
+                <option value="5">Fleet Owner</option>
+            </select>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Users</label>
+            <select class="form-control" tabindex="-98" id="drpusers">
+                <option value="0">--Select User Type First--</option>
+            </select>
+        </div>
+            </div>
+    <div class="form-group m-form__group row">
+        <div class="col-lg-4">
+            <label class="mandatory">Username</label>
+            <input type="text" class="form-control m-input" name="username" ng-model="login.UserName" required/>
+            <span class="text-danger" ng-show="(frm.username.$touched || frm.username.$dirty && frm.username.$invalid)">
+                <span ng-show="frm.username.$error.required">Enter user name</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group m-form__group row">
+      
+        <div class="col-lg-4">
+            <label class="mandatory">Password</label>
+            <input type="password" class="form-control m-input" name="password" ng-model="login.Password" required />
+            <span class="text-danger" ng-show="(frm.password.$touched || frm.password.$dirty && frm.password.$invalid)">
+                <span ng-show="frm.password.$error.required">Enter password</span>
+            </span>
+        </div>
+        <div class="col-lg-4">
+            <label class="mandatory">Confirm Password</label>
+            <input type="password" class="form-control m-input" name="confirmPassword" ng-model="login.ConfirmPassword" required />
+            <span class="text-danger" ng-show="(frm.confirmPassword.$touched || frm.confirmPassword.$dirty && frm.confirmPassword.$invalid)">
+                <span ng-show="frm.confirmPassword.$error.required">Enter confrim password</span>
+                <span class="text-danger" ng-show="login.ConfirmPassword != '' && login.ConfirmPassword != null  && login.Password != login.ConfirmPassword">Password doesn't match</span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group m-form__group">
+        <button ng-disabled="frm.$invalid || (login.Password != login.ConfirmPassword)" ng-click="save()" class="btn m-btn--square btn-success">Submit</button>
+        <a href="/UserLogin/LoginList" class="btn m-btn--square btn-danger">Cancel</a>
+        <p class="text-danger" style="display:none">Please fill all mandatory fields</p>
+    </div>
+</form>
